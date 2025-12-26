@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="vi">
 	<head>
-		<title>Taplus3D Portfolio</title>
+		<title>Taplus3D - Portfolio</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -16,10 +16,10 @@
 				--font-heading: 'Space Grotesk', sans-serif;
 				--font-body: 'Inter', sans-serif;
 				--tech-black: #050505;
-				--tech-accent: #ff5722; /* Màu cam tạo điểm nhấn */
+				--tech-accent: #ff5722;
 			}
 
-			/* --- CẤU HÌNH FONT & NỀN --- */
+			/* --- CẤU HÌNH CƠ BẢN --- */
 			body, input, textarea, p, a {
 				font-family: var(--font-body) !important;
 				background-color: var(--tech-black);
@@ -32,11 +32,12 @@
 				color: #fff;
 			}
 
-			/* --- 1. HERO SECTION VỚI VIDEO NỀN --- */
+			/* --- 1. HERO SECTION (VIDEO NỀN) --- */
 			.video-hero {
 				position: relative;
 				width: 100%;
 				height: 100vh; /* Full màn hình */
+				background-color: #000; /* Màu nền dự phòng khi video chưa tải */
 				overflow: hidden;
 				display: flex;
 				align-items: center;
@@ -51,9 +52,9 @@
 				left: 0;
 				width: 100%;
 				height: 100%;
-				object-fit: cover; /* Đảm bảo video phủ kín không bị méo */
+				object-fit: cover; /* Quan trọng: Giúp video không bị méo */
 				z-index: 0;
-				opacity: 0.6; /* Làm tối video một chút để chữ nổi hơn */
+				opacity: 0.5; /* Giảm độ sáng video để chữ nổi bật hơn */
 			}
 
 			/* Nội dung đè lên video */
@@ -66,18 +67,20 @@
 
 			.hero-title {
 				font-size: 4em;
-				line-height: 1;
+				line-height: 1.1;
 				margin-bottom: 0.5em;
-				text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+				text-shadow: 0 4px 15px rgba(0,0,0,0.8);
 			}
 
 			.hero-desc {
-				font-size: 1.2em;
-				color: #eee;
+				font-size: 1.3em;
+				color: #f0f0f0;
 				margin-bottom: 2em;
-				text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+				text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+				font-weight: 300;
 			}
 
+			/* Nút cuộn xuống */
 			.scroll-down {
 				position: absolute;
 				bottom: 30px;
@@ -85,9 +88,11 @@
 				transform: translateX(-50%);
 				animation: bounce 2s infinite;
 				opacity: 0.8;
-				font-size: 0.9em;
+				font-size: 0.8em;
 				text-transform: uppercase;
 				letter-spacing: 2px;
+				z-index: 2;
+				color: rgba(255,255,255,0.7);
 			}
 
 			@keyframes bounce {
@@ -96,7 +101,7 @@
 				60% {transform: translateX(-50%) translateY(-5px);}
 			}
 
-			/* --- 2. ABOUT SECTION (GIỚI THIỆU NGẮN) --- */
+			/* --- 2. ABOUT SECTION --- */
 			.about-section {
 				padding: 80px 20px;
 				text-align: center;
@@ -115,7 +120,7 @@
 				color: #bbb;
 			}
 
-			/* --- 3. 4 COLUMNS NAVIGATION (TỶ LỆ 9:16) --- */
+			/* --- 3. NAVIGATION GRID (4 CỘT) --- */
 			.nav-container {
 				padding: 20px 40px 80px 40px;
 				background: var(--tech-black);
@@ -123,7 +128,7 @@
 
 			.nav-grid {
 				display: grid;
-				grid-template-columns: repeat(4, 1fr); /* 4 cột đều nhau */
+				grid-template-columns: repeat(4, 1fr);
 				gap: 20px;
 				max-width: 1600px;
 				margin: 0 auto;
@@ -132,11 +137,11 @@
 			.nav-card {
 				position: relative;
 				width: 100%;
-				aspect-ratio: 9/16; /* Tỷ lệ dọc chuẩn TikTok/Reels */
+				aspect-ratio: 9/16; /* Tỷ lệ dọc như Tiktok/Reels */
 				border-radius: 12px;
 				overflow: hidden;
 				cursor: pointer;
-				transition: transform 0.4s ease;
+				transition: transform 0.4s ease, border-color 0.4s ease;
 				border: 1px solid #333;
 			}
 
@@ -153,7 +158,7 @@
 			}
 
 			.nav-card:hover img {
-				transform: scale(1.1); /* Zoom nhẹ ảnh khi rê chuột */
+				transform: scale(1.05);
 			}
 
 			.nav-overlay {
@@ -161,41 +166,36 @@
 				bottom: 0;
 				left: 0;
 				width: 100%;
-				background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+				background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
 				padding: 30px 20px;
 				color: #fff;
+				text-align: left;
 			}
 
 			.nav-overlay h3 {
-				font-size: 1.5em;
-				margin: 0;
+				font-size: 1.4em;
+				margin: 5px 0 0 0;
 				color: #fff;
 			}
 			.nav-overlay span {
-				font-size: 0.9em;
+				font-size: 0.85em;
 				text-transform: uppercase;
 				color: var(--tech-accent);
-				font-weight: 600;
+				font-weight: 700;
+				letter-spacing: 1px;
 			}
 
-			/* --- RESPONSIVE MOBILE --- */
+			/* --- RESPONSIVE --- */
 			@media screen and (max-width: 980px) {
 				.hero-title { font-size: 2.5em; }
-				.nav-grid {
-					grid-template-columns: repeat(2, 1fr); /* Tablet: 2 cột */
-				}
+				.nav-grid { grid-template-columns: repeat(2, 1fr); }
 			}
 
 			@media screen and (max-width: 480px) {
-				.video-hero { height: 80vh; }
+				.video-hero { height: 85vh; } /* Mobile không cần full 100vh để lộ chút nội dung dưới */
 				.nav-container { padding: 20px; }
-				.nav-grid {
-					grid-template-columns: 1fr; /* Mobile: 1 cột (hoặc bạn có thể để 2) */
-					gap: 15px;
-				}
-				.nav-card {
-					aspect-ratio: 16/9; /* Trên mobile đổi sang ngang cho dễ nhìn, hoặc giữ 9/16 nếu muốn style stories */
-				}
+				.nav-grid { grid-template-columns: 1fr; gap: 20px; }
+				.nav-card { aspect-ratio: 16/9; } /* Mobile để nằm ngang cho dễ xem */
 			}
 		</style>
 	</head>
@@ -210,7 +210,7 @@
 								<li><a href="#footer" class="icon solid fa-info-circle">Liên hệ</a></li>
 							</ul>
 						</nav>
-					</header>
+				</header>
 
 				<section class="video-hero">
 						<video class="video-bg" autoplay muted loop playsinline poster="images/thumbs/service.jpg">
@@ -227,24 +227,23 @@
 						</div>
 						
 						<div class="scroll-down">Cuộn xuống để xem thêm ↓</div>
-					</section>
+				</section>
 
 				<section class="about-section">
 						<h2>Technical Artist & Visualizer</h2>
 						<p>
-							Chào mừng đến với hệ sinh thái của <strong>Taplus3D</strong>. Tôi chuyên tạo ra các Room Scene 3D chất lượng cao, 
+							Chào mừng đến với hệ sinh thái của <strong>Taplus3D</strong>. Tôi chuyên tạo ra các Room Scene 3D chất lượng cao, 
 							video mockup ấn tượng và chia sẻ quy trình làm việc tối ưu cho cộng đồng thiết kế.
 							<br><br>
 							Dù bạn là khách hàng tìm kiếm dịch vụ hay học viên muốn nâng cao kỹ năng, mọi thứ bạn cần đều ở ngay bên dưới.
 						</p>
-					</section>
+				</section>
 
 				<div id="nav-section" class="nav-container">
 						<div class="nav-grid">
 							
 							<div class="nav-card" onclick="window.location.href='#footer';">
-								<img src="images/thumbs/service.jpg" alt="Dịch vụ Roomscene">
-								<div class="nav-overlay">
+								<img src="images/thumbs/service.jpg" alt="Dịch vụ Roomscene"> <div class="nav-overlay">
 									<span>Services</span>
 									<h3>Room Scene & 3D</h3>
 								</div>
@@ -275,7 +274,7 @@
 							</div>
 
 						</div>
-					</div>
+				</div>
 
 				<footer id="footer" class="panel">
 						<div class="inner split">
@@ -323,9 +322,9 @@
 								</section>
 							</div>
 						</div>
-					</footer>
+				</footer>
 
-			</div>
+		</div>
 
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/jquery.poptrox.min.js"></script>
