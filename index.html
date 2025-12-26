@@ -13,11 +13,11 @@
 
 		<style>
 			:root {
-				/* Font tiêu đề là Segoe UI Black */
 				--font-heading: 'Segoe UI Black', 'Segoe UI', 'Arial Black', sans-serif;
 				--font-body: 'Inter', sans-serif;
 				--tech-black: #050505;
-				--tech-accent: #ff5722; /* Mã màu cam chủ đạo */
+				--tech-accent: #ff5722; 
+				--card-bg: #111;
 			}
 
 			/* --- CẤU HÌNH CƠ BẢN --- */
@@ -25,6 +25,7 @@
 				font-family: var(--font-body) !important;
 				background-color: var(--tech-black);
 				color: #ccc;
+				margin: 0;
 			}
 			h1, h2, h3, h4, h5, h6, strong, b, .label, .button {
 				font-family: var(--font-heading) !important;
@@ -33,12 +34,10 @@
 				color: #fff;
 			}
 			
-			/* Ẩn Header mặc định */
-			#header {
-				display: none !important;
-			}
+			/* Ẩn Header mặc định của template cũ */
+			#header { display: none !important; }
 
-			/* --- 1. HERO SECTION (VIDEO NỀN) --- */
+			/* --- 1. HERO SECTION --- */
 			.video-hero {
 				position: relative;
 				width: 100%;
@@ -47,111 +46,49 @@
 				overflow: hidden;
 				display: block;
 			}
-
 			.video-bg {
 				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				z-index: 0;
-				opacity: 0.6;
+				top: 0; left: 0; width: 100%; height: 100%;
+				object-fit: cover; z-index: 0; opacity: 0.6;
 			}
-
-			/* --- LAYOUT MỚI --- */
 			.hero-header-layout {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
+				position: absolute; top: 0; left: 0; width: 100%; height: 100%;
 				padding: 40px 50px;
-				display: flex;
-				justify-content: space-between;
-				align-items: flex-start;
-				z-index: 10;
-				pointer-events: none;
+				display: flex; justify-content: space-between; align-items: flex-start;
+				z-index: 10; pointer-events: none;
 			}
-
-			.brand-area { pointer-events: auto; }
+			.brand-area, .cta-area { pointer-events: auto; }
 			.hero-logo {
 				font-family: var(--font-heading) !important;
-				font-weight: 900;
-				font-size: 2.5em;
-				margin: 0;
-				letter-spacing: 1px;
-				color: #fff;
-				text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-				line-height: 1;
+				font-weight: 900; font-size: 2.5em; margin: 0;
+				letter-spacing: 1px; color: #fff;
+				text-shadow: 0 2px 10px rgba(0,0,0,0.5); line-height: 1;
 			}
 
-			.cta-area { pointer-events: auto; }
-
-			/* --- CSS NÚT BẤM (MÀU CAM + TRƯỢT TRÁI QUA PHẢI) --- */
+			/* NÚT BẤM */
 			.btn-minimal {
-				display: inline-block;
-				padding: 12px 35px;
-				
-				/* SỬA: Đổi viền và chữ sang màu cam (var(--tech-accent)) */
-				border: 1px solid var(--tech-accent); 
-				color: var(--tech-accent) !important; 
-				
-				text-decoration: none;
-				font-family: var(--font-body);
-				font-weight: 600;
-				text-transform: uppercase;
-				font-size: 0.85em;
-				letter-spacing: 2px;
-				position: relative;
-				overflow: hidden; /* Che phần màu thừa */
-				z-index: 1;
-				transition: color 0.4s ease;
-				border-radius: 4px;
-				background-color: transparent;
+				display: inline-block; padding: 12px 35px;
+				border: 1px solid var(--tech-accent); color: var(--tech-accent) !important;
+				text-decoration: none; font-family: var(--font-body); font-weight: 600;
+				text-transform: uppercase; font-size: 0.85em; letter-spacing: 2px;
+				position: relative; overflow: hidden; z-index: 1;
+				transition: color 0.4s ease; border-radius: 4px; background-color: transparent;
 			}
-
-			/* Lớp màu nền ảo */
 			.btn-minimal::before {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: -100%; /* Bắt đầu ẩn hoàn toàn bên TRÁI */
-				width: 100%;
-				height: 100%;
-				background-color: var(--tech-accent); /* Màu nền cam */
-				transition: left 0.4s cubic-bezier(0.19, 1, 0.22, 1); /* Hiệu ứng trượt */
+				content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+				background-color: var(--tech-accent); transition: left 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 				z-index: -1;
 			}
+			.btn-minimal:hover { color: #fff !important; border-color: var(--tech-accent); }
+			.btn-minimal:hover::before { left: 0; }
 
-			/* Khi di chuột vào */
-			.btn-minimal:hover {
-				/* Hover thì chữ chuyển sang TRẮNG để nổi trên nền cam */
-				color: #fff !important; 
-				border-color: var(--tech-accent);
-			}
-
-			.btn-minimal:hover::before {
-				left: 0; /* Trượt sang PHẢI lấp đầy nút */
-			}
-			/* --- HẾT PHẦN NÚT BẤM --- */
-
-			/* Nút cuộn xuống */
+			/* Scroll Down */
 			.scroll-down {
-				position: absolute;
-				bottom: 30px;
-				left: 50%;
-				transform: translateX(-50%);
-				animation: bounce 2s infinite;
-				opacity: 0.7;
-				font-size: 0.8em;
-				text-transform: uppercase;
-				letter-spacing: 2px;
-				z-index: 2;
-				color: rgba(255,255,255,0.7);
-				pointer-events: none;
+				position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+				animation: bounce 2s infinite; opacity: 0.7; font-size: 0.8em;
+				text-transform: uppercase; letter-spacing: 2px; z-index: 2;
+				color: rgba(255,255,255,0.7); pointer-events: none;
 			}
-
 			@keyframes bounce {
 				0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
 				40% {transform: translateX(-50%) translateY(-10px);}
@@ -160,112 +97,151 @@
 
 			/* --- 2. ABOUT SECTION --- */
 			.about-section {
-				padding: 100px 20px;
-				text-align: center;
-				max-width: 900px;
-				margin: 0 auto;
-				background: var(--tech-black);
+				padding: 100px 20px; text-align: center; max-width: 900px;
+				margin: 0 auto; background: var(--tech-black);
 			}
-			.about-section h2 {
-				font-size: 2em;
-				margin-bottom: 30px;
-				color: #fff;
-				letter-spacing: 1px;
-			}
-			.about-section p {
-				font-size: 1.1em;
-				line-height: 1.8;
-				color: #999;
-				font-weight: 300;
-			}
-			.about-section strong {
-				color: #fff;
-				font-weight: 700;
-			}
+			.about-section h2 { font-size: 2em; margin-bottom: 30px; color: #fff; letter-spacing: 1px; }
+			.about-section p { font-size: 1.1em; line-height: 1.8; color: #999; font-weight: 300; }
+			.about-section strong { color: #fff; font-weight: 700; }
 
-			/* --- 3. NAVIGATION GRID --- */
+			/* --- 3. NEW ECOSYSTEM LAYOUT (ZIGZAG + SLIDER) --- */
 			.nav-container {
-				padding: 20px 40px 100px 40px;
+				padding: 50px 20px 100px 20px;
 				background: var(--tech-black);
-			}
-
-			.nav-grid {
-				display: grid;
-				grid-template-columns: repeat(4, 1fr);
-				gap: 20px;
-				max-width: 1600px;
+				display: flex;
+				flex-direction: column;
+				gap: 60px; /* Khoảng cách giữa các hàng */
+				max-width: 1200px;
 				margin: 0 auto;
 			}
 
-			.nav-card {
-				position: relative;
-				width: 100%;
-				aspect-ratio: 9/16;
-				border-radius: 8px;
+			.eco-row {
+				display: flex;
+				height: 350px; /* Chiều cao cố định */
+				background: var(--card-bg);
+				border-radius: 12px;
 				overflow: hidden;
+				position: relative;
+				box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+				border: 1px solid #222;
 				cursor: pointer;
-				transition: transform 0.4s ease;
-				border: none;
+				transition: border-color 0.3s ease;
+			}
+			
+			.eco-row:hover {
+				border-color: #444;
 			}
 
-			.nav-card:hover { transform: translateY(-10px); }
-
-			.nav-card img {
-				width: 100%;
+			/* Cấu trúc mặc định: Hình tĩnh (40%) - Chữ (60%) */
+			.eco-static-img {
+				width: 40%;
 				height: 100%;
 				object-fit: cover;
-				transition: transform 0.6s ease;
-				filter: brightness(0.8);
+				z-index: 1;
 			}
 
-			.nav-card:hover img {
-				transform: scale(1.05);
-				filter: brightness(1);
+			.eco-content {
+				flex: 1;
+				padding: 50px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				z-index: 1;
+				position: relative;
+				transition: opacity 0.5s ease;
 			}
 
-			.nav-overlay {
+			.eco-content h3 { font-size: 2rem; color: #fff; margin-bottom: 0.5rem; }
+			.eco-content span {
+				color: var(--tech-accent); text-transform: uppercase;
+				letter-spacing: 2px; font-weight: bold; font-size: 0.9rem; margin-bottom: 1rem;
+			}
+			.eco-content p { font-size: 1rem; color: #aaa; line-height: 1.6; }
+
+			/* --- HIỆU ỨNG SLIDE 8 HÌNH --- */
+			.eco-slider-wrapper {
 				position: absolute;
-				bottom: 0;
-				left: 0;
-				width: 100%;
-				background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-				padding: 40px 20px 30px 20px;
-				color: #fff;
-				text-align: left;
+				top: 0;
+				height: 100%;
+				width: 0%; /* Mặc định ẩn (chiều rộng = 0) */
+				overflow: hidden;
+				z-index: 10; /* Đè lên chữ */
+				transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1); /* Trượt mượt */
+				background: #000;
 			}
 
-			.nav-overlay h3 {
-				font-size: 1.5em;
-				margin: 5px 0 0 0;
-				color: #fff;
+			/* Track chứa 8 hình */
+			.eco-slide-track {
+				display: flex;
+				height: 100%;
+				width: max-content; 
+				/* Animation nhẹ để hình trôi chầm chậm khi hiện ra */
+				animation: slideScroll 25s linear infinite; 
 			}
-			.nav-overlay span {
-				font-size: 0.8em;
-				text-transform: uppercase;
-				color: var(--tech-accent);
-				font-weight: 700;
-				letter-spacing: 2px;
+
+			.eco-slide-track img {
+				height: 100%;
+				width: auto; 
+				aspect-ratio: 16/9; 
+				object-fit: cover;
+				margin-right: 2px;
+				filter: brightness(0.9);
+			}
+
+			@keyframes slideScroll {
+				0% { transform: translateX(0); }
+				100% { transform: translateX(-20%); } /* Trôi nhẹ */
+			}
+
+			/* --- HOVER TRIGGER --- */
+			/* Khi rê chuột vào dòng, Wrapper mở rộng ra 100% */
+			.eco-row:hover .eco-slider-wrapper {
+				width: 100%;
+			}
+			
+			/* Khi rê chuột, chữ mờ đi (phòng hờ hình không che hết) */
+			.eco-row:hover .eco-content {
+				opacity: 0;
+			}
+
+			/* --- ZIGZAG LOGIC --- */
+			
+			/* TRÁI: Hình gốc bên trái, Slide trượt từ Trái sang Phải */
+			.eco-row.left-img .eco-slider-wrapper {
+				left: 0; 
+			}
+
+			/* PHẢI: Hình gốc bên phải, Slide trượt từ Phải sang Trái */
+			.eco-row.right-img {
+				flex-direction: row-reverse; /* Đảo layout hình tĩnh qua phải */
+			}
+			.eco-row.right-img .eco-slider-wrapper {
+				right: 0; /* Slide xuất phát từ phải */
+				left: auto;
+			}
+			/* Đảo chiều animation cho mượt với hướng trượt */
+			.eco-row.right-img .eco-slide-track {
+				flex-direction: row-reverse; 
+				animation-direction: reverse;
 			}
 
 			/* --- RESPONSIVE --- */
 			@media screen and (max-width: 980px) {
-				.nav-grid { grid-template-columns: repeat(2, 1fr); }
+				.eco-row { flex-direction: column !important; height: auto; }
+				.eco-static-img { width: 100%; height: 250px; }
+				.eco-content { padding: 30px; }
+				.eco-slider-wrapper { display: none; } /* Tắt hiệu ứng trên mobile */
 				.hero-header-layout { padding: 30px; }
 			}
 
 			@media screen and (max-width: 480px) {
 				.video-hero { height: 90vh; }
-				.hero-header-layout { 
-					padding: 20px; 
-					flex-direction: column;
-					align-items: center; 
-					justify-content: space-between;
-					height: 250px;
+				.hero-header-layout { 
+					padding: 20px; flex-direction: column; align-items: center; 
+					justify-content: space-between; height: 250px;
 				}
 				.hero-logo { font-size: 2em; }
 				.nav-container { padding: 20px; }
-				.nav-grid { grid-template-columns: 1fr; gap: 30px; }
-				.nav-card { aspect-ratio: 16/9; } 
 			}
 		</style>
 	</head>
@@ -277,14 +253,12 @@
 				<section class="video-hero">
 						<video class="video-bg" autoplay muted loop playsinline poster="images/thumbs/service.jpg">
 							<source src="images/hero-video.mp4" type="video/mp4">
-							Trình duyệt của bạn không hỗ trợ video.
 						</video>
 
 						<div class="hero-header-layout">
 							<div class="brand-area">
 								<h1 class="hero-logo">TAPLUS 3D</h1>
 							</div>
-
 							<div class="cta-area">
 								<a href="#nav-section" class="btn-minimal">Khám phá ngay &rarr;</a>
 							</div>
@@ -296,8 +270,8 @@
 				<section class="about-section">
 						<h2>Technical Artist & Visualizer</h2>
 						<p>
-							Chào mừng đến với hệ sinh thái của <strong>Taplus3D</strong>. Tôi chuyên cung cấp các giải pháp hình ảnh 3D toàn diện: 
-							từ <strong>3D Furniture Modeling</strong> chi tiết, sáng tạo <strong>Room Scene</strong> tôn vinh sản phẩm, 
+							Chào mừng đến với hệ sinh thái của <strong>Taplus3D</strong>. Tôi chuyên cung cấp các giải pháp hình ảnh 3D toàn diện: 
+							từ <strong>3D Furniture Modeling</strong> chi tiết, sáng tạo <strong>Room Scene</strong> tôn vinh sản phẩm, 
 							đến làm <strong>Mockup</strong> ấn tượng.
 							<br><br>
 							Dù bạn là khách hàng tìm kiếm dịch vụ chất lượng hay học viên muốn nâng cao kỹ năng, mọi thứ bạn cần đều ở ngay bên dưới.
@@ -305,41 +279,99 @@
 				</section>
 
 				<div id="nav-section" class="nav-container">
-						<div class="nav-grid">
-							
-							<div class="nav-card" onclick="window.location.href='#footer';">
-								<img src="images/thumbs/service.jpg" alt="Dịch vụ Roomscene"> 
-								<div class="nav-overlay">
-									<span>Services</span>
-									<h3>Room Scene & 3D</h3>
-								</div>
-							</div>
 
-							<div class="nav-card" onclick="window.location.href='#';">
-								<img src="images/thumbs/academy.jpg" alt="Khóa học">
-								<div class="nav-overlay">
-									<span>Academy</span>
-									<h3>Khóa Học Online</h3>
-								</div>
-							</div>
-
-							<div class="nav-card" onclick="window.location.href='#';">
-								<img src="images/thumbs/store.jpg" alt="Mockup Store">
-								<div class="nav-overlay">
-									<span>Store</span>
-									<h3>Mockup & Assets</h3>
-								</div>
-							</div>
-
-							<div class="nav-card" onclick="window.location.href='https://youtube.com';">
-								<img src="images/thumbs/youtube.jpg" alt="Youtube Channel">
-								<div class="nav-overlay">
-									<span>Community</span>
-									<h3>YouTube & Blog</h3>
-								</div>
-							</div>
-
+					<div class="eco-row left-img" onclick="window.location.href='#footer';">
+						<img src="images/thumbs/service.jpg" class="eco-static-img" alt="Services">
+						
+						<div class="eco-content">
+							<span>Services</span>
+							<h3>Room Scene & 3D</h3>
+							<p>Để mình giúp bạn tôn vinh giá trị sản phẩm qua những khung hình 3D ấn tượng.</p>
 						</div>
+
+						<div class="eco-slider-wrapper">
+							<div class="eco-slide-track">
+								<img src="images/slides/service-1.jpg" alt="">
+								<img src="images/slides/service-2.jpg" alt="">
+								<img src="images/slides/service-3.jpg" alt="">
+								<img src="images/slides/service-4.jpg" alt="">
+								<img src="images/slides/service-5.jpg" alt="">
+								<img src="images/slides/service-6.jpg" alt="">
+								<img src="images/slides/service-7.jpg" alt="">
+								<img src="images/slides/service-8.jpg" alt="">
+							</div>
+						</div>
+					</div>
+
+					<div class="eco-row right-img" onclick="window.location.href='#';">
+						<img src="images/thumbs/academy.jpg" class="eco-static-img" alt="Academy">
+						
+						<div class="eco-content">
+							<span>Academy</span>
+							<h3>Khóa Học Online</h3>
+							<p>Chia sẻ quy trình "thực chiến" mà mình đang áp dụng hằng ngày để chinh phục khách hàng.</p>
+						</div>
+
+						<div class="eco-slider-wrapper">
+							<div class="eco-slide-track">
+								<img src="images/slides/academy-1.jpg" alt="">
+								<img src="images/slides/academy-2.jpg" alt="">
+								<img src="images/slides/academy-3.jpg" alt="">
+								<img src="images/slides/academy-4.jpg" alt="">
+								<img src="images/slides/academy-5.jpg" alt="">
+								<img src="images/slides/academy-6.jpg" alt="">
+								<img src="images/slides/academy-7.jpg" alt="">
+								<img src="images/slides/academy-8.jpg" alt="">
+							</div>
+						</div>
+					</div>
+
+					<div class="eco-row left-img" onclick="window.location.href='#';">
+						<img src="images/thumbs/store.jpg" class="eco-static-img" alt="Store">
+						
+						<div class="eco-content">
+							<span>Store</span>
+							<h3>Mockup & Assets</h3>
+							<p>Thổi hồn vào thiết kế của bạn bằng kho thư viện Mockup được chọn lọc kỹ càng.</p>
+						</div>
+
+						<div class="eco-slider-wrapper">
+							<div class="eco-slide-track">
+								<img src="images/slides/store-1.jpg" alt="">
+								<img src="images/slides/store-2.jpg" alt="">
+								<img src="images/slides/store-3.jpg" alt="">
+								<img src="images/slides/store-4.jpg" alt="">
+								<img src="images/slides/store-5.jpg" alt="">
+								<img src="images/slides/store-6.jpg" alt="">
+								<img src="images/slides/store-7.jpg" alt="">
+								<img src="images/slides/store-8.jpg" alt="">
+							</div>
+						</div>
+					</div>
+
+					<div class="eco-row right-img" onclick="window.location.href='https://youtube.com';">
+						<img src="images/thumbs/youtube.jpg" class="eco-static-img" alt="Community">
+						
+						<div class="eco-content">
+							<span>Community</span>
+							<h3>YouTube & Blog</h3>
+							<p>Nếu khóa học là ngôi nhà, thì nơi đây là chỗ xây dựng nền móng.</p>
+						</div>
+
+						<div class="eco-slider-wrapper">
+							<div class="eco-slide-track">
+								<img src="images/slides/community-1.jpg" alt="">
+								<img src="images/slides/community-2.jpg" alt="">
+								<img src="images/slides/community-3.jpg" alt="">
+								<img src="images/slides/community-4.jpg" alt="">
+								<img src="images/slides/community-5.jpg" alt="">
+								<img src="images/slides/community-6.jpg" alt="">
+								<img src="images/slides/community-7.jpg" alt="">
+								<img src="images/slides/community-8.jpg" alt="">
+							</div>
+						</div>
+					</div>
+
 				</div>
 
 				<footer id="footer" class="panel">
