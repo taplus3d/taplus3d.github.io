@@ -6,19 +6,141 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+		<style>
+			:root {
+				--font-heading: 'Space Grotesk', sans-serif;
+				--font-body: 'Inter', sans-serif;
+				--tech-black: #050505;
+				--tech-gray: #1a1a1a;
+				--tech-border: #333;
+			}
+
+			/* Ép font chữ toàn trang */
+			body, input, textarea, p, a {
+				font-family: var(--font-body) !important;
+				background-color: var(--tech-black);
+			}
+
+			h1, h2, h3, h4, h5, h6, strong, b, .label {
+				font-family: var(--font-heading) !important;
+				text-transform: uppercase;
+				letter-spacing: -0.02em;
+			}
+
+			/* Tùy chỉnh Header */
+			#header h1 a {
+				font-weight: 700;
+				letter-spacing: 0.05em;
+			}
+
+			/* TẠO PHẦN HERO SECTION (GIỚI THIỆU TO) */
+			.hero-section {
+				padding: 80px 20px 40px 20px;
+				text-align: center;
+				background: var(--tech-black);
+				color: #fff;
+				max-width: 900px;
+				margin: 0 auto;
+			}
+
+			.hero-title {
+				font-size: 3em;
+				line-height: 1.1;
+				margin-bottom: 20px;
+				background: -webkit-linear-gradient(45deg, #fff, #888);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+
+			.hero-desc {
+				font-size: 1.1em;
+				color: #999;
+				margin-bottom: 40px;
+				line-height: 1.6;
+				max-width: 700px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			/* Nút bấm phong cách Tech */
+			.btn-tech {
+				display: inline-block;
+				padding: 12px 35px;
+				border: 1px solid #fff;
+				border-radius: 50px;
+				color: #fff !important;
+				text-decoration: none;
+				font-family: var(--font-heading);
+				font-weight: 700;
+				transition: all 0.3s ease;
+				background: transparent;
+			}
+
+			.btn-tech:hover {
+				background: #fff;
+				color: #000 !important;
+				transform: translateY(-3px);
+				box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+			}
+
+			.btn-outline {
+				border-color: #555;
+				color: #aaa !important;
+				margin-left: 10px;
+			}
+			.btn-outline:hover {
+				border-color: #fff;
+				color: #fff !important;
+			}
+
+			/* Tùy chỉnh lại lưới ảnh cho giống Card */
+			.thumb {
+				border-radius: 12px;
+				overflow: hidden;
+				border: 1px solid var(--tech-border);
+				transition: transform 0.3s ease;
+			}
+			.thumb:hover {
+				border-color: #fff;
+				transform: scale(1.02);
+				z-index: 10;
+			}
+
+			/* Responsive cho điện thoại */
+			@media screen and (max-width: 736px) {
+				.hero-title { font-size: 2em; }
+				.hero-section { padding-top: 40px; }
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
 		<div id="wrapper">
 
 				<header id="header">
-						<h1><a href="index.html"><strong>Taplus3D</strong> Portfolio</a></h1>
-						<nav>
-							<ul>
-								<li><a href="#footer" class="icon solid fa-info-circle">About</a></li>
-							</ul>
-						</nav>
-					</header>
+					<h1><a href="index.html"><strong>Taplus3D</strong> Portfolio</a></h1>
+					<nav>
+						<ul>
+							<li><a href="#footer" class="icon solid fa-info-circle">About</a></li>
+						</ul>
+					</nav>
+				</header>
+
+				<section class="hero-section">
+					<h1 class="hero-title">KHÁM PHÁ THẾ GIỚI <br> TECHNICAL ART & 3D</h1>
+					<p class="hero-desc">
+						Nơi chia sẻ tài nguyên, Room Scene chất lượng cao và quy trình sáng tạo dành cho dân thiết kế nội thất. Tối ưu hóa workflow của bạn ngay hôm nay.
+					</p>
+					<div>
+						<a href="#main" class="btn-tech">Xem Dự Án ↓</a>
+						<a href="#footer" class="btn-tech btn-outline">Liên hệ</a>
+					</div>
+				</section>
 
 				<div id="main">
 						
@@ -40,7 +162,7 @@
 							<p><strong>Prompt:</strong> một căn phòng nổi trội</p>
 						</article>
 
-					</div>
+				</div>
 
 				<footer id="footer" class="panel">
 						<div class="inner split">
@@ -91,11 +213,11 @@
 			</div>
 
 		<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="assets/js/jquery.poptrox.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
 
 	</body>
 </html>
