@@ -13,7 +13,7 @@
 
 		<style>
 			:root {
-				/* ĐÃ SỬA: Thay Space Grotesk bằng Segoe UI Black */
+				/* Font tiêu đề là Segoe UI Black */
 				--font-heading: 'Segoe UI Black', 'Segoe UI', 'Arial Black', sans-serif;
 				--font-body: 'Inter', sans-serif;
 				--tech-black: #050505;
@@ -77,7 +77,7 @@
 			.brand-area { pointer-events: auto; }
 			.hero-logo {
 				font-family: var(--font-heading) !important;
-				font-weight: 900; /* Đậm nhất có thể cho Segoe UI Black */
+				font-weight: 900;
 				font-size: 2.5em;
 				margin: 0;
 				letter-spacing: 1px;
@@ -93,7 +93,7 @@
 				border: 1px solid rgba(255,255,255,0.8);
 				color: #fff !important;
 				text-decoration: none;
-				font-family: var(--font-body); /* Nút dùng font thường cho dễ đọc */
+				font-family: var(--font-body);
 				font-weight: 500;
 				text-transform: uppercase;
 				letter-spacing: 1px;
@@ -133,7 +133,7 @@
 			.about-section {
 				padding: 100px 20px;
 				text-align: center;
-				max-width: 800px;
+				max-width: 900px; /* Tăng chiều rộng một chút để chứa text mới đẹp hơn */
 				margin: 0 auto;
 				background: var(--tech-black);
 			}
@@ -148,6 +148,11 @@
 				line-height: 1.8;
 				color: #999;
 				font-weight: 300;
+			}
+			/* Style riêng cho các từ khóa in đậm để nổi bật hơn */
+			.about-section strong {
+				color: #fff; /* Chữ đậm màu trắng sáng */
+				font-weight: 700;
 			}
 
 			/* --- 3. NAVIGATION GRID --- */
@@ -263,10 +268,11 @@
 				<section class="about-section">
 						<h2>Technical Artist & Visualizer</h2>
 						<p>
-							Chào mừng đến với hệ sinh thái của <strong>Taplus3D</strong>. Tôi chuyên tạo ra các Room Scene 3D chất lượng cao, 
-							video mockup ấn tượng và chia sẻ quy trình làm việc tối ưu cho cộng đồng thiết kế.
+							Chào mừng đến với hệ sinh thái của <strong>Taplus3D</strong>. Tôi chuyên cung cấp các giải pháp hình ảnh 3D toàn diện: 
+							từ <strong>3D Furniture Modeling</strong> chi tiết, sáng tạo <strong>Room Scene</strong> tôn vinh sản phẩm, 
+							đến làm <strong>Mockup</strong> ấn tượng.
 							<br><br>
-							Dù bạn là khách hàng tìm kiếm dịch vụ hay học viên muốn nâng cao kỹ năng, mọi thứ bạn cần đều ở ngay bên dưới.
+							Dù bạn là khách hàng tìm kiếm dịch vụ chất lượng hay học viên muốn nâng cao kỹ năng, mọi thứ bạn cần đều ở ngay bên dưới.
 						</p>
 				</section>
 
@@ -361,9 +367,4 @@
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/jquery.poptrox.min.js"></script>
 		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
-
-	</body>
-</html>
+		<script
