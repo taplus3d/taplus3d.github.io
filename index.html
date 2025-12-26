@@ -9,112 +9,193 @@
 
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
 		<style>
 			:root {
 				--font-heading: 'Space Grotesk', sans-serif;
 				--font-body: 'Inter', sans-serif;
 				--tech-black: #050505;
-				--tech-gray: #1a1a1a;
-				--tech-border: #333;
+				--tech-accent: #ff5722; /* Màu cam tạo điểm nhấn */
 			}
 
-			/* Ép font chữ toàn trang */
+			/* --- CẤU HÌNH FONT & NỀN --- */
 			body, input, textarea, p, a {
 				font-family: var(--font-body) !important;
 				background-color: var(--tech-black);
+				color: #ccc;
 			}
-
-			h1, h2, h3, h4, h5, h6, strong, b, .label {
+			h1, h2, h3, h4, h5, h6, strong, b, .label, .button {
 				font-family: var(--font-heading) !important;
 				text-transform: uppercase;
-				letter-spacing: -0.02em;
-			}
-
-			/* Tùy chỉnh Header */
-			#header h1 a {
-				font-weight: 700;
-				letter-spacing: 0.05em;
-			}
-
-			/* TẠO PHẦN HERO SECTION (GIỚI THIỆU TO) */
-			.hero-section {
-				padding: 80px 20px 40px 20px;
-				text-align: center;
-				background: var(--tech-black);
+				letter-spacing: -0.01em;
 				color: #fff;
-				max-width: 900px;
-				margin: 0 auto;
+			}
+
+			/* --- 1. HERO SECTION VỚI VIDEO NỀN --- */
+			.video-hero {
+				position: relative;
+				width: 100%;
+				height: 100vh; /* Full màn hình */
+				overflow: hidden;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+			}
+
+			/* Video chạy nền */
+			.video-bg {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover; /* Đảm bảo video phủ kín không bị méo */
+				z-index: 0;
+				opacity: 0.6; /* Làm tối video một chút để chữ nổi hơn */
+			}
+
+			/* Nội dung đè lên video */
+			.hero-content {
+				position: relative;
+				z-index: 1;
+				padding: 20px;
+				max-width: 800px;
 			}
 
 			.hero-title {
-				font-size: 3em;
-				line-height: 1.1;
-				margin-bottom: 20px;
-				background: -webkit-linear-gradient(45deg, #fff, #888);
-				-webkit-background-clip: text;
-				-webkit-text-fill-color: transparent;
+				font-size: 4em;
+				line-height: 1;
+				margin-bottom: 0.5em;
+				text-shadow: 0 4px 10px rgba(0,0,0,0.5);
 			}
 
 			.hero-desc {
+				font-size: 1.2em;
+				color: #eee;
+				margin-bottom: 2em;
+				text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+			}
+
+			.scroll-down {
+				position: absolute;
+				bottom: 30px;
+				left: 50%;
+				transform: translateX(-50%);
+				animation: bounce 2s infinite;
+				opacity: 0.8;
+				font-size: 0.9em;
+				text-transform: uppercase;
+				letter-spacing: 2px;
+			}
+
+			@keyframes bounce {
+				0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+				40% {transform: translateX(-50%) translateY(-10px);}
+				60% {transform: translateX(-50%) translateY(-5px);}
+			}
+
+			/* --- 2. ABOUT SECTION (GIỚI THIỆU NGẮN) --- */
+			.about-section {
+				padding: 80px 20px;
+				text-align: center;
+				max-width: 900px;
+				margin: 0 auto;
+				background: var(--tech-black);
+			}
+			.about-section h2 {
+				font-size: 2.5em;
+				margin-bottom: 20px;
+				color: var(--tech-accent);
+			}
+			.about-section p {
 				font-size: 1.1em;
-				color: #999;
-				margin-bottom: 40px;
-				line-height: 1.6;
-				max-width: 700px;
-				margin-left: auto;
-				margin-right: auto;
+				line-height: 1.8;
+				color: #bbb;
 			}
 
-			/* Nút bấm phong cách Tech */
-			.btn-tech {
-				display: inline-block;
-				padding: 12px 35px;
-				border: 1px solid #fff;
-				border-radius: 50px;
-				color: #fff !important;
-				text-decoration: none;
-				font-family: var(--font-heading);
-				font-weight: 700;
-				transition: all 0.3s ease;
-				background: transparent;
+			/* --- 3. 4 COLUMNS NAVIGATION (TỶ LỆ 9:16) --- */
+			.nav-container {
+				padding: 20px 40px 80px 40px;
+				background: var(--tech-black);
 			}
 
-			.btn-tech:hover {
-				background: #fff;
-				color: #000 !important;
-				transform: translateY(-3px);
-				box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+			.nav-grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr); /* 4 cột đều nhau */
+				gap: 20px;
+				max-width: 1600px;
+				margin: 0 auto;
 			}
 
-			.btn-outline {
-				border-color: #555;
-				color: #aaa !important;
-				margin-left: 10px;
-			}
-			.btn-outline:hover {
-				border-color: #fff;
-				color: #fff !important;
-			}
-
-			/* Tùy chỉnh lại lưới ảnh cho giống Card */
-			.thumb {
+			.nav-card {
+				position: relative;
+				width: 100%;
+				aspect-ratio: 9/16; /* Tỷ lệ dọc chuẩn TikTok/Reels */
 				border-radius: 12px;
 				overflow: hidden;
-				border: 1px solid var(--tech-border);
-				transition: transform 0.3s ease;
-			}
-			.thumb:hover {
-				border-color: #fff;
-				transform: scale(1.02);
-				z-index: 10;
+				cursor: pointer;
+				transition: transform 0.4s ease;
+				border: 1px solid #333;
 			}
 
-			/* Responsive cho điện thoại */
-			@media screen and (max-width: 736px) {
-				.hero-title { font-size: 2em; }
-				.hero-section { padding-top: 40px; }
+			.nav-card:hover {
+				transform: translateY(-10px);
+				border-color: #fff;
+			}
+
+			.nav-card img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				transition: transform 0.5s ease;
+			}
+
+			.nav-card:hover img {
+				transform: scale(1.1); /* Zoom nhẹ ảnh khi rê chuột */
+			}
+
+			.nav-overlay {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+				padding: 30px 20px;
+				color: #fff;
+			}
+
+			.nav-overlay h3 {
+				font-size: 1.5em;
+				margin: 0;
+				color: #fff;
+			}
+			.nav-overlay span {
+				font-size: 0.9em;
+				text-transform: uppercase;
+				color: var(--tech-accent);
+				font-weight: 600;
+			}
+
+			/* --- RESPONSIVE MOBILE --- */
+			@media screen and (max-width: 980px) {
+				.hero-title { font-size: 2.5em; }
+				.nav-grid {
+					grid-template-columns: repeat(2, 1fr); /* Tablet: 2 cột */
+				}
+			}
+
+			@media screen and (max-width: 480px) {
+				.video-hero { height: 80vh; }
+				.nav-container { padding: 20px; }
+				.nav-grid {
+					grid-template-columns: 1fr; /* Mobile: 1 cột (hoặc bạn có thể để 2) */
+					gap: 15px;
+				}
+				.nav-card {
+					aspect-ratio: 16/9; /* Trên mobile đổi sang ngang cho dễ nhìn, hoặc giữ 9/16 nếu muốn style stories */
+				}
 			}
 		</style>
 	</head>
@@ -123,87 +204,121 @@
 		<div id="wrapper">
 
 				<header id="header">
-					<h1><a href="index.html"><strong>Taplus3D</strong> Portfolio</a></h1>
-					<nav>
-						<ul>
-							<li><a href="#footer" class="icon solid fa-info-circle">About</a></li>
-						</ul>
-					</nav>
-				</header>
+						<h1><a href="index.html"><strong>Taplus3D</strong></a></h1>
+						<nav>
+							<ul>
+								<li><a href="#footer" class="icon solid fa-info-circle">Liên hệ</a></li>
+							</ul>
+						</nav>
+					</header>
 
-				<section class="hero-section">
-					<h1 class="hero-title">KHÁM PHÁ THẾ GIỚI <br> TECHNICAL ART & 3D</h1>
-					<p class="hero-desc">
-						Nơi chia sẻ tài nguyên, Room Scene chất lượng cao và quy trình sáng tạo dành cho dân thiết kế nội thất. Tối ưu hóa workflow của bạn ngay hôm nay.
-					</p>
-					<div>
-						<a href="#main" class="btn-tech">Xem Dự Án ↓</a>
-						<a href="#footer" class="btn-tech btn-outline">Liên hệ</a>
-					</div>
-				</section>
+				<section class="video-hero">
+						<video class="video-bg" autoplay muted loop playsinline poster="images/thumbs/img01.jpg">
+							<source src="images/hero-video.mp4" type="video/mp4">
+							Trình duyệt của bạn không hỗ trợ video.
+						</video>
 
-				<div id="main">
+						<div class="hero-content">
+							<h1 class="hero-title">TAPLUS 3D</h1>
+							<p class="hero-desc">Giải pháp Diễn họa Kiến trúc, Mockup & Đào tạo Technical Art</p>
+							<ul class="actions special">
+								<li><a href="#nav-section" class="button primary">Khám phá ngay</a></li>
+							</ul>
+						</div>
 						
-						<article class="thumb">
-							<a href="images/fulls/img01.jpg" class="image"><img src="images/thumbs/img01.jpg" alt="" /></a>
-							<h2>Beautiful Room</h2>
-							<p><strong>Prompt:</strong> một căn phòng đẹp</p>
-						</article>
+						<div class="scroll-down">Cuộn xuống để xem thêm ↓</div>
+					</section>
 
-						<article class="thumb">
-							<a href="images/fulls/img02.jpg" class="image"><img src="images/thumbs/img02.jpg" alt="" /></a>
-							<h2>Grungy Room</h2>
-							<p><strong>Prompt:</strong> một căn phòng hôi</p>
-						</article>
+				<section class="about-section">
+						<h2>Technical Artist & Visualizer</h2>
+						<p>
+							Chào mừng đến với hệ sinh thái của <strong>Taplus3D</strong>. Tôi chuyên tạo ra các Room Scene 3D chất lượng cao, 
+							video mockup ấn tượng và chia sẻ quy trình làm việc tối ưu cho cộng đồng thiết kế.
+							<br><br>
+							Dù bạn là khách hàng tìm kiếm dịch vụ hay học viên muốn nâng cao kỹ năng, mọi thứ bạn cần đều ở ngay bên dưới.
+						</p>
+					</section>
 
-						<article class="thumb">
-							<a href="images/fulls/img03.jpg" class="image"><img src="images/thumbs/img03.jpg" alt="" /></a>
-							<h2>Outstanding Room</h2>
-							<p><strong>Prompt:</strong> một căn phòng nổi trội</p>
-						</article>
+				<div id="nav-section" class="nav-container">
+						<div class="nav-grid">
+							
+							<div class="nav-card" onclick="window.location.href='#footer';">
+								<img src="images/thumbs/img01.jpg" alt="Dịch vụ Roomscene">
+								<div class="nav-overlay">
+									<span>Services</span>
+									<h3>Room Scene & 3D</h3>
+								</div>
+							</div>
 
-				</div>
+							<div class="nav-card" onclick="window.location.href='#';">
+								<img src="images/thumbs/img02.jpg" alt="Khóa học">
+								<div class="nav-overlay">
+									<span>Academy</span>
+									<h3>Khóa Học Online</h3>
+								</div>
+							</div>
+
+							<div class="nav-card" onclick="window.location.href='#';">
+								<img src="images/thumbs/img03.jpg" alt="Mockup Store">
+								<div class="nav-overlay">
+									<span>Store</span>
+									<h3>Mockup & Assets</h3>
+								</div>
+							</div>
+
+							<div class="nav-card" onclick="window.location.href='https://youtube.com';">
+								<img src="images/thumbs/img01.jpg" alt="Youtube Channel">
+								<div class="nav-overlay">
+									<span>Community</span>
+									<h3>YouTube & Blog</h3>
+								</div>
+							</div>
+
+						</div>
+					</div>
 
 				<footer id="footer" class="panel">
 						<div class="inner split">
 							<div>
 								<section>
-									<h2>Taplus3D - Technical Artist</h2>
-									<p>Chuyên tạo Room Scene, 3D Furniture Modeling và hướng dẫn làm video mockup tranh ảnh.</p>
+									<h2>Taplus3D - Liên hệ hợp tác</h2>
+									<p>Sẵn sàng nâng tầm dự án của bạn? Hãy để lại tin nhắn hoặc kết nối qua mạng xã hội.</p>
 								</section>
 								<section>
 									<h2>Follow me on ...</h2>
 									<ul class="icons">
 										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 										<li><a href="#" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
+										<li><a href="#" class="icon brands fa-behance"><span class="label">Behance</span></a></li>
 										<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 									</ul>
 								</section>
 								<p class="copyright">
-									&copy; Taplus3D. Design: <a href="http://html5up.net">HTML5 UP</a>.
+									&copy; Taplus3D. All rights reserved.
 								</p>
 							</div>
 							<div>
 								<section>
-									<h2>Contact Me</h2>
+									<h2>Gửi tin nhắn</h2>
 									<form method="post" action="#">
 										<div class="fields">
 											<div class="field half">
-												<input type="text" name="name" id="name" placeholder="Name" />
+												<input type="text" name="name" id="name" placeholder="Tên của bạn" />
 											</div>
 											<div class="field half">
 												<input type="text" name="email" id="email" placeholder="Email" />
 											</div>
 											<div class="field">
-												<textarea name="message" id="message" rows="4" placeholder="Message"></textarea>
+												<textarea name="message" id="message" rows="4" placeholder="Nội dung cần tư vấn..."></textarea>
 											</div>
 										</div>
 										<ul class="actions">
-											<li><input type="submit" value="Send Message" class="primary" /></li>
+											<li><input type="submit" value="Gửi đi" class="primary" /></li>
 										</ul>
 									</form>
 									<ul class="contact-info">
 										<li>Email: letop.yes@gmail.com</li>
+										<li>Phone: 0936522086</li>
 									</ul>
 								</section>
 							</div>
