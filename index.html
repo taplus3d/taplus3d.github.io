@@ -34,7 +34,6 @@
 				color: #fff;
 			}
 			
-			/* Ẩn Header mặc định của template cũ */
 			#header { display: none !important; }
 
 			/* --- 1. HERO SECTION --- */
@@ -82,7 +81,6 @@
 			.btn-minimal:hover { color: #fff !important; border-color: var(--tech-accent); }
 			.btn-minimal:hover::before { left: 0; }
 
-			/* Scroll Down */
 			.scroll-down {
 				position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
 				animation: bounce 2s infinite; opacity: 0.7; font-size: 0.8em;
@@ -104,20 +102,21 @@
 			.about-section p { font-size: 1.1em; line-height: 1.8; color: #999; font-weight: 300; }
 			.about-section strong { color: #fff; font-weight: 700; }
 
-			/* --- 3. NEW ECOSYSTEM LAYOUT (ZIGZAG + SLIDER) --- */
+			/* --- 3. ECOSYSTEM LAYOUT (9:16 VERSION) --- */
 			.nav-container {
 				padding: 50px 20px 100px 20px;
 				background: var(--tech-black);
 				display: flex;
 				flex-direction: column;
-				gap: 60px; /* Khoảng cách giữa các hàng */
+				gap: 80px; /* Tăng khoảng cách vì hình cao hơn */
 				max-width: 1200px;
 				margin: 0 auto;
 			}
 
 			.eco-row {
 				display: flex;
-				height: 350px; /* Chiều cao cố định */
+				/* SỬA: Tăng chiều cao lên 600px để chứa ảnh khổ dọc 9:16 */
+				height: 600px; 
 				background: var(--card-bg);
 				border-radius: 12px;
 				overflow: hidden;
@@ -132,10 +131,11 @@
 				border-color: #444;
 			}
 
-			/* Cấu trúc mặc định: Hình tĩnh (40%) - Chữ (60%) */
+			/* Hình tĩnh ban đầu */
 			.eco-static-img {
-				width: 40%;
-				height: 100%;
+				height: 100%; /* Full chiều cao 600px */
+				width: auto; /* Tự động tính chiều rộng theo tỉ lệ ảnh */
+				aspect-ratio: 9/16; /* Ép tỉ lệ khổ dọc */
 				object-fit: cover;
 				z-index: 1;
 			}
@@ -151,38 +151,37 @@
 				transition: opacity 0.5s ease;
 			}
 
-			.eco-content h3 { font-size: 2rem; color: #fff; margin-bottom: 0.5rem; }
+			.eco-content h3 { font-size: 2.5rem; color: #fff; margin-bottom: 0.5rem; }
 			.eco-content span {
 				color: var(--tech-accent); text-transform: uppercase;
 				letter-spacing: 2px; font-weight: bold; font-size: 0.9rem; margin-bottom: 1rem;
 			}
-			.eco-content p { font-size: 1rem; color: #aaa; line-height: 1.6; }
+			.eco-content p { font-size: 1.1rem; color: #aaa; line-height: 1.6; max-width: 500px; }
 
-			/* --- HIỆU ỨNG SLIDE 8 HÌNH --- */
+			/* --- SLIDER 9:16 --- */
 			.eco-slider-wrapper {
 				position: absolute;
 				top: 0;
 				height: 100%;
-				width: 0%; /* Mặc định ẩn (chiều rộng = 0) */
+				width: 0%; 
 				overflow: hidden;
-				z-index: 10; /* Đè lên chữ */
-				transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1); /* Trượt mượt */
+				z-index: 10;
+				transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 				background: #000;
 			}
 
-			/* Track chứa 8 hình */
 			.eco-slide-track {
 				display: flex;
 				height: 100%;
 				width: max-content; 
-				/* Animation nhẹ để hình trôi chầm chậm khi hiện ra */
-				animation: slideScroll 25s linear infinite; 
+				animation: slideScroll 30s linear infinite; 
 			}
 
 			.eco-slide-track img {
 				height: 100%;
 				width: auto; 
-				aspect-ratio: 16/9; 
+				/* SỬA: Ép tỉ lệ 9:16 cho các hình trong slider */
+				aspect-ratio: 9/16; 
 				object-fit: cover;
 				margin-right: 2px;
 				filter: brightness(0.9);
@@ -190,47 +189,38 @@
 
 			@keyframes slideScroll {
 				0% { transform: translateX(0); }
-				100% { transform: translateX(-20%); } /* Trôi nhẹ */
+				100% { transform: translateX(-20%); }
 			}
 
-			/* --- HOVER TRIGGER --- */
-			/* Khi rê chuột vào dòng, Wrapper mở rộng ra 100% */
+			/* Hover Trigger */
 			.eco-row:hover .eco-slider-wrapper {
 				width: 100%;
 			}
-			
-			/* Khi rê chuột, chữ mờ đi (phòng hờ hình không che hết) */
 			.eco-row:hover .eco-content {
 				opacity: 0;
 			}
 
-			/* --- ZIGZAG LOGIC --- */
-			
-			/* TRÁI: Hình gốc bên trái, Slide trượt từ Trái sang Phải */
-			.eco-row.left-img .eco-slider-wrapper {
-				left: 0; 
-			}
+			/* Zigzag Logic */
+			.eco-row.left-img .eco-slider-wrapper { left: 0; }
 
-			/* PHẢI: Hình gốc bên phải, Slide trượt từ Phải sang Trái */
-			.eco-row.right-img {
-				flex-direction: row-reverse; /* Đảo layout hình tĩnh qua phải */
-			}
-			.eco-row.right-img .eco-slider-wrapper {
-				right: 0; /* Slide xuất phát từ phải */
-				left: auto;
-			}
-			/* Đảo chiều animation cho mượt với hướng trượt */
-			.eco-row.right-img .eco-slide-track {
-				flex-direction: row-reverse; 
-				animation-direction: reverse;
-			}
+			.eco-row.right-img { flex-direction: row-reverse; }
+			.eco-row.right-img .eco-slider-wrapper { right: 0; left: auto; }
+			.eco-row.right-img .eco-slide-track { flex-direction: row-reverse; animation-direction: reverse; }
 
 			/* --- RESPONSIVE --- */
 			@media screen and (max-width: 980px) {
 				.eco-row { flex-direction: column !important; height: auto; }
-				.eco-static-img { width: 100%; height: 250px; }
+				
+				/* Mobile: Chỉnh lại hình cho đỡ quá dài */
+				.eco-static-img { 
+					width: 100%; 
+					height: auto; 
+					aspect-ratio: 16/9; /* Trên mobile về lại khổ ngang cho gọn */
+					max-height: 300px;
+				}
+				
 				.eco-content { padding: 30px; }
-				.eco-slider-wrapper { display: none; } /* Tắt hiệu ứng trên mobile */
+				.eco-slider-wrapper { display: none; }
 				.hero-header-layout { padding: 30px; }
 			}
 
