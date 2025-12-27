@@ -1,487 +1,57 @@
-<!DOCTYPE HTML>
-<html lang="vi">
-	<head>
-		<title>Taplus3D | Technical Artist & Visualizer</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-		<style>
-			:root {
-				--font-heading: 'Segoe UI Black', 'Segoe UI', 'Arial Black', sans-serif;
-				--font-body: 'Inter', sans-serif;
-				--tech-black: #050505;
-				--tech-accent: #ff5722; 
-				--card-bg: #111;
-			}
-
-			/* --- CẤU HÌNH CƠ BẢN & SCROLL MƯỢT --- */
-			html {
-				scroll-behavior: smooth;
-			}
-
-			body, input, textarea, p, a {
-				font-family: var(--font-body) !important;
-				background-color: var(--tech-black);
-				color: #ccc;
-				margin: 0;
-			}
-			h1, h2, h3, h4, h5, h6, strong, b, .label, .button {
-				font-family: var(--font-heading) !important;
-				text-transform: uppercase;
-				letter-spacing: -0.01em;
-				color: #fff;
-			}
-			
-			#header { display: none !important; }
-
-			/* --- 1. HERO SECTION --- */
-			.video-hero {
-				position: relative;
-				width: 100%;
-				height: 100vh;
-				background-color: #000;
-				overflow: hidden;
-				display: block;
-			}
-			.video-bg {
-				position: absolute;
-				top: 0; left: 0; width: 100%; height: 100%;
-				object-fit: cover; z-index: 0; opacity: 0.6;
-			}
-			.hero-header-layout {
-				position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-				padding: 40px 50px;
-				display: flex; justify-content: space-between; align-items: flex-start;
-				z-index: 10; pointer-events: none;
-			}
-			.brand-area, .cta-area { pointer-events: auto; }
-			.hero-logo {
-				font-family: var(--font-heading) !important;
-				font-weight: 900; font-size: 2.5em; margin: 0;
-				letter-spacing: 1px; color: #fff;
-				text-shadow: 0 2px 10px rgba(0,0,0,0.5); line-height: 1;
-			}
-
-			/* NÚT BẤM */
-			.btn-minimal {
-				display: inline-block; padding: 12px 35px;
-				border: 1px solid var(--tech-accent); color: var(--tech-accent) !important;
-				text-decoration: none; font-family: var(--font-body); font-weight: 600;
-				text-transform: uppercase; font-size: 0.85em; letter-spacing: 2px;
-				position: relative; overflow: hidden; z-index: 1;
-				transition: color 0.4s ease; border-radius: 4px; background-color: transparent;
-				margin-left: 10px; 
-			}
-			.cta-area a:first-child { margin-left: 0; }
-
-			.btn-minimal::before {
-				content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-				background-color: var(--tech-accent); transition: left 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-				z-index: -1;
-			}
-			.btn-minimal:hover { color: #fff !important; border-color: var(--tech-accent); }
-			.btn-minimal:hover::before { left: 0; }
-
-			.scroll-down {
-				position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-				animation: bounce 2s infinite; opacity: 0.7; font-size: 0.8em;
-				text-transform: uppercase; letter-spacing: 2px; z-index: 2;
-				color: rgba(255,255,255,0.7); pointer-events: none;
-			}
-			@keyframes bounce {
-				0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
-				40% {transform: translateX(-50%) translateY(-10px);}
-				60% {transform: translateX(-50%) translateY(-5px);}
-			}
-
-			/* --- 2. ABOUT SECTION --- */
-			.about-section {
-				padding: 100px 20px; text-align: center; max-width: 900px;
-				margin: 0 auto; background: var(--tech-black);
-			}
-			.about-section h2 { font-size: 2em; margin-bottom: 30px; color: #fff; letter-spacing: 1px; }
-			.about-section p { font-size: 1.1em; line-height: 1.8; color: #999; font-weight: 300; }
-			.about-section strong { color: #fff; font-weight: 700; }
-
-			/* --- 3. ECOSYSTEM LAYOUT --- */
-			.nav-container {
-				padding: 50px 0 80px 0;
-				background: var(--tech-black);
-				display: flex;
-				flex-direction: column;
-				gap: 80px; 
-				width: 96%;
-				max-width: 1920px;
-				margin: 0 auto;    
-			}
-
-			.eco-row {
-				display: flex;
-				height: 600px; 
-				background: var(--card-bg);
-				border-radius: 12px;
-				overflow: hidden;
-				position: relative;
-				box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-				border: 1px solid #222;
-				cursor: pointer;
-				transition: border-color 0.3s ease;
-			}
-			
-			.eco-row:hover {
-				border-color: #444;
-			}
-
-			.eco-static-img {
-				height: 100%; 
-				width: auto; 
-				aspect-ratio: 9/16; 
-				object-fit: cover;
-				z-index: 1;
-			}
-
-			.eco-content {
-				flex: 1;
-				padding: 50px;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				z-index: 1;
-				position: relative;
-				transition: opacity 0.5s ease;
-			}
-
-			.eco-content h3 { font-size: 2.5rem; color: #fff; margin-bottom: 0.5rem; }
-			.eco-content span {
-				color: var(--tech-accent); text-transform: uppercase;
-				letter-spacing: 2px; font-weight: bold; font-size: 0.9rem; margin-bottom: 1rem;
-			}
-			.eco-content p { font-size: 1.1rem; color: #aaa; line-height: 1.6; max-width: 500px; }
-
-			/* Slider Logic */
-			.eco-slider-wrapper {
-				position: absolute;
-				top: 0;
-				height: 100%;
-				width: 0%; 
-				overflow: hidden;
-				z-index: 10;
-				transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-				background: #000;
-			}
-
-			.eco-slide-track {
-				display: flex;
-				height: 100%;
-				width: max-content; 
-				animation: slideScroll 30s linear infinite; 
-			}
-
-			.eco-slide-track img {
-				height: 100%;
-				width: auto; 
-				aspect-ratio: 9/16; 
-				object-fit: cover;
-				margin-right: 2px;
-				filter: brightness(0.9);
-			}
-
-			@keyframes slideScroll {
-				0% { transform: translateX(0); }
-				100% { transform: translateX(-20%); }
-			}
-
-			.eco-row:hover .eco-slider-wrapper { width: 100%; }
-			.eco-row:hover .eco-content { opacity: 0; }
-			.eco-row.left-img .eco-slider-wrapper { left: 0; }
-			.eco-row.right-img { flex-direction: row-reverse; }
-			.eco-row.right-img .eco-slider-wrapper { right: 0; left: auto; }
-			.eco-row.right-img .eco-slide-track { flex-direction: row-reverse; animation-direction: reverse; }
-
-			/* --- STYLE RIÊNG CHO FOOTER CONTACT --- */
-			ul.contact-info li {
-				margin-bottom: 15px;
-				font-size: 1.1em;
-				display: flex;
-				align-items: center;
-				gap: 10px;
-			}
-			ul.contact-info li a {
-				color: #eee;
-				text-decoration: none;
-				border-bottom: 1px dotted transparent;
-				transition: all 0.3s ease;
-			}
-			ul.contact-info li a:hover {
-				color: var(--tech-accent);
-				border-bottom-color: var(--tech-accent);
-			}
-			ul.contact-info .icon {
-				color: var(--tech-accent);
-			}
-			
-			/* CHỈNH NÚT GỬI ĐI FULL WIDTH */
-			#footer form .actions {
-				width: 100% !important;
-				margin: 0 !important;
-				padding: 0 !important;
-				list-style: none !important;
-			}
-			#footer form .actions li {
-				width: 100% !important;
-				display: block !important;
-				padding: 0 !important;
-			}
-			#footer form .actions li input[type="submit"] {
-				width: 100% !important;
-				display: block !important;
-				text-align: center;
-			}
-
-			/* RESPONSIVE */
-			@media screen and (max-width: 980px) {
-				.eco-row { flex-direction: column !important; height: auto; }
-				.eco-static-img { 
-					width: 100%; 
-					height: auto; 
-					aspect-ratio: 16/9;
-					max-height: 300px;
-				}
-				.eco-content { padding: 30px; }
-				.eco-slider-wrapper { display: none; }
-				.hero-header-layout { padding: 30px; }
-				.btn-minimal { display: block; width: 100%; margin: 10px 0 0 0 !important; text-align: center;}
-			}
-
-			@media screen and (max-width: 480px) {
-				.video-hero { height: 90vh; }
-				.hero-header-layout { 
-					padding: 20px; flex-direction: column; align-items: center; 
-					justify-content: center; 
-					height: 100%; 
-				}
-				.hero-logo { font-size: 2em; margin-bottom: 20px; }
-				.cta-area { width: 100%; text-align: center; }
-				.nav-container { padding: 20px; }
-			}
-			
-			/* --- FOOTER --- */
-			#footer {
-				display: block !important;
-				position: relative !important;
-				width: 100% !important;
-				height: auto !important;
-				background-color: #0d0d0d !important;
-				padding: 50px 20px !important;
-				z-index: 9999 !important;
-				opacity: 1 !important;
-				visibility: visible !important;
-				margin-top: 0 !important;
-				clear: both !important;
-			}
-			#footer h2, #footer p, #footer li, #footer a, #footer strong, #footer span {
-				color: #e0e0e0 !important; 
-				opacity: 1 !important;
-			}
-		</style>
-	</head>
-	
-	<body>
-
-		<div id="wrapper">
-
-				<section class="video-hero">
-						<video class="video-bg" autoplay muted loop playsinline poster="images/thumbs/service.jpg">
-							<source src="images/hero-video.mp4" type="video/mp4">
-						</video>
-
-						<div class="hero-header-layout">
-							<div class="brand-area">
-								<h1 class="hero-logo">TAPLUS 3D</h1>
-							</div>
-							
-							<div class="cta-area">
-								<a href="#nav-section" class="btn-minimal">Khám phá ngay &rarr;</a>
-								
-								<a href="javascript:void(0);" onclick="document.getElementById('footer').scrollIntoView({behavior: 'smooth'});" class="btn-minimal">Liên hệ ngay &rarr;</a>
-								
-							</div>
-						</div>
-						
-						<div class="scroll-down">Cuộn xuống để xem thêm ↓</div>
-				</section>
-
-				<section class="about-section">
-						<h2>Technical Artist & Visualizer</h2>
-						<p>
-							Chào mừng đến với hệ sinh thái của <strong>Taplus3D</strong>. Tôi chuyên cung cấp các giải pháp hình ảnh 3D toàn diện: 
-							từ <strong>3D Furniture Modeling</strong> chi tiết, sáng tạo <strong>Room Scene</strong> tôn vinh sản phẩm, 
-							đến làm <strong>Mockup</strong> ấn tượng.
-							<br><br>
-							Dù bạn là khách hàng tìm kiếm dịch vụ chất lượng hay học viên muốn nâng cao kỹ năng, mọi thứ bạn cần đều ở ngay bên dưới.
-						</p>
-				</section>
-
-				<div id="nav-section" class="nav-container">
-
-					<div class="eco-row left-img" onclick="window.location.href='#footer';">
-						<img src="images/thumbs/service.jpg" class="eco-static-img" alt="Services">
-						<div class="eco-content">
-							<span>Services</span>
-							<h3>Room Scene & 3D</h3>
-							<p>Để mình giúp bạn tôn vinh giá trị sản phẩm qua những khung hình 3D ấn tượng.</p>
-						</div>
-						<div class="eco-slider-wrapper">
-							<div class="eco-slide-track">
-								<img src="images/slides/service-1.jpg" alt="">
-								<img src="images/slides/service-2.jpg" alt="">
-								<img src="images/slides/service-3.jpg" alt="">
-								<img src="images/slides/service-4.jpg" alt="">
-								<img src="images/slides/service-5.jpg" alt="">
-								<img src="images/slides/service-6.jpg" alt="">
-								<img src="images/slides/service-7.jpg" alt="">
-								<img src="images/slides/service-8.jpg" alt="">
-							</div>
-						</div>
-					</div>
-
-					<div class="eco-row right-img" onclick="window.location.href='#';">
-						<img src="images/thumbs/academy.jpg" class="eco-static-img" alt="Academy">
-						<div class="eco-content">
-							<span>Academy</span>
-							<h3>Khóa Học Online</h3>
-							<p>Chia sẻ quy trình "thực chiến" mà mình đang áp dụng hằng ngày để chinh phục khách hàng.</p>
-						</div>
-						<div class="eco-slider-wrapper">
-							<div class="eco-slide-track">
-								<img src="images/slides/academy-1.jpg" alt="">
-								<img src="images/slides/academy-2.jpg" alt="">
-								<img src="images/slides/academy-3.jpg" alt="">
-								<img src="images/slides/academy-4.jpg" alt="">
-								<img src="images/slides/academy-5.jpg" alt="">
-								<img src="images/slides/academy-6.jpg" alt="">
-								<img src="images/slides/academy-7.jpg" alt="">
-								<img src="images/slides/academy-8.jpg" alt="">
-							</div>
-						</div>
-					</div>
-
-					<div class="eco-row left-img" onclick="window.location.href='#';">
-						<img src="images/thumbs/store.jpg" class="eco-static-img" alt="Store">
-						<div class="eco-content">
-							<span>Store</span>
-							<h3>Mockup & Assets</h3>
-							<p>Thổi hồn vào thiết kế của bạn bằng kho thư viện Mockup được chọn lọc kỹ càng.</p>
-						</div>
-						<div class="eco-slider-wrapper">
-							<div class="eco-slide-track">
-								<img src="images/slides/store-1.jpg" alt="">
-								<img src="images/slides/store-2.jpg" alt="">
-								<img src="images/slides/store-3.jpg" alt="">
-								<img src="images/slides/store-4.jpg" alt="">
-								<img src="images/slides/store-5.jpg" alt="">
-								<img src="images/slides/store-6.jpg" alt="">
-								<img src="images/slides/store-7.jpg" alt="">
-								<img src="images/slides/store-8.jpg" alt="">
-							</div>
-						</div>
-					</div>
-
-					<div class="eco-row right-img" onclick="window.location.href='https://youtube.com';">
-						<img src="images/thumbs/youtube.jpg" class="eco-static-img" alt="Community">
-						<div class="eco-content">
-							<span>Community</span>
-							<h3>YouTube & Blog</h3>
-							<p>Nếu khóa học là ngôi nhà, thì nơi đây là chỗ xây dựng nền móng.</p>
-						</div>
-						<div class="eco-slider-wrapper">
-							<div class="eco-slide-track">
-								<img src="images/slides/community-1.jpg" alt="">
-								<img src="images/slides/community-2.jpg" alt="">
-								<img src="images/slides/community-3.jpg" alt="">
-								<img src="images/slides/community-4.jpg" alt="">
-								<img src="images/slides/community-5.jpg" alt="">
-								<img src="images/slides/community-6.jpg" alt="">
-								<img src="images/slides/community-7.jpg" alt="">
-								<img src="images/slides/community-8.jpg" alt="">
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-				<footer id="footer" class="panel">
-						<div class="inner split">
-							<div>
-								<section>
-									<h2>Taplus3D - Hợp tác</h2>
-									<p>Sẵn sàng nâng tầm dự án của bạn? Hãy để lại tin nhắn hoặc kết nối trực tiếp qua Zalo.</p>
-								</section>
-								<section>
-									<h2>Follow me on ...</h2>
-									<ul class="icons">
-										<li><a href="https://www.facebook.com/taplus3d/" target="_blank" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="https://www.youtube.com/@taplus3d" target="_blank" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
-										<li><a href="https://www.behance.net/taplus3d" target="_blank" class="icon brands fa-behance"><span class="label">Behance</span></a></li>
-										<li><a href="https://www.linkedin.com/in/taplus3d/" target="_blank" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-									</ul>
-								</section>
-								<p class="copyright">
-									&copy; Taplus3D. All rights reserved.
-								</p>
-							</div>
-							<div>
-								<section>
-									<h2>Liên hệ trực tiếp</h2>
-									
-									<form method="POST" action="https://formspree.io/f/xykyeejd">
-										<div class="fields">
-											<div class="field half">
-												<input type="text" name="name" id="name" placeholder="Tên của bạn" required />
-											</div>
-											<div class="field half">
-												<input type="email" name="email" id="email" placeholder="Email" required />
-											</div>
-											<div class="field">
-												<textarea name="message" id="message" rows="4" placeholder="Nội dung cần tư vấn..." required></textarea>
-											</div>
-										</div>
-										<ul class="actions">
-											<li><input type="submit" value="Gửi đi" class="primary" /></li>
-										</ul>
-									</form>
-									<ul class="contact-info">
-										<li>
-											<span class="icon solid fa-envelope"></span>
-											<strong>Email:</strong> 
-											<a href="mailto:contact@taplus3d.com">contact@taplus3d.com</a>
-										</li>
-										<li>
-											<span class="icon solid fa-comment-dots"></span>
-											<strong>Zalo / Hotline:</strong> 
-											<a href="https://zalo.me/84867557632" target="_blank">(+84) 867 557 632</a>
-										</li>
-									</ul>
-									
-								</section>
-							</div>
-						</div>
-				</footer>
-
-		</div>
-
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.poptrox.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
-
-	</body>
-</html>
+<footer id="footer" class="panel">
+    <div class="inner split">
+        <div>
+            <section>
+                <h2>Taplus3D - Hợp tác</h2>
+                <p>Sẵn sàng nâng tầm dự án của bạn? Hãy để lại tin nhắn hoặc kết nối trực tiếp qua Zalo.</p>
+            </section>
+            <section>
+                <h2>Follow me on ...</h2>
+                <ul class="icons">
+                    <li><a href="https://www.facebook.com/taplus3d/" target="_blank" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                    <li><a href="https://www.youtube.com/@taplus3d" target="_blank" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
+                    <li><a href="https://www.behance.net/taplus3d" target="_blank" class="icon brands fa-behance"><span class="label">Behance</span></a></li>
+                    <li><a href="https://www.linkedin.com/in/taplus3d/" target="_blank" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                </ul>
+            </section>
+            <p class="copyright">
+                &copy; Taplus3D. All rights reserved.
+            </p>
+        </div>
+        <div>
+            <section>
+                <h2>Liên hệ trực tiếp</h2>
+                
+                <form method="POST" action="https://formspree.io/f/xykyeejd">
+                    <div class="fields">
+                        <div class="field half">
+                            <input type="text" name="name" id="name" placeholder="Tên của bạn" required />
+                        </div>
+                        <div class="field half">
+                            <input type="email" name="email" id="email" placeholder="Email" required />
+                        </div>
+                        <div class="field">
+                            <textarea name="message" id="message" rows="4" placeholder="Nội dung cần tư vấn..." required></textarea>
+                        </div>
+                    </div>
+                    <ul class="actions">
+                        <li><input type="submit" value="Gửi đi" class="primary" /></li>
+                    </ul>
+                </form>
+                <ul class="contact-info">
+                    <li>
+                        <span class="icon solid fa-envelope"></span>
+                        <strong>Email:</strong> 
+                        contact@taplus3d.com
+                    </li>
+                    <li>
+                        <span class="icon solid fa-comment-dots"></span>
+                        <strong>Zalo / Hotline:</strong> 
+                        (+84) 867 557 632
+                    </li>
+                </ul>
+                
+            </section>
+        </div>
+    </div>
+</footer>
