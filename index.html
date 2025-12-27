@@ -16,7 +16,7 @@
 				--font-heading: 'Segoe UI Black', 'Segoe UI', 'Arial Black', sans-serif;
 				--font-body: 'Inter', sans-serif;
 				--tech-black: #050505;
-				--tech-accent: #ff5722; 
+				--tech-accent: #ff5722; 
 				--card-bg: #111;
 			}
 
@@ -72,9 +72,10 @@
 				text-transform: uppercase; font-size: 0.85em; letter-spacing: 2px;
 				position: relative; overflow: hidden; z-index: 1;
 				transition: color 0.4s ease; border-radius: 4px; background-color: transparent;
-				margin-left: 10px; 
-				cursor: pointer; /* Thêm con trỏ tay để biết là bấm được */
+				/* Thêm khoảng cách để 2 nút không dính nhau */
+				margin-left: 10px; 
 			}
+			/* Nút đầu tiên không cần margin trái */
 			.cta-area a:first-child { margin-left: 0; }
 
 			.btn-minimal::before {
@@ -108,19 +109,20 @@
 
 			/* --- 3. ECOSYSTEM LAYOUT --- */
 			.nav-container {
+				/* ĐÃ SỬA: Padding bottom = 80px để bằng với gap: 80px */
 				padding: 50px 0 80px 0;
 				background: var(--tech-black);
 				display: flex;
 				flex-direction: column;
-				gap: 80px; 
+				gap: 80px; 
 				width: 96%;
 				max-width: 1920px;
-				margin: 0 auto;    
+				margin: 0 auto;    
 			}
 
 			.eco-row {
 				display: flex;
-				height: 600px; 
+				height: 600px; 
 				background: var(--card-bg);
 				border-radius: 12px;
 				overflow: hidden;
@@ -136,9 +138,9 @@
 			}
 
 			.eco-static-img {
-				height: 100%; 
-				width: auto; 
-				aspect-ratio: 9/16; 
+				height: 100%; 
+				width: auto; 
+				aspect-ratio: 9/16; 
 				object-fit: cover;
 				z-index: 1;
 			}
@@ -166,7 +168,7 @@
 				position: absolute;
 				top: 0;
 				height: 100%;
-				width: 0%; 
+				width: 0%; 
 				overflow: hidden;
 				z-index: 10;
 				transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
@@ -176,14 +178,14 @@
 			.eco-slide-track {
 				display: flex;
 				height: 100%;
-				width: max-content; 
-				animation: slideScroll 30s linear infinite; 
+				width: max-content; 
+				animation: slideScroll 30s linear infinite; 
 			}
 
 			.eco-slide-track img {
 				height: 100%;
-				width: auto; 
-				aspect-ratio: 9/16; 
+				width: auto; 
+				aspect-ratio: 9/16; 
 				object-fit: cover;
 				margin-right: 2px;
 				filter: brightness(0.9);
@@ -226,31 +228,33 @@
 			/* RESPONSIVE */
 			@media screen and (max-width: 980px) {
 				.eco-row { flex-direction: column !important; height: auto; }
-				.eco-static-img { 
-					width: 100%; 
-					height: auto; 
+				.eco-static-img { 
+					width: 100%; 
+					height: auto; 
 					aspect-ratio: 16/9;
 					max-height: 300px;
 				}
 				.eco-content { padding: 30px; }
 				.eco-slider-wrapper { display: none; }
 				.hero-header-layout { padding: 30px; }
+				
+				/* Chỉnh nút trên mobile cho gọn */
 				.btn-minimal { display: block; width: 100%; margin: 10px 0 0 0 !important; text-align: center;}
 			}
 
 			@media screen and (max-width: 480px) {
 				.video-hero { height: 90vh; }
-				.hero-header-layout { 
-					padding: 20px; flex-direction: column; align-items: center; 
-					justify-content: center; 
-					height: 100%; 
+				.hero-header-layout { 
+					padding: 20px; flex-direction: column; align-items: center; 
+					justify-content: center; /* Canh giữa nội dung */
+					height: 100%; /* Full chiều cao để canh giữa */
 				}
 				.hero-logo { font-size: 2em; margin-bottom: 20px; }
 				.cta-area { width: 100%; text-align: center; }
 				.nav-container { padding: 20px; }
 			}
 			
-			/* --- SỬA LỖI MẤT FOOTER & MẤT FORM (Cập nhật mới) --- */
+			/* --- SỬA LỖI MẤT FOOTER --- */
 			#footer {
 				display: block !important;
 				position: relative !important;
@@ -264,40 +268,9 @@
 				margin-top: 0 !important;
 				clear: both !important;
 			}
-			
-			/* Bắt buộc 2 cột phải hiện ra */
-			#footer .inner.split {
-				display: flex !important;
-				flex-direction: row !important;
-				justify-content: space-between !important;
-				flex-wrap: wrap !important;
-				width: 100% !important;
-				max-width: 1200px !important;
-				margin: 0 auto !important;
-			}
-			#footer .inner.split > div {
-				flex: 1 1 45% !important; /* Mỗi cột chiếm khoảng 45% */
-				min-width: 300px !important;
-				margin-bottom: 30px !important;
-				display: block !important; /* Đảm bảo không bị ẩn */
+			#footer h2, #footer p, #footer li, #footer a, #footer strong, #footer span {
+				color: #e0e0e0 !important; 
 				opacity: 1 !important;
-			}
-
-			/* Đảm bảo chữ trong footer hiện rõ */
-			#footer h2, #footer p, #footer li, #footer a, #footer strong, #footer span, #footer label {
-				color: #e0e0e0 !important; 
-				opacity: 1 !important;
-			}
-
-			/* Đảm bảo Form nhập liệu nhìn thấy được */
-			#footer input, #footer textarea {
-				background-color: #1a1a1a !important;
-				border: 1px solid #333 !important;
-				color: #fff !important;
-				width: 100% !important;
-				padding: 10px !important;
-				opacity: 1 !important;
-				display: block !important;
 			}
 		</style>
 	</head>
@@ -318,7 +291,7 @@
 							
 							<div class="cta-area">
 								<a href="#nav-section" class="btn-minimal">Khám phá ngay &rarr;</a>
-								<a href="javascript:void(0)" onclick="document.getElementById('footer').scrollIntoView({behavior: 'smooth'});" class="btn-minimal">Liên hệ ngay &rarr;</a>
+								<a href="#footer" class="btn-minimal">Liên hệ ngay &rarr;</a>
 							</div>
 						</div>
 						
@@ -328,8 +301,8 @@
 				<section class="about-section">
 						<h2>Technical Artist & Visualizer</h2>
 						<p>
-							Chào mừng đến với hệ sinh thái của <strong>Taplus3D</strong>. Tôi chuyên cung cấp các giải pháp hình ảnh 3D toàn diện: 
-							từ <strong>3D Furniture Modeling</strong> chi tiết, sáng tạo <strong>Room Scene</strong> tôn vinh sản phẩm, 
+							Chào mừng đến với hệ sinh thái của <strong>Taplus3D</strong>. Tôi chuyên cung cấp các giải pháp hình ảnh 3D toàn diện: 
+							từ <strong>3D Furniture Modeling</strong> chi tiết, sáng tạo <strong>Room Scene</strong> tôn vinh sản phẩm, 
 							đến làm <strong>Mockup</strong> ấn tượng.
 							<br><br>
 							Dù bạn là khách hàng tìm kiếm dịch vụ chất lượng hay học viên muốn nâng cao kỹ năng, mọi thứ bạn cần đều ở ngay bên dưới.
@@ -468,12 +441,12 @@
 									<ul class="contact-info">
 										<li>
 											<span class="icon solid fa-envelope"></span>
-											<strong>Email:</strong> 
+											<strong>Email:</strong> 
 											<a href="mailto:contact@taplus3d.com">contact@taplus3d.com</a>
 										</li>
 										<li>
 											<span class="icon solid fa-comment-dots"></span>
-											<strong>Zalo / Hotline:</strong> 
+											<strong>Zalo / Hotline:</strong> 
 											<a href="https://zalo.me/84867557632" target="_blank">(+84) 867 557 632</a>
 										</li>
 									</ul>
