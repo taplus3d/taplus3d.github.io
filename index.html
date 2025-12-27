@@ -16,7 +16,7 @@
 				--font-heading: 'Segoe UI Black', 'Segoe UI', 'Arial Black', sans-serif;
 				--font-body: 'Inter', sans-serif;
 				--tech-black: #050505;
-				--tech-accent: #ff5722; 
+				--tech-accent: #ff5722; 
 				--card-bg: #111;
 			}
 
@@ -72,7 +72,7 @@
 				text-transform: uppercase; font-size: 0.85em; letter-spacing: 2px;
 				position: relative; overflow: hidden; z-index: 1;
 				transition: color 0.4s ease; border-radius: 4px; background-color: transparent;
-				margin-left: 10px; 
+				margin-left: 10px; 
 				cursor: pointer; /* Thêm con trỏ tay để biết là bấm được */
 			}
 			.cta-area a:first-child { margin-left: 0; }
@@ -112,15 +112,15 @@
 				background: var(--tech-black);
 				display: flex;
 				flex-direction: column;
-				gap: 80px; 
+				gap: 80px; 
 				width: 96%;
 				max-width: 1920px;
-				margin: 0 auto;    
+				margin: 0 auto;    
 			}
 
 			.eco-row {
 				display: flex;
-				height: 600px; 
+				height: 600px; 
 				background: var(--card-bg);
 				border-radius: 12px;
 				overflow: hidden;
@@ -136,9 +136,9 @@
 			}
 
 			.eco-static-img {
-				height: 100%; 
-				width: auto; 
-				aspect-ratio: 9/16; 
+				height: 100%; 
+				width: auto; 
+				aspect-ratio: 9/16; 
 				object-fit: cover;
 				z-index: 1;
 			}
@@ -166,7 +166,7 @@
 				position: absolute;
 				top: 0;
 				height: 100%;
-				width: 0%; 
+				width: 0%; 
 				overflow: hidden;
 				z-index: 10;
 				transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
@@ -176,14 +176,14 @@
 			.eco-slide-track {
 				display: flex;
 				height: 100%;
-				width: max-content; 
-				animation: slideScroll 30s linear infinite; 
+				width: max-content; 
+				animation: slideScroll 30s linear infinite; 
 			}
 
 			.eco-slide-track img {
 				height: 100%;
-				width: auto; 
-				aspect-ratio: 9/16; 
+				width: auto; 
+				aspect-ratio: 9/16; 
 				object-fit: cover;
 				margin-right: 2px;
 				filter: brightness(0.9);
@@ -226,9 +226,9 @@
 			/* RESPONSIVE */
 			@media screen and (max-width: 980px) {
 				.eco-row { flex-direction: column !important; height: auto; }
-				.eco-static-img { 
-					width: 100%; 
-					height: auto; 
+				.eco-static-img { 
+					width: 100%; 
+					height: auto; 
 					aspect-ratio: 16/9;
 					max-height: 300px;
 				}
@@ -240,10 +240,10 @@
 
 			@media screen and (max-width: 480px) {
 				.video-hero { height: 90vh; }
-				.hero-header-layout { 
-					padding: 20px; flex-direction: column; align-items: center; 
-					justify-content: center; 
-					height: 100%; 
+				.hero-header-layout { 
+					padding: 20px; flex-direction: column; align-items: center; 
+					justify-content: center; 
+					height: 100%; 
 				}
 				.hero-logo { font-size: 2em; margin-bottom: 20px; }
 				.cta-area { width: 100%; text-align: center; }
@@ -285,7 +285,7 @@
 
 			/* Đảm bảo chữ trong footer hiện rõ */
 			#footer h2, #footer p, #footer li, #footer a, #footer strong, #footer span, #footer label {
-				color: #e0e0e0 !important; 
+				color: #e0e0e0 !important; 
 				opacity: 1 !important;
 			}
 
@@ -299,6 +299,48 @@
 				opacity: 1 !important;
 				display: block !important;
 			}
+
+			/* --- CUSTOM NÚT GỬI ĐI (FULL WIDTH & MÀU XANH) --- */
+			
+			/* 1. Xử lý khung chứa nút (ul) để nó bung rộng ra */
+			#footer ul.actions {
+				display: block !important;
+				width: 100% !important;
+				margin: 20px 0 0 0 !important;
+				padding: 0 !important;
+				list-style: none !important;
+			}
+			
+			#footer ul.actions li {
+				display: block !important;
+				width: 100% !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			/* 2. Style cho nút bấm */
+			#footer input[type="submit"] {
+				width: 100% !important;       /* Chiều dài bằng ô nội dung */
+				background-color: #58b461 !important; /* Xanh lá nhạt (Màu nền) */
+				color: #fff !important;       /* Màu chữ trắng */
+				border: none !important;      /* Bỏ viền */
+				
+				text-align: center !important; /* Chữ nằm giữa */
+				font-weight: 700 !important;  /* Chữ đậm */
+				text-transform: uppercase;
+				letter-spacing: 2px;
+				cursor: pointer;
+				
+				/* Giữ nguyên padding để chiều cao bằng các ô input khác */
+				padding: 12px !important; 
+				transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu mượt */
+			}
+
+			/* 3. Hiệu ứng khi rê chuột vào (Hover) */
+			#footer input[type="submit"]:hover {
+				background-color: #2e7d32 !important; /* Chuyển sang Xanh lá đậm */
+			}
+
 		</style>
 	</head>
 	
@@ -328,8 +370,8 @@
 				<section class="about-section">
 						<h2>Technical Artist & Visualizer</h2>
 						<p>
-							Chào mừng đến với hệ sinh thái của <strong>Taplus3D</strong>. Tôi chuyên cung cấp các giải pháp hình ảnh 3D toàn diện: 
-							từ <strong>3D Furniture Modeling</strong> chi tiết, sáng tạo <strong>Room Scene</strong> tôn vinh sản phẩm, 
+							Chào mừng đến với hệ sinh thái của <strong>Taplus3D</strong>. Tôi chuyên cung cấp các giải pháp hình ảnh 3D toàn diện: 
+							từ <strong>3D Furniture Modeling</strong> chi tiết, sáng tạo <strong>Room Scene</strong> tôn vinh sản phẩm, 
 							đến làm <strong>Mockup</strong> ấn tượng.
 							<br><br>
 							Dù bạn là khách hàng tìm kiếm dịch vụ chất lượng hay học viên muốn nâng cao kỹ năng, mọi thứ bạn cần đều ở ngay bên dưới.
@@ -468,12 +510,12 @@
 									<ul class="contact-info">
 										<li>
 											<span class="icon solid fa-envelope"></span>
-											<strong>Email:</strong> 
+											<strong>Email:</strong> 
 											<a href="mailto:contact@taplus3d.com">contact@taplus3d.com</a>
 										</li>
 										<li>
 											<span class="icon solid fa-comment-dots"></span>
-											<strong>Zalo / Hotline:</strong> 
+											<strong>Zalo / Hotline:</strong> 
 											<a href="https://zalo.me/84867557632" target="_blank">(+84) 867 557 632</a>
 										</li>
 									</ul>
