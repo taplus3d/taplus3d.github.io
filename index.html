@@ -22,7 +22,7 @@
 
 			/* --- CẤU HÌNH CƠ BẢN & SCROLL MƯỢT --- */
 			html {
-				scroll-behavior: smooth; /* YÊU CẦU 1: Cuộn mượt khi bấm link neo */
+				scroll-behavior: smooth;
 			}
 
 			body, input, textarea, p, a {
@@ -226,7 +226,7 @@
 				color: var(--tech-accent);
 			}
 			
-			/* YÊU CẦU 2: CHỈNH NÚT GỬI ĐI FULL WIDTH */
+			/* CHỈNH NÚT GỬI ĐI FULL WIDTH */
 			#footer form .actions {
 				width: 100% !important;
 				margin: 0 !important;
@@ -271,7 +271,7 @@
 				.nav-container { padding: 20px; }
 			}
 			
-			/* --- SỬA LỖI MẤT FOOTER --- */
+			/* --- FOOTER --- */
 			#footer {
 				display: block !important;
 				position: relative !important;
@@ -308,7 +308,9 @@
 							
 							<div class="cta-area">
 								<a href="#nav-section" class="btn-minimal">Khám phá ngay &rarr;</a>
-								<a href="#footer" class="btn-minimal">Liên hệ ngay &rarr;</a>
+								
+								<a href="javascript:void(0);" onclick="document.getElementById('footer').scrollIntoView({behavior: 'smooth'});" class="btn-minimal">Liên hệ ngay &rarr;</a>
+								
 							</div>
 						</div>
 						
