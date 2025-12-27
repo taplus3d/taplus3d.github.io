@@ -16,12 +16,12 @@
 				--font-heading: 'Segoe UI Black', 'Segoe UI', 'Arial Black', sans-serif;
 				--font-body: 'Inter', sans-serif;
 				--tech-black: #050505;
-				--tech-accent: #ff5722;
+				--tech-accent: #ff5722; 
 				--card-bg: #111;
 			}
 
 			/* --- CẤU HÌNH CƠ BẢN --- */
-			body, input, textarea, p, a, button {
+			body, input, textarea, p, a {
 				font-family: var(--font-body) !important;
 				background-color: var(--tech-black);
 				color: #ccc;
@@ -72,8 +72,8 @@
 				text-transform: uppercase; font-size: 0.85em; letter-spacing: 2px;
 				position: relative; overflow: hidden; z-index: 1;
 				transition: color 0.4s ease; border-radius: 4px; background-color: transparent;
-				margin-left: 10px;
-				cursor: pointer;
+				margin-left: 10px; 
+				cursor: pointer; /* Thêm con trỏ tay để biết là bấm được */
 			}
 			.cta-area a:first-child { margin-left: 0; }
 
@@ -112,15 +112,15 @@
 				background: var(--tech-black);
 				display: flex;
 				flex-direction: column;
-				gap: 80px;
+				gap: 80px; 
 				width: 96%;
 				max-width: 1920px;
-				margin: 0 auto;
+				margin: 0 auto;    
 			}
 
 			.eco-row {
 				display: flex;
-				height: 600px;
+				height: 600px; 
 				background: var(--card-bg);
 				border-radius: 12px;
 				overflow: hidden;
@@ -136,9 +136,9 @@
 			}
 
 			.eco-static-img {
-				height: 100%;
-				width: auto;
-				aspect-ratio: 9/16;
+				height: 100%; 
+				width: auto; 
+				aspect-ratio: 9/16; 
 				object-fit: cover;
 				z-index: 1;
 			}
@@ -166,7 +166,7 @@
 				position: absolute;
 				top: 0;
 				height: 100%;
-				width: 0%;
+				width: 0%; 
 				overflow: hidden;
 				z-index: 10;
 				transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
@@ -176,14 +176,14 @@
 			.eco-slide-track {
 				display: flex;
 				height: 100%;
-				width: max-content;
-				animation: slideScroll 30s linear infinite;
+				width: max-content; 
+				animation: slideScroll 30s linear infinite; 
 			}
 
 			.eco-slide-track img {
 				height: 100%;
-				width: auto;
-				aspect-ratio: 9/16;
+				width: auto; 
+				aspect-ratio: 9/16; 
 				object-fit: cover;
 				margin-right: 2px;
 				filter: brightness(0.9);
@@ -196,11 +196,7 @@
 
 			.eco-row:hover .eco-slider-wrapper { width: 100%; }
 			.eco-row:hover .eco-content { opacity: 0; }
-			
-			/* Sửa lỗi hiển thị Left/Right */
-			.eco-row.left-img { flex-direction: row; }
 			.eco-row.left-img .eco-slider-wrapper { left: 0; }
-			
 			.eco-row.right-img { flex-direction: row-reverse; }
 			.eco-row.right-img .eco-slider-wrapper { right: 0; left: auto; }
 			.eco-row.right-img .eco-slide-track { flex-direction: row-reverse; animation-direction: reverse; }
@@ -230,9 +226,9 @@
 			/* RESPONSIVE */
 			@media screen and (max-width: 980px) {
 				.eco-row { flex-direction: column !important; height: auto; }
-				.eco-static-img {
-					width: 100%;
-					height: auto;
+				.eco-static-img { 
+					width: 100%; 
+					height: auto; 
 					aspect-ratio: 16/9;
 					max-height: 300px;
 				}
@@ -244,17 +240,17 @@
 
 			@media screen and (max-width: 480px) {
 				.video-hero { height: 90vh; }
-				.hero-header-layout {
-					padding: 20px; flex-direction: column; align-items: center;
-					justify-content: center;
-					height: 100%;
+				.hero-header-layout { 
+					padding: 20px; flex-direction: column; align-items: center; 
+					justify-content: center; 
+					height: 100%; 
 				}
 				.hero-logo { font-size: 2em; margin-bottom: 20px; }
 				.cta-area { width: 100%; text-align: center; }
 				.nav-container { padding: 20px; }
 			}
 			
-			/* --- SỬA LỖI MẤT FOOTER & MẤT FORM --- */
+			/* --- SỬA LỖI MẤT FOOTER & MẤT FORM (Cập nhật mới) --- */
 			#footer {
 				display: block !important;
 				position: relative !important;
@@ -269,6 +265,7 @@
 				clear: both !important;
 			}
 			
+			/* Bắt buộc 2 cột phải hiện ra */
 			#footer .inner.split {
 				display: flex !important;
 				flex-direction: row !important;
@@ -279,18 +276,20 @@
 				margin: 0 auto !important;
 			}
 			#footer .inner.split > div {
-				flex: 1 1 45% !important;
+				flex: 1 1 45% !important; /* Mỗi cột chiếm khoảng 45% */
 				min-width: 300px !important;
 				margin-bottom: 30px !important;
-				display: block !important;
+				display: block !important; /* Đảm bảo không bị ẩn */
 				opacity: 1 !important;
 			}
 
+			/* Đảm bảo chữ trong footer hiện rõ */
 			#footer h2, #footer p, #footer li, #footer a, #footer strong, #footer span, #footer label {
-				color: #e0e0e0 !important;
+				color: #e0e0e0 !important; 
 				opacity: 1 !important;
 			}
 
+			/* Đảm bảo Form nhập liệu nhìn thấy được */
 			#footer input, #footer textarea {
 				background-color: #1a1a1a !important;
 				border: 1px solid #333 !important;
@@ -300,54 +299,6 @@
 				opacity: 1 !important;
 				display: block !important;
 			}
-
-			/* --- CUSTOM NÚT GỬI ĐI (ĐÃ SỬA: CĂN GIỮA TUYỆT ĐỐI) --- */
-			
-			#footer ul.actions {
-				display: block !important;
-				width: 100% !important;
-				margin: 20px 0 0 0 !important;
-				padding: 0 !important;
-				list-style: none !important;
-			}
-			
-			#footer ul.actions li {
-				display: block !important;
-				width: 100% !important;
-				padding: 0 !important;
-				margin: 0 !important;
-			}
-
-			/* Style mới cho thẻ button */
-			#footer button[type="submit"] {
-				/* Layout & Căn giữa */
-				width: 100% !important;
-				height: 50px; /* Chiều cao cố định để căn giữa */
-				padding: 0 !important; /* Xóa padding để flexbox hoạt động đúng */
-				
-				display: flex !important;
-				justify-content: center !important;
-				align-items: center !important;
-
-				/* Màu sắc */
-				background-color: #388E3C !important; /* Màu xanh lá chuẩn */
-				color: #fff !important;
-				border: none !important;
-				
-				/* Font chữ */
-				font-family: 'Segoe UI Black', 'Segoe UI', sans-serif !important;
-				font-size: 1em;
-				text-transform: uppercase;
-				letter-spacing: 2px;
-				cursor: pointer;
-				
-				transition: background-color 0.3s ease;
-			}
-
-			#footer button[type="submit"]:hover {
-				background-color: #2e7d32 !important;
-			}
-
 		</style>
 	</head>
 	
@@ -377,8 +328,8 @@
 				<section class="about-section">
 						<h2>Technical Artist & Visualizer</h2>
 						<p>
-							Chào mừng đến với hệ sinh thái của <strong>Taplus3D</strong>. Tôi chuyên cung cấp các giải pháp hình ảnh 3D toàn diện:
-							từ <strong>3D Furniture Modeling</strong> chi tiết, sáng tạo <strong>Room Scene</strong> tôn vinh sản phẩm,
+							Chào mừng đến với hệ sinh thái của <strong>Taplus3D</strong>. Tôi chuyên cung cấp các giải pháp hình ảnh 3D toàn diện: 
+							từ <strong>3D Furniture Modeling</strong> chi tiết, sáng tạo <strong>Room Scene</strong> tôn vinh sản phẩm, 
 							đến làm <strong>Mockup</strong> ấn tượng.
 							<br><br>
 							Dù bạn là khách hàng tìm kiếm dịch vụ chất lượng hay học viên muốn nâng cao kỹ năng, mọi thứ bạn cần đều ở ngay bên dưới.
@@ -413,4 +364,133 @@
 						<div class="eco-content">
 							<span>Academy</span>
 							<h3>Khóa Học Online</h3>
-							<p>Chia sẻ quy trình
+							<p>Chia sẻ quy trình "thực chiến" mà mình đang áp dụng hằng ngày để chinh phục khách hàng.</p>
+						</div>
+						<div class="eco-slider-wrapper">
+							<div class="eco-slide-track">
+								<img src="images/slides/academy-1.jpg" alt="">
+								<img src="images/slides/academy-2.jpg" alt="">
+								<img src="images/slides/academy-3.jpg" alt="">
+								<img src="images/slides/academy-4.jpg" alt="">
+								<img src="images/slides/academy-5.jpg" alt="">
+								<img src="images/slides/academy-6.jpg" alt="">
+								<img src="images/slides/academy-7.jpg" alt="">
+								<img src="images/slides/academy-8.jpg" alt="">
+							</div>
+						</div>
+					</div>
+
+					<div class="eco-row left-img" onclick="window.location.href='#';">
+						<img src="images/thumbs/store.jpg" class="eco-static-img" alt="Store">
+						<div class="eco-content">
+							<span>Store</span>
+							<h3>Mockup & Assets</h3>
+							<p>Thổi hồn vào thiết kế của bạn bằng kho thư viện Mockup được chọn lọc kỹ càng.</p>
+						</div>
+						<div class="eco-slider-wrapper">
+							<div class="eco-slide-track">
+								<img src="images/slides/store-1.jpg" alt="">
+								<img src="images/slides/store-2.jpg" alt="">
+								<img src="images/slides/store-3.jpg" alt="">
+								<img src="images/slides/store-4.jpg" alt="">
+								<img src="images/slides/store-5.jpg" alt="">
+								<img src="images/slides/store-6.jpg" alt="">
+								<img src="images/slides/store-7.jpg" alt="">
+								<img src="images/slides/store-8.jpg" alt="">
+							</div>
+						</div>
+					</div>
+
+					<div class="eco-row right-img" onclick="window.location.href='https://youtube.com';">
+						<img src="images/thumbs/youtube.jpg" class="eco-static-img" alt="Community">
+						<div class="eco-content">
+							<span>Community</span>
+							<h3>YouTube & Blog</h3>
+							<p>Nếu khóa học là ngôi nhà, thì nơi đây là chỗ xây dựng nền móng.</p>
+						</div>
+						<div class="eco-slider-wrapper">
+							<div class="eco-slide-track">
+								<img src="images/slides/community-1.jpg" alt="">
+								<img src="images/slides/community-2.jpg" alt="">
+								<img src="images/slides/community-3.jpg" alt="">
+								<img src="images/slides/community-4.jpg" alt="">
+								<img src="images/slides/community-5.jpg" alt="">
+								<img src="images/slides/community-6.jpg" alt="">
+								<img src="images/slides/community-7.jpg" alt="">
+								<img src="images/slides/community-8.jpg" alt="">
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<footer id="footer" class="panel">
+						<div class="inner split">
+							<div>
+								<section>
+									<h2>Taplus3D - Hợp tác</h2>
+									<p>Sẵn sàng nâng tầm dự án của bạn? Hãy để lại tin nhắn hoặc kết nối trực tiếp qua Zalo.</p>
+								</section>
+								<section>
+									<h2>Follow me on ...</h2>
+									<ul class="icons">
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
+										<li><a href="#" class="icon brands fa-behance"><span class="label">Behance</span></a></li>
+										<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+									</ul>
+								</section>
+								<p class="copyright">
+									&copy; Taplus3D. All rights reserved.
+								</p>
+							</div>
+							<div>
+								<section>
+									<h2>Liên hệ trực tiếp</h2>
+									
+									<form method="post" action="#">
+										<div class="fields">
+											<div class="field half">
+												<input type="text" name="name" id="name" placeholder="Tên của bạn" />
+											</div>
+											<div class="field half">
+												<input type="text" name="email" id="email" placeholder="Email" />
+											</div>
+											<div class="field">
+												<textarea name="message" id="message" rows="4" placeholder="Nội dung cần tư vấn..."></textarea>
+											</div>
+										</div>
+										<ul class="actions">
+											<li><input type="submit" value="Gửi đi" class="primary" /></li>
+										</ul>
+									</form>
+
+									<ul class="contact-info">
+										<li>
+											<span class="icon solid fa-envelope"></span>
+											<strong>Email:</strong> 
+											<a href="mailto:contact@taplus3d.com">contact@taplus3d.com</a>
+										</li>
+										<li>
+											<span class="icon solid fa-comment-dots"></span>
+											<strong>Zalo / Hotline:</strong> 
+											<a href="https://zalo.me/84867557632" target="_blank">(+84) 867 557 632</a>
+										</li>
+									</ul>
+									
+								</section>
+							</div>
+						</div>
+				</footer>
+
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.poptrox.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
