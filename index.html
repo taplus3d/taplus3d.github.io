@@ -109,7 +109,7 @@
 
 			/* --- 3. ECOSYSTEM LAYOUT --- */
 			.nav-container {
-				/* ĐÃ SỬA: Padding bottom = 80px để bằng với gap: 80px */
+				/* Padding bottom = 80px để bằng với gap: 80px */
 				padding: 50px 0 80px 0;
 				background: var(--tech-black);
 				display: flex;
@@ -246,8 +246,8 @@
 				.video-hero { height: 90vh; }
 				.hero-header-layout { 
 					padding: 20px; flex-direction: column; align-items: center; 
-					justify-content: center; /* Canh giữa nội dung */
-					height: 100%; /* Full chiều cao để canh giữa */
+					justify-content: center; 
+					height: 100%; 
 				}
 				.hero-logo { font-size: 2em; margin-bottom: 20px; }
 				.cta-area { width: 100%; text-align: center; }
@@ -265,7 +265,7 @@
 				z-index: 9999 !important;
 				opacity: 1 !important;
 				visibility: visible !important;
-				margin-top: 0 !important;
+				margin-top: 0 !important; 
 				clear: both !important;
 			}
 			#footer h2, #footer p, #footer li, #footer a, #footer strong, #footer span {
@@ -291,7 +291,7 @@
 							
 							<div class="cta-area">
 								<a href="#nav-section" class="btn-minimal">Khám phá ngay &rarr;</a>
-								<a href="#footer" class="btn-minimal">Liên hệ ngay &rarr;</a>
+								<a href="#footer" class="btn-minimal" onclick="document.getElementById('footer').scrollIntoView({behavior: 'smooth'}); return false;">Liên hệ ngay &rarr;</a>
 							</div>
 						</div>
 						
@@ -413,57 +413,4 @@
 										<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
 									</ul>
 								</section>
-								<p class="copyright">
-									&copy; Taplus3D. All rights reserved.
-								</p>
-							</div>
-							<div>
-								<section>
-									<h2>Liên hệ trực tiếp</h2>
-									
-									<form method="post" action="#">
-										<div class="fields">
-											<div class="field half">
-												<input type="text" name="name" id="name" placeholder="Tên của bạn" />
-											</div>
-											<div class="field half">
-												<input type="text" name="email" id="email" placeholder="Email" />
-											</div>
-											<div class="field">
-												<textarea name="message" id="message" rows="4" placeholder="Nội dung cần tư vấn..."></textarea>
-											</div>
-										</div>
-										<ul class="actions">
-											<li><input type="submit" value="Gửi đi" class="primary" /></li>
-										</ul>
-									</form>
-
-									<ul class="contact-info">
-										<li>
-											<span class="icon solid fa-envelope"></span>
-											<strong>Email:</strong> 
-											<a href="mailto:contact@taplus3d.com">contact@taplus3d.com</a>
-										</li>
-										<li>
-											<span class="icon solid fa-comment-dots"></span>
-											<strong>Zalo / Hotline:</strong> 
-											<a href="https://zalo.me/84867557632" target="_blank">(+84) 867 557 632</a>
-										</li>
-									</ul>
-									
-								</section>
-							</div>
-						</div>
-				</footer>
-
-		</div>
-
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.poptrox.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
-
-	</body>
-</html>
+								<p class="copyright
