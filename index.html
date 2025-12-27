@@ -72,10 +72,9 @@
 				text-transform: uppercase; font-size: 0.85em; letter-spacing: 2px;
 				position: relative; overflow: hidden; z-index: 1;
 				transition: color 0.4s ease; border-radius: 4px; background-color: transparent;
-				/* Thêm khoảng cách để 2 nút không dính nhau */
 				margin-left: 10px; 
+				cursor: pointer; /* Thêm con trỏ tay để biết là bấm được */
 			}
-			/* Nút đầu tiên không cần margin trái */
 			.cta-area a:first-child { margin-left: 0; }
 
 			.btn-minimal::before {
@@ -109,7 +108,6 @@
 
 			/* --- 3. ECOSYSTEM LAYOUT --- */
 			.nav-container {
-				/* Padding bottom = 80px để bằng với gap: 80px */
 				padding: 50px 0 80px 0;
 				background: var(--tech-black);
 				display: flex;
@@ -237,8 +235,6 @@
 				.eco-content { padding: 30px; }
 				.eco-slider-wrapper { display: none; }
 				.hero-header-layout { padding: 30px; }
-				
-				/* Chỉnh nút trên mobile cho gọn */
 				.btn-minimal { display: block; width: 100%; margin: 10px 0 0 0 !important; text-align: center;}
 			}
 
@@ -254,7 +250,7 @@
 				.nav-container { padding: 20px; }
 			}
 			
-			/* --- SỬA LỖI MẤT FOOTER --- */
+			/* --- SỬA LỖI MẤT FOOTER & MẤT FORM (Cập nhật mới) --- */
 			#footer {
 				display: block !important;
 				position: relative !important;
@@ -265,12 +261,43 @@
 				z-index: 9999 !important;
 				opacity: 1 !important;
 				visibility: visible !important;
-				margin-top: 0 !important; 
+				margin-top: 0 !important;
 				clear: both !important;
 			}
-			#footer h2, #footer p, #footer li, #footer a, #footer strong, #footer span {
+			
+			/* Bắt buộc 2 cột phải hiện ra */
+			#footer .inner.split {
+				display: flex !important;
+				flex-direction: row !important;
+				justify-content: space-between !important;
+				flex-wrap: wrap !important;
+				width: 100% !important;
+				max-width: 1200px !important;
+				margin: 0 auto !important;
+			}
+			#footer .inner.split > div {
+				flex: 1 1 45% !important; /* Mỗi cột chiếm khoảng 45% */
+				min-width: 300px !important;
+				margin-bottom: 30px !important;
+				display: block !important; /* Đảm bảo không bị ẩn */
+				opacity: 1 !important;
+			}
+
+			/* Đảm bảo chữ trong footer hiện rõ */
+			#footer h2, #footer p, #footer li, #footer a, #footer strong, #footer span, #footer label {
 				color: #e0e0e0 !important; 
 				opacity: 1 !important;
+			}
+
+			/* Đảm bảo Form nhập liệu nhìn thấy được */
+			#footer input, #footer textarea {
+				background-color: #1a1a1a !important;
+				border: 1px solid #333 !important;
+				color: #fff !important;
+				width: 100% !important;
+				padding: 10px !important;
+				opacity: 1 !important;
+				display: block !important;
 			}
 		</style>
 	</head>
@@ -291,7 +318,7 @@
 							
 							<div class="cta-area">
 								<a href="#nav-section" class="btn-minimal">Khám phá ngay &rarr;</a>
-								<a href="#footer" class="btn-minimal" onclick="document.getElementById('footer').scrollIntoView({behavior: 'smooth'}); return false;">Liên hệ ngay &rarr;</a>
+								<a href="javascript:void(0)" onclick="document.getElementById('footer').scrollIntoView({behavior: 'smooth'});" class="btn-minimal">Liên hệ ngay &rarr;</a>
 							</div>
 						</div>
 						
@@ -413,4 +440,57 @@
 										<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
 									</ul>
 								</section>
-								<p class="copyright
+								<p class="copyright">
+									&copy; Taplus3D. All rights reserved.
+								</p>
+							</div>
+							<div>
+								<section>
+									<h2>Liên hệ trực tiếp</h2>
+									
+									<form method="post" action="#">
+										<div class="fields">
+											<div class="field half">
+												<input type="text" name="name" id="name" placeholder="Tên của bạn" />
+											</div>
+											<div class="field half">
+												<input type="text" name="email" id="email" placeholder="Email" />
+											</div>
+											<div class="field">
+												<textarea name="message" id="message" rows="4" placeholder="Nội dung cần tư vấn..."></textarea>
+											</div>
+										</div>
+										<ul class="actions">
+											<li><input type="submit" value="Gửi đi" class="primary" /></li>
+										</ul>
+									</form>
+
+									<ul class="contact-info">
+										<li>
+											<span class="icon solid fa-envelope"></span>
+											<strong>Email:</strong> 
+											<a href="mailto:contact@taplus3d.com">contact@taplus3d.com</a>
+										</li>
+										<li>
+											<span class="icon solid fa-comment-dots"></span>
+											<strong>Zalo / Hotline:</strong> 
+											<a href="https://zalo.me/84867557632" target="_blank">(+84) 867 557 632</a>
+										</li>
+									</ul>
+									
+								</section>
+							</div>
+						</div>
+				</footer>
+
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.poptrox.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
