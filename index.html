@@ -440,23 +440,22 @@
 								<section>
 									<h2>Liên hệ trực tiếp</h2>
 									
-									<form method="post" action="#">
+									<form method="POST" action="https://formspree.io/f/xykyeejd">
 										<div class="fields">
 											<div class="field half">
-												<input type="text" name="name" id="name" placeholder="Tên của bạn" />
+												<input type="text" name="name" id="name" placeholder="Tên của bạn" required />
 											</div>
 											<div class="field half">
-												<input type="text" name="email" id="email" placeholder="Email" />
+												<input type="email" name="email" id="email" placeholder="Email" required />
 											</div>
 											<div class="field">
-												<textarea name="message" id="message" rows="4" placeholder="Nội dung cần tư vấn..."></textarea>
+												<textarea name="message" id="message" rows="4" placeholder="Nội dung cần tư vấn..." required></textarea>
 											</div>
 										</div>
 										<ul class="actions">
 											<li><input type="submit" value="Gửi đi" class="primary" /></li>
 										</ul>
 									</form>
-
 									<ul class="contact-info">
 										<li>
 											<span class="icon solid fa-envelope"></span>
