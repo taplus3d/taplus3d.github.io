@@ -104,7 +104,8 @@
 
 			/* --- 3. ECOSYSTEM LAYOUT --- */
 			.nav-container {
-				padding: 50px 0 100px 0;
+				/* ĐÃ SỬA: Giảm padding bottom từ 100px xuống 0 để Footer dính sát vào */
+				padding: 50px 0 0 0;
 				background: var(--tech-black);
 				display: flex;
 				flex-direction: column;
@@ -254,7 +255,7 @@
 				z-index: 9999 !important;
 				opacity: 1 !important;
 				visibility: visible !important;
-				margin-top: 0 !important;
+				margin-top: 0 !important; /* Đảm bảo không có khoảng cách thừa ở trên */
 				clear: both !important;
 			}
 			/* Đảm bảo chữ trong footer hiện rõ */
@@ -398,7 +399,6 @@
 										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 										<li><a href="#" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
 										<li><a href="#" class="icon brands fa-behance"><span class="label">Behance</span></a></li>
-										<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 									</ul>
 								</section>
 								<p class="copyright">
