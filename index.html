@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="vi">
 	<head>
-		<title>Taplus3D - Portfolio</title>
+		<title>Taplus3D | Technical Artist & Visualizer</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -9,7 +9,7 @@
 
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
 
 		<style>
 			:root {
@@ -102,19 +102,16 @@
 			.about-section p { font-size: 1.1em; line-height: 1.8; color: #999; font-weight: 300; }
 			.about-section strong { color: #fff; font-weight: 700; }
 
-			/* --- 3. ECOSYSTEM LAYOUT (9:16 VERSION - FULL WIDTH) --- */
+			/* --- 3. ECOSYSTEM LAYOUT --- */
 			.nav-container {
-				/* SỬA: Bỏ padding 2 bên, dùng width để canh lề */
 				padding: 50px 0 100px 0;
 				background: var(--tech-black);
 				display: flex;
 				flex-direction: column;
 				gap: 80px; 
-				
-				/* SỬA: Chiếm 96% màn hình, chừa lại mỗi bên 2% */
 				width: 96%;
-				max-width: 1920px; /* Giới hạn tối đa cho màn cực lớn */
-				margin: 0 auto;    /* Căn giữa */
+				max-width: 1920px;
+				margin: 0 auto;    
 			}
 
 			.eco-row {
@@ -134,7 +131,6 @@
 				border-color: #444;
 			}
 
-			/* Hình tĩnh ban đầu */
 			.eco-static-img {
 				height: 100%; 
 				width: auto; 
@@ -161,7 +157,7 @@
 			}
 			.eco-content p { font-size: 1.1rem; color: #aaa; line-height: 1.6; max-width: 500px; }
 
-			/* --- SLIDER 9:16 --- */
+			/* Slider Logic */
 			.eco-slider-wrapper {
 				position: absolute;
 				top: 0;
@@ -194,33 +190,44 @@
 				100% { transform: translateX(-20%); }
 			}
 
-			/* Hover Trigger */
-			.eco-row:hover .eco-slider-wrapper {
-				width: 100%;
-			}
-			.eco-row:hover .eco-content {
-				opacity: 0;
-			}
-
-			/* Zigzag Logic */
+			.eco-row:hover .eco-slider-wrapper { width: 100%; }
+			.eco-row:hover .eco-content { opacity: 0; }
 			.eco-row.left-img .eco-slider-wrapper { left: 0; }
-
 			.eco-row.right-img { flex-direction: row-reverse; }
 			.eco-row.right-img .eco-slider-wrapper { right: 0; left: auto; }
 			.eco-row.right-img .eco-slide-track { flex-direction: row-reverse; animation-direction: reverse; }
 
-			/* --- RESPONSIVE --- */
+			/* --- STYLE RIÊNG CHO FOOTER CONTACT --- */
+			ul.contact-info li {
+				margin-bottom: 15px;
+				font-size: 1.1em;
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
+			ul.contact-info li a {
+				color: #eee;
+				text-decoration: none;
+				border-bottom: 1px dotted transparent;
+				transition: all 0.3s ease;
+			}
+			ul.contact-info li a:hover {
+				color: var(--tech-accent);
+				border-bottom-color: var(--tech-accent);
+			}
+			ul.contact-info .icon {
+				color: var(--tech-accent);
+			}
+
+			/* RESPONSIVE */
 			@media screen and (max-width: 980px) {
 				.eco-row { flex-direction: column !important; height: auto; }
-				
-				/* Mobile: Chỉnh lại hình cho đỡ quá dài */
 				.eco-static-img { 
 					width: 100%; 
 					height: auto; 
-					aspect-ratio: 16/9; /* Trên mobile về lại khổ ngang cho gọn */
+					aspect-ratio: 16/9;
 					max-height: 300px;
 				}
-				
 				.eco-content { padding: 30px; }
 				.eco-slider-wrapper { display: none; }
 				.hero-header-layout { padding: 30px; }
@@ -274,13 +281,11 @@
 
 					<div class="eco-row left-img" onclick="window.location.href='#footer';">
 						<img src="images/thumbs/service.jpg" class="eco-static-img" alt="Services">
-						
 						<div class="eco-content">
 							<span>Services</span>
 							<h3>Room Scene & 3D</h3>
 							<p>Để mình giúp bạn tôn vinh giá trị sản phẩm qua những khung hình 3D ấn tượng.</p>
 						</div>
-
 						<div class="eco-slider-wrapper">
 							<div class="eco-slide-track">
 								<img src="images/slides/service-1.jpg" alt="">
@@ -297,13 +302,11 @@
 
 					<div class="eco-row right-img" onclick="window.location.href='#';">
 						<img src="images/thumbs/academy.jpg" class="eco-static-img" alt="Academy">
-						
 						<div class="eco-content">
 							<span>Academy</span>
 							<h3>Khóa Học Online</h3>
 							<p>Chia sẻ quy trình "thực chiến" mà mình đang áp dụng hằng ngày để chinh phục khách hàng.</p>
 						</div>
-
 						<div class="eco-slider-wrapper">
 							<div class="eco-slide-track">
 								<img src="images/slides/academy-1.jpg" alt="">
@@ -320,13 +323,11 @@
 
 					<div class="eco-row left-img" onclick="window.location.href='#';">
 						<img src="images/thumbs/store.jpg" class="eco-static-img" alt="Store">
-						
 						<div class="eco-content">
 							<span>Store</span>
 							<h3>Mockup & Assets</h3>
 							<p>Thổi hồn vào thiết kế của bạn bằng kho thư viện Mockup được chọn lọc kỹ càng.</p>
 						</div>
-
 						<div class="eco-slider-wrapper">
 							<div class="eco-slide-track">
 								<img src="images/slides/store-1.jpg" alt="">
@@ -343,13 +344,11 @@
 
 					<div class="eco-row right-img" onclick="window.location.href='https://youtube.com';">
 						<img src="images/thumbs/youtube.jpg" class="eco-static-img" alt="Community">
-						
 						<div class="eco-content">
 							<span>Community</span>
 							<h3>YouTube & Blog</h3>
 							<p>Nếu khóa học là ngôi nhà, thì nơi đây là chỗ xây dựng nền móng.</p>
 						</div>
-
 						<div class="eco-slider-wrapper">
 							<div class="eco-slide-track">
 								<img src="images/slides/community-1.jpg" alt="">
@@ -370,8 +369,8 @@
 						<div class="inner split">
 							<div>
 								<section>
-									<h2>Taplus3D - Liên hệ hợp tác</h2>
-									<p>Sẵn sàng nâng tầm dự án của bạn? Hãy để lại tin nhắn hoặc kết nối qua mạng xã hội.</p>
+									<h2>Taplus3D - Hợp tác</h2>
+									<p>Sẵn sàng nâng tầm dự án của bạn? Hãy để lại tin nhắn hoặc kết nối trực tiếp qua Zalo.</p>
 								</section>
 								<section>
 									<h2>Follow me on ...</h2>
@@ -388,7 +387,8 @@
 							</div>
 							<div>
 								<section>
-									<h2>Gửi tin nhắn</h2>
+									<h2>Liên hệ trực tiếp</h2>
+									
 									<form method="post" action="#">
 										<div class="fields">
 											<div class="field half">
@@ -405,10 +405,20 @@
 											<li><input type="submit" value="Gửi đi" class="primary" /></li>
 										</ul>
 									</form>
+
 									<ul class="contact-info">
-										<li>Email: letop.yes@gmail.com</li>
-										<li>Phone: 0936522086</li>
+										<li>
+											<span class="icon solid fa-envelope"></span>
+											<strong>Email:</strong> 
+											<a href="mailto:contact@taplus3d.com">contact@taplus3d.com</a>
+										</li>
+										<li>
+											<span class="icon solid fa-comment-dots"></span>
+											<strong>Zalo / Hotline:</strong> 
+											<a href="https://zalo.me/84867557632" target="_blank">(+84) 867 557 632</a>
+										</li>
 									</ul>
+									
 								</section>
 							</div>
 						</div>
