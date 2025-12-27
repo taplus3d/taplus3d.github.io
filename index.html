@@ -102,20 +102,23 @@
 			.about-section p { font-size: 1.1em; line-height: 1.8; color: #999; font-weight: 300; }
 			.about-section strong { color: #fff; font-weight: 700; }
 
-			/* --- 3. ECOSYSTEM LAYOUT (9:16 VERSION) --- */
+			/* --- 3. ECOSYSTEM LAYOUT (9:16 VERSION - FULL WIDTH) --- */
 			.nav-container {
-				padding: 50px 20px 100px 20px;
+				/* SỬA: Bỏ padding 2 bên, dùng width để canh lề */
+				padding: 50px 0 100px 0;
 				background: var(--tech-black);
 				display: flex;
 				flex-direction: column;
-				gap: 80px; /* Tăng khoảng cách vì hình cao hơn */
-				max-width: 1200px;
-				margin: 0 auto;
+				gap: 80px; 
+				
+				/* SỬA: Chiếm 96% màn hình, chừa lại mỗi bên 2% */
+				width: 96%;
+				max-width: 1920px; /* Giới hạn tối đa cho màn cực lớn */
+				margin: 0 auto;    /* Căn giữa */
 			}
 
 			.eco-row {
 				display: flex;
-				/* SỬA: Tăng chiều cao lên 600px để chứa ảnh khổ dọc 9:16 */
 				height: 600px; 
 				background: var(--card-bg);
 				border-radius: 12px;
@@ -133,9 +136,9 @@
 
 			/* Hình tĩnh ban đầu */
 			.eco-static-img {
-				height: 100%; /* Full chiều cao 600px */
-				width: auto; /* Tự động tính chiều rộng theo tỉ lệ ảnh */
-				aspect-ratio: 9/16; /* Ép tỉ lệ khổ dọc */
+				height: 100%; 
+				width: auto; 
+				aspect-ratio: 9/16; 
 				object-fit: cover;
 				z-index: 1;
 			}
@@ -180,7 +183,6 @@
 			.eco-slide-track img {
 				height: 100%;
 				width: auto; 
-				/* SỬA: Ép tỉ lệ 9:16 cho các hình trong slider */
 				aspect-ratio: 9/16; 
 				object-fit: cover;
 				margin-right: 2px;
@@ -226,8 +228,8 @@
 
 			@media screen and (max-width: 480px) {
 				.video-hero { height: 90vh; }
-				.hero-header-layout { 
-					padding: 20px; flex-direction: column; align-items: center; 
+				.hero-header-layout { 
+					padding: 20px; flex-direction: column; align-items: center; 
 					justify-content: space-between; height: 250px;
 				}
 				.hero-logo { font-size: 2em; }
@@ -260,8 +262,8 @@
 				<section class="about-section">
 						<h2>Technical Artist & Visualizer</h2>
 						<p>
-							Chào mừng đến với hệ sinh thái của <strong>Taplus3D</strong>. Tôi chuyên cung cấp các giải pháp hình ảnh 3D toàn diện: 
-							từ <strong>3D Furniture Modeling</strong> chi tiết, sáng tạo <strong>Room Scene</strong> tôn vinh sản phẩm, 
+							Chào mừng đến với hệ sinh thái của <strong>Taplus3D</strong>. Tôi chuyên cung cấp các giải pháp hình ảnh 3D toàn diện: 
+							từ <strong>3D Furniture Modeling</strong> chi tiết, sáng tạo <strong>Room Scene</strong> tôn vinh sản phẩm, 
 							đến làm <strong>Mockup</strong> ấn tượng.
 							<br><br>
 							Dù bạn là khách hàng tìm kiếm dịch vụ chất lượng hay học viên muốn nâng cao kỹ năng, mọi thứ bạn cần đều ở ngay bên dưới.
