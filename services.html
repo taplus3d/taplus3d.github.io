@@ -164,10 +164,14 @@
 
     <aside class="sidebar">
         <div class="menu-group" id="group-images">
-            <button class="level-1-btn" onclick="toggleGroup('group-images')">IMAGES <span class="arrow">▼</span></button>
+            <button class="level-1-btn" onclick="toggleGroup('group-images'); filterSelection('img')">
+                IMAGES <span class="arrow">▼</span>
+            </button>
             <div class="submenu-l2">
                 <div class="sub-group" id="img-furniture">
-                    <button class="level-2-btn" onclick="toggleSub('img-furniture')">3D Furniture Modeling <span class="arrow">▼</span></button>
+                    <button class="level-2-btn" onclick="toggleSub('img-furniture'); filterSelection('img-furniture')">
+                        3D Furniture Modeling <span class="arrow">▼</span>
+                    </button>
                     <div class="submenu-l3">
                         <a onclick="filterSelection('img-sofa')">Sofa</a>
                         <a onclick="filterSelection('img-chair')">Chair</a>
@@ -178,7 +182,9 @@
                     </div>
                 </div>
                 <div class="sub-group" id="img-room">
-                    <button class="level-2-btn" onclick="toggleSub('img-room')">Room Scene <span class="arrow">▼</span></button>
+                    <button class="level-2-btn" onclick="toggleSub('img-room'); filterSelection('img-room')">
+                        Room Scene <span class="arrow">▼</span>
+                    </button>
                     <div class="submenu-l3">
                         <a onclick="filterSelection('img-living')">Living Room</a>
                         <a onclick="filterSelection('img-kitchen')">Kitchen & Dining</a>
@@ -190,26 +196,30 @@
         </div>
 
         <div class="menu-group" id="group-anim">
-            <button class="level-1-btn" onclick="toggleGroup('group-anim')">ANIMATION <span class="arrow">▼</span></button>
+            <button class="level-1-btn" onclick="toggleGroup('group-anim'); filterSelection('anim')">
+                ANIMATION <span class="arrow">▼</span>
+            </button>
             <div class="submenu-l2">
                 <div class="sub-group" id="anim-furniture">
-                    <button class="level-2-btn" onclick="toggleSub('anim-furniture')">3D Furniture Modeling <span class="arrow">▼</span></button>
+                    <button class="level-2-btn" onclick="toggleSub('anim-furniture'); filterSelection('anim-furniture')">
+                        3D Furniture Modeling <span class="arrow">▼</span>
+                    </button>
                     <div class="submenu-l3">
                         <a onclick="filterSelection('anim-sofa')">Sofa</a>
                         <a onclick="filterSelection('anim-chair')">Chair</a>
                         <a onclick="filterSelection('anim-table')">Tables</a>
-                        <a onclick="filterSelection('anim-bed')">Beds</a>
                         <a onclick="filterSelection('anim-cabinet')">Storage / Cabinets</a>
                         <a onclick="filterSelection('anim-set')">Full Sets</a>
                     </div>
                 </div>
                 <div class="sub-group" id="anim-room">
-                    <button class="level-2-btn" onclick="toggleSub('anim-room')">Room Scene <span class="arrow">▼</span></button>
+                    <button class="level-2-btn" onclick="toggleSub('anim-room'); filterSelection('anim-room')">
+                        Room Scene <span class="arrow">▼</span>
+                    </button>
                     <div class="submenu-l3">
                         <a onclick="filterSelection('anim-living')">Living Room</a>
                         <a onclick="filterSelection('anim-kitchen')">Kitchen & Dining</a>
                         <a onclick="filterSelection('anim-bedroom')">Bedroom</a>
-                        <a onclick="filterSelection('anim-closeup')">Close-up / Vignette</a>
                     </div>
                 </div>
             </div>
@@ -219,33 +229,28 @@
     <main class="content-area">
         <div class="masonry-grid">
             
-            <div class="grid-item img-sofa">
+            <div class="grid-item img-sofa img-furniture">
                 <img src="services/sofa-01.jpg" alt="Sofa 1">
             </div>
-            
-            <div class="grid-item img-sofa">
-                <img src="services/sofa-02.jpg" alt="Sofa 2">
-            </div>
 
-            <div class="grid-item img-chair">
+            <div class="grid-item img-chair img-furniture">
                 <img src="services/chair-01.jpg" alt="Chair 1">
             </div>
 
-            <div class="grid-item img-living">
+            <div class="grid-item img-living img-room">
                 <img src="services/living-room-01.jpg" alt="Living Room">
             </div>
 
-            <div class="grid-item anim-sofa">
+            <div class="grid-item anim-sofa anim-furniture">
                 <video autoplay muted loop playsinline>
                     <source src="services/sofa-video.mp4" type="video/mp4">
                 </video>
             </div>
 
-            </div>
+        </div>
     </main>
 
     <script>
-        // Mặc định hiện tất cả
         filterSelection("all");
 
         function filterSelection(c) {
@@ -254,6 +259,7 @@
             if (c == "all") c = ""; 
             for (i = 0; i < x.length; i++) {
                 removeClass(x[i], "show");
+                // Tìm xem class của item có chứa từ khóa 'c' không
                 if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
             }
         }
@@ -279,7 +285,6 @@
             element.className = arr1.join(" ");
         }
 
-        // Logic mở menu
         function toggleGroup(id) {
             const item = document.getElementById(id);
             if (item.classList.contains('active')) item.classList.remove('active');
