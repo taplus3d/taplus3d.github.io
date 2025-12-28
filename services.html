@@ -10,13 +10,13 @@
         :root {
             --bg-color: #050505;
             --sidebar-bg: #111111;
-            --accent-color: #ff5722; /* Màu cam cháy tạo điểm nhấn [cite: 250] */
+            --accent-color: #ff5722;
             --text-main: #ffffff;
             --text-muted: #888888;
             --font-heading: 'Montserrat', sans-serif;
             --font-body: 'Inter', sans-serif;
             --header-height: 80px;
-            --sidebar-width: 280px;
+            --sidebar-width: 280px; /* Chiều rộng cố định cho cột trái */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,7 +27,7 @@
             font-family: var(--font-body);
             height: 100vh;
             display: grid;
-            /* Layout Grid: Header ở trên, Sidebar trái, Content phải */
+            /* Header chiếm trọn chiều ngang, bên dưới chia cột */
             grid-template-areas: 
                 "header header"
                 "sidebar content";
@@ -35,18 +35,40 @@
             grid-template-rows: var(--header-height) 1fr;
         }
 
-        /* 1. KHU VỰC HEADER (ALL PROJECTS) */
+        /* 1. KHU VỰC HEADER (HOME + ALL PROJECTS) */
         .top-bar {
             grid-area: header;
+            display: flex; /* Dùng Flex để chia đôi nút Home và All Projects */
             background-color: #1a1a1a;
             border-bottom: 1px solid #333;
-            display: flex;
-            align-items: center;
-            justify-content: center; /* Căn giữa chiều ngang */
-            position: relative;
         }
 
+        /* Nút Home (Góc trái) */
+        .home-btn {
+            width: var(--sidebar-width); /* Khớp độ rộng với Sidebar bên dưới */
+            background-color: #000; /* Nền đen để nổi bật logo */
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Căn giữa logo */
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.2rem;
+            border-right: 1px solid #333;
+            transition: all 0.3s;
+        }
+
+        .home-btn:hover {
+            background-color: var(--accent-color); /* Hover màu cam */
+            padding-left: 10px; /* Hiệu ứng đẩy nhẹ */
+        }
+
+        .home-icon { margin-right: 8px; font-size: 1rem; }
+
+        /* Nút All Projects (Phần còn lại) */
         .all-projects-btn {
+            flex-grow: 1; /* Chiếm hết phần còn lại */
             font-family: var(--font-heading);
             font-weight: 800;
             font-size: 1.5rem;
@@ -54,49 +76,35 @@
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 2px;
-            width: 100%;
-            height: 100%;
             display: flex;
             align-items: center;
-            justify-content: center; /* Căn giữa chiều dọc và ngang */
+            justify-content: center;
             transition: background 0.3s;
+            position: relative;
         }
 
         .all-projects-btn:hover {
-            background-color: var(--accent-color);
-            color: #fff;
+            background-color: #222;
+            color: var(--accent-color);
         }
 
-        /* Logo nhỏ góc trái (Optional) */
-        .brand-corner {
-            position: absolute;
-            left: 30px;
-            font-weight: bold;
-            font-size: 1rem;
-            color: var(--text-muted);
-        }
-
-        /* 2. KHU VỰC SIDEBAR (IMAGES & ANIMATION) */
+        /* 2. KHU VỰC SIDEBAR */
         .sidebar {
             grid-area: sidebar;
             background-color: var(--sidebar-bg);
             border-right: 1px solid #222;
-            padding: 0;
             display: flex;
             flex-direction: column;
         }
 
-        /* Style chung cho nút menu chính */
-        .menu-item {
-            list-style: none;
-        }
+        .menu-item { list-style: none; }
 
         .menu-btn {
             display: flex;
             align-items: center;
-            justify-content: center; /* Căn giữa chữ */
+            justify-content: center;
             width: 100%;
-            padding: 25px 0; /* Độ cao nút */
+            padding: 25px 0;
             background: transparent;
             color: var(--text-main);
             border: none;
@@ -109,25 +117,16 @@
             transition: all 0.3s;
         }
 
-        .menu-btn:hover {
-            color: var(--accent-color);
-            background-color: #161616;
-        }
+        .menu-btn:hover { color: var(--accent-color); background-color: #161616; }
+        .arrow { margin-left: 10px; font-size: 0.8em; transition: transform 0.3s; }
 
-        /* Icon mũi tên nhỏ */
-        .arrow {
-            margin-left: 10px;
-            font-size: 0.8em;
-            transition: transform 0.3s;
-        }
-
-        /* Xử lý phần Sub-menu (Cái hộp phân tầng bạn cần) */
+        /* Submenu */
         .submenu {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.4s ease-out;
-            background-color: #0a0a0a; /* Nền tối hơn để tạo cảm giác "hộp" */
-            box-shadow: inset 0 5px 10px rgba(0,0,0,0.5); /* Tạo bóng đổ vào trong */
+            background-color: #0a0a0a;
+            box-shadow: inset 0 5px 10px rgba(0,0,0,0.5);
         }
 
         .submenu a {
@@ -141,66 +140,32 @@
             transition: color 0.3s;
         }
 
-        .submenu a:hover {
-            color: #fff;
-            background-color: #1f1f1f;
-            padding-left: 35px; /* Hiệu ứng đẩy chữ nhẹ */
-        }
+        .submenu a:hover { color: #fff; background-color: #1f1f1f; }
+        .menu-item.active .submenu { max-height: 200px; }
+        .menu-item.active .arrow { transform: rotate(180deg); }
+        .menu-item.active .menu-btn { background-color: #222; }
 
-        /* Class để kích hoạt mở menu (Sẽ dùng JS toggle) */
-        .menu-item.active .submenu {
-            max-height: 200px; /* Chiều cao đủ để chứa nội dung */
-        }
-        
-        .menu-item.active .arrow {
-            transform: rotate(180deg);
-        }
-
-        .menu-item.active .menu-btn {
-            background-color: #222; /* Highlight nút cha khi đang mở */
-        }
-
-        /* 3. KHU VỰC CONTENT (GRID ẢNH) */
+        /* 3. CONTENT AREA */
         .content-area {
             grid-area: content;
             padding: 30px;
-            overflow-y: auto; /* Cho phép cuộn riêng phần nội dung */
+            overflow-y: auto;
         }
 
-        .masonry-grid {
-            column-count: 3;
-            column-gap: 20px;
-        }
+        .masonry-grid { column-count: 3; column-gap: 20px; }
+        .grid-item { break-inside: avoid; margin-bottom: 20px; }
+        .grid-item img { width: 100%; border-radius: 4px; display: block; transition: transform 0.3s; }
+        .grid-item:hover img { transform: scale(1.02); filter: brightness(1.1); }
 
-        .grid-item {
-            break-inside: avoid;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .grid-item img {
-            width: 100%;
-            border-radius: 4px;
-            display: block;
-            transition: transform 0.3s;
-        }
-        
-        .grid-item:hover img {
-            transform: scale(1.02);
-            filter: brightness(1.1);
-        }
-
-        /* Mobile Responsive */
+        /* Mobile */
         @media (max-width: 768px) {
             body {
-                grid-template-areas: 
-                    "header"
-                    "content"
-                    "sidebar"; /* Đẩy sidebar xuống dưới hoặc làm menu hamburger */
+                grid-template-areas: "header" "content" "sidebar";
                 grid-template-columns: 1fr;
                 grid-template-rows: 60px 1fr auto;
             }
-            .sidebar { display: none; /* Tạm ẩn trên mobile, cần thêm nút toggle sau */ }
+            .sidebar { display: none; }
+            .home-btn { width: 80px; font-size: 0.8rem; } /* Thu nhỏ nút Home trên mobile */
             .masonry-grid { column-count: 1; }
         }
     </style>
@@ -208,7 +173,11 @@
 <body>
 
     <header class="top-bar">
-        <span class="brand-corner">TAPLUS 3D</span> <a href="#" class="all-projects-btn">ALL PROJECTS</a>
+        <a href="index.html" class="home-btn">
+            <span class="home-icon">🏠</span> TAPLUS 3D
+        </a>
+        
+        <a href="#" class="all-projects-btn">ALL PROJECTS</a>
     </header>
 
     <aside class="sidebar">
@@ -235,21 +204,16 @@
 
     <main class="content-area">
         <div class="masonry-grid">
-            <div class="grid-item"><img src="https://via.placeholder.com/600x800/111/fff?text=Furniture+Render" alt="Work"></div>
-            <div class="grid-item"><img src="https://via.placeholder.com/600x400/222/fff?text=Room+Scene" alt="Work"></div>
-            <div class="grid-item"><img src="https://via.placeholder.com/600x600/333/fff?text=Animation+Still" alt="Work"></div>
-            <div class="grid-item"><img src="https://via.placeholder.com/600x900/111/fff?text=Detail+Shot" alt="Work"></div>
-            <div class="grid-item"><img src="https://via.placeholder.com/600x500/222/fff?text=Exterior" alt="Work"></div>
+            <div class="grid-item"><img src="https://via.placeholder.com/600x800/111/fff?text=Project+1" alt="Work"></div>
+            <div class="grid-item"><img src="https://via.placeholder.com/600x500/222/fff?text=Project+2" alt="Work"></div>
+            <div class="grid-item"><img src="https://via.placeholder.com/600x900/111/fff?text=Project+3" alt="Work"></div>
+            <div class="grid-item"><img src="https://via.placeholder.com/600x600/333/fff?text=Project+4" alt="Work"></div>
         </div>
     </main>
 
     <script>
         function toggleMenu(id) {
             const item = document.getElementById(id);
-            // Đóng các menu khác nếu muốn (optional)
-            // item.classList.toggle('active');
-            
-            // Logic đơn giản: click cái nào toggle cái đó
             if (item.classList.contains('active')) {
                 item.classList.remove('active');
             } else {
@@ -257,6 +221,5 @@
             }
         }
     </script>
-
 </body>
 </html>
