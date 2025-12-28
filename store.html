@@ -109,33 +109,14 @@
 
         .level-2-btn {
             width: 100%; padding: 15px 30px;
-            background: transparent; color: #ddd;
+            background: transparent; color: #aaa;
             border: none; border-bottom: 1px solid #1a1a1a;
-            font-family: var(--font-heading); font-weight: 600;
-            font-size: 0.9rem; text-align: left;
-            cursor: pointer; display: flex;
-            justify-content: space-between; align-items: center;
-            transition: color 0.3s;
+            font-family: var(--font-heading); font-weight: 500;
+            font-size: 0.85rem; text-align: left;
+            cursor: pointer; display: block;
+            transition: all 0.2s;
         }
-        .level-2-btn:hover { color: var(--accent-color); background-color: #111; }
-
-        .submenu-l3 {
-            max-height: 0; overflow: hidden;
-            transition: max-height 0.4s ease-out;
-            background-color: #000; box-shadow: inset 0 3px 10px rgba(0,0,0,0.8);
-        }
-        .sub-group.active .submenu-l3 { max-height: 800px; }
-        .sub-group.active .level-2-btn .arrow { transform: rotate(180deg); }
-        .sub-group.active .level-2-btn { color: #fff; }
-
-        .submenu-l3 a {
-            display: block; padding: 12px 20px 12px 50px;
-            color: var(--text-muted); text-decoration: none;
-            font-size: 0.85rem; border-bottom: 1px solid #111;
-            transition: all 0.2s; cursor: pointer;
-        }
-        .submenu-l3 a:hover { color: #fff; padding-left: 55px; background-color: #1a1a1a; }
-        .submenu-l3 a::before { content: "•"; margin-right: 8px; color: var(--accent-color); opacity: 0.5; }
+        .level-2-btn:hover { color: #fff; background-color: #1a1a1a; padding-left: 35px; }
 
         /* --- CONTENT & FILTER --- */
         .content-area { grid-area: content; padding: 30px; overflow-y: auto; }
@@ -215,83 +196,45 @@
 
     <aside class="sidebar">
         <div class="menu-group" id="group-images">
-            <button class="level-1-btn" onclick="toggleGroup('group-images'); filterSelection('img')">
+            <button class="level-1-btn" onclick="toggleGroup('group-images'); filterSelection('frame-all')">
                 FRAME MOCKUP <span class="arrow">▼</span>
             </button>
             <div class="submenu-l2">
-                <div class="sub-group" id="img-furniture">
-                    <button class="level-2-btn" onclick="toggleSub('img-furniture'); filterSelection('img-furniture')">
-                        Living Room Frame <span class="arrow">▼</span>
-                    </button>
-                    <div class="submenu-l3">
-                        <a onclick="filterSelection('img-sofa')">Horizontal Frame</a>
-                        <a onclick="filterSelection('img-chair')">Vertical Frame</a>
-                        <a onclick="filterSelection('img-table')">Square Frame</a>
-                        <a onclick="filterSelection('img-set')">Set Frames</a>
-                    </div>
-                </div>
-                <div class="sub-group" id="img-room">
-                    <button class="level-2-btn" onclick="toggleSub('img-room'); filterSelection('img-room')">
-                        Bedroom Frame <span class="arrow">▼</span>
-                    </button>
-                    <div class="submenu-l3">
-                        <a onclick="filterSelection('img-living')">Bed Head</a>
-                        <a onclick="filterSelection('img-kitchen')">Nightstand</a>
-                    </div>
-                </div>
+                <button class="level-2-btn" onclick="filterSelection('frame-2-3')">Frame Ratio 2:3</button>
+                <button class="level-2-btn" onclick="filterSelection('frame-3-2')">Frame Ratio 3:2</button>
+                <button class="level-2-btn" onclick="filterSelection('frame-3-4')">Frame Ratio 3:4</button>
+                <button class="level-2-btn" onclick="filterSelection('frame-4-3')">Frame Ratio 4:3</button>
+                <button class="level-2-btn" onclick="filterSelection('frame-4-5')">Frame Ratio 4:5</button>
+                <button class="level-2-btn" onclick="filterSelection('frame-iso')">Frame Ratio ISO - A Series</button>
+                <button class="level-2-btn" onclick="filterSelection('frame-1-1')">Frame Ratio 1:1</button>
+                <button class="level-2-btn" onclick="filterSelection('frame-16-9')">Frame Ratio 16:9</button>
+                <button class="level-2-btn" onclick="filterSelection('frame-9-16')">Frame Ratio 9:16</button>
             </div>
         </div>
 
         <div class="menu-group" id="group-anim">
-            <button class="level-1-btn" onclick="toggleGroup('group-anim'); filterSelection('anim')">
+            <button class="level-1-btn" onclick="toggleGroup('group-anim'); filterSelection('wall-all')">
                 WALL MOCKUP <span class="arrow">▼</span>
             </button>
             <div class="submenu-l2">
-                <div class="sub-group" id="anim-furniture">
-                    <button class="level-2-btn" onclick="toggleSub('anim-furniture'); filterSelection('anim-furniture')">
-                        Plain Wall <span class="arrow">▼</span>
-                    </button>
-                    <div class="submenu-l3">
-                        <a onclick="filterSelection('anim-sofa')">White Wall</a>
-                        <a onclick="filterSelection('anim-chair')">Concrete Wall</a>
-                    </div>
-                </div>
-                <div class="sub-group" id="anim-room">
-                    <button class="level-2-btn" onclick="toggleSub('anim-room'); filterSelection('anim-room')">
-                        Interior Scene <span class="arrow">▼</span>
-                    </button>
-                    <div class="submenu-l3">
-                        <a onclick="filterSelection('anim-living')">Modern</a>
-                        <a onclick="filterSelection('anim-kitchen')">Classic</a>
-                    </div>
-                </div>
+                <button class="level-2-btn" onclick="filterSelection('wall-living')">Living Room</button>
+                <button class="level-2-btn" onclick="filterSelection('wall-bed')">Bedroom</button>
+                <button class="level-2-btn" onclick="filterSelection('wall-dining')">Dining room</button>
+                <button class="level-2-btn" onclick="filterSelection('wall-kids')">Nursery / Kids Room</button>
+                <button class="level-2-btn" onclick="filterSelection('wall-hall')">Entryway / Hallway</button>
+                <button class="level-2-btn" onclick="filterSelection('wall-office')">Office / Workspace</button>
+                <button class="level-2-btn" onclick="filterSelection('wall-others')">Others</button>
             </div>
         </div>
 
         <div class="menu-group" id="group-video">
-            <button class="level-1-btn" onclick="toggleGroup('group-video'); filterSelection('video')">
+            <button class="level-1-btn" onclick="toggleGroup('group-video'); filterSelection('video-all')">
                 VIDEO MOCKUP <span class="arrow">▼</span>
             </button>
             <div class="submenu-l2">
-                <div class="sub-group" id="video-promo">
-                    <button class="level-2-btn" onclick="toggleSub('video-promo'); filterSelection('video-promo')">
-                        Social Media <span class="arrow">▼</span>
-                    </button>
-                    <div class="submenu-l3">
-                        <a onclick="filterSelection('video-reel')">Instagram Reels</a>
-                        <a onclick="filterSelection('video-tiktok')">TikTok Style</a>
-                        <a onclick="filterSelection('video-story')">Stories</a>
-                    </div>
-                </div>
-                <div class="sub-group" id="video-showcase">
-                    <button class="level-2-btn" onclick="toggleSub('video-showcase'); filterSelection('video-showcase')">
-                        Showcase <span class="arrow">▼</span>
-                    </button>
-                    <div class="submenu-l3">
-                        <a onclick="filterSelection('video-cinematic')">Cinematic</a>
-                        <a onclick="filterSelection('video-360')">360 View</a>
-                    </div>
-                </div>
+                <button class="level-2-btn" onclick="filterSelection('vid-9-16')">Reels / TikTok / Shorts (9:16)</button>
+                <button class="level-2-btn" onclick="filterSelection('vid-16-9')">YouTube / Desktop Header (16:9)</button>
+                <button class="level-2-btn" onclick="filterSelection('vid-1-1')">Instagram Feed / Grid (1:1)</button>
             </div>
         </div>
     </aside>
@@ -299,13 +242,17 @@
     <main class="content-area">
         <div class="masonry-grid">
             
-            <div class="grid-item img-sofa img-furniture" onclick="openLightbox(this)">
-                <img src="store/sofa-1.jpg" alt="Sofa 1 Mới">
+            <div class="grid-item frame-all frame-2-3" onclick="openLightbox(this)">
+                <img src="https://placehold.co/400x600?text=Frame+2:3" alt="Mockup 2:3">
             </div>
 
-            <div class="grid-item video video-reel" onclick="openLightbox(this)">
-                <video muted loop onmouseover="this.play()" onmouseout="this.pause();this.currentTime=0;">
-                    <source src="store/video-reel-1.mp4" type="video/mp4">
+            <div class="grid-item video-all vid-16-9" onclick="openLightbox(this)">
+                 <img src="https://placehold.co/800x450?text=Video+16:9" alt="Video Header">
+            </div>
+
+            <div class="grid-item video-all vid-9-16" onclick="openLightbox(this)">
+                <video muted loop onmouseover="this.play()" onmouseout="this.pause();this.currentTime=0;" poster="https://placehold.co/300x533?text=Video+Reel">
+                    <source src="store/placeholder.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -358,12 +305,6 @@
             if (item.classList.contains('active')) item.classList.remove('active');
             else item.classList.add('active');
         }
-        function toggleSub(id) {
-            const item = document.getElementById(id);
-            event.stopPropagation();
-            if (item.classList.contains('active')) item.classList.remove('active');
-            else item.classList.add('active');
-        }
 
         /* --- SCRIPT LIGHTBOX --- */
         function openLightbox(element) {
@@ -376,7 +317,7 @@
 
             lightbox.classList.add('active'); 
 
-            if (img) {
+            if (img && !element.classList.contains('video-all')) { // Ưu tiên img trừ khi là video
                 lightboxImg.style.display = "block";
                 lightboxVid.style.display = "none";
                 lightboxImg.src = img.src;
@@ -386,6 +327,12 @@
                 lightboxVid.style.display = "block";
                 lightboxVid.src = vid.src;
                 lightboxVid.play(); 
+            } else if (img && element.classList.contains('video-all')) {
+                // Trường hợp video mockup dùng ảnh đại diện (như ví dụ 2)
+                 lightboxImg.style.display = "block";
+                lightboxVid.style.display = "none";
+                lightboxImg.src = img.src;
+                lightboxVid.pause();
             }
         }
 
