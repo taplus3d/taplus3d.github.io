@@ -38,6 +38,8 @@
             display: flex;
             background-color: #1a1a1a;
             border-bottom: 1px solid #333;
+            z-index: 100; /* Đảm bảo header nằm trên */
+            position: relative;
         }
 
         .home-btn {
@@ -139,7 +141,7 @@
         .content-area { grid-area: content; padding: 30px; overflow-y: auto; }
         .masonry-grid { column-count: 3; column-gap: 20px; }
         
-        .grid-item { break-inside: avoid; margin-bottom: 20px; display: none; /* Mặc định ẩn hết */ }
+        .grid-item { break-inside: avoid; margin-bottom: 20px; display: none; cursor: pointer; } /* Thêm cursor pointer */
         .grid-item.show { display: block; animation: fadeIn 0.5s; }
 
         .grid-item img, .grid-item video { width: 100%; border-radius: 4px; display: block; transition: transform 0.3s; }
@@ -147,11 +149,60 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* --- LIGHTBOX (Phần mới thêm) --- */
+        .lightbox {
+            display: none; /* Mặc định ẩn */
+            position: fixed;
+            z-index: 9999; /* Đảm bảo nằm trên cùng */
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.95); /* Màu nền đen mờ */
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .lightbox.active { display: flex; } /* Class để hiện lightbox */
+
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(255, 87, 34, 0.2);
+            object-fit: contain;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        .close-lightbox:hover,
+        .close-lightbox:focus {
+            color: var(--accent-color);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
         @media (max-width: 768px) {
             body { grid-template-areas: "header" "content" "sidebar"; grid-template-columns: 1fr; grid-template-rows: 60px 1fr auto; }
             .sidebar { display: none; }
             .home-btn { width: 80px; font-size: 0.8rem; }
             .masonry-grid { column-count: 1; }
+            .lightbox-content { max-width: 95%; }
         }
     </style>
 </head>
@@ -229,23 +280,23 @@
     <main class="content-area">
         <div class="masonry-grid">
             
-            <div class="grid-item img-sofa img-furniture">
+            <div class="grid-item img-sofa img-furniture" onclick="openLightbox(this)">
                 <img src="services/sofa-01.jpg" alt="Sofa 1">
             </div>
 
-            <div class="grid-item img-sofa img-furniture">
+            <div class="grid-item img-sofa img-furniture" onclick="openLightbox(this)">
                 <img src="services/sofa-1.jpg" alt="Sofa 1 Mới">
             </div>
 
-            <div class="grid-item img-chair img-furniture">
+            <div class="grid-item img-chair img-furniture" onclick="openLightbox(this)">
                 <img src="services/chair-01.jpg" alt="Chair 1">
             </div>
 
-            <div class="grid-item img-living img-room">
+            <div class="grid-item img-living img-room" onclick="openLightbox(this)">
                 <img src="services/living-room-01.jpg" alt="Living Room">
             </div>
 
-            <div class="grid-item anim-sofa anim-furniture">
+            <div class="grid-item anim-sofa anim-furniture" onclick="openLightbox(this)">
                 <video autoplay muted loop playsinline>
                     <source src="services/sofa-video.mp4" type="video/mp4">
                 </video>
@@ -253,6 +304,12 @@
 
         </div>
     </main>
+
+    <div id="myLightbox" class="lightbox" onclick="closeLightbox(event)">
+        <span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>
+        <img class="lightbox-content" id="img01">
+        <video class="lightbox-content" id="vid01" controls autoplay style="display:none;"></video>
+    </div>
 
     <script>
         filterSelection("all");
@@ -263,7 +320,6 @@
             if (c == "all") c = ""; 
             for (i = 0; i < x.length; i++) {
                 removeClass(x[i], "show");
-                // Tìm xem class của item có chứa từ khóa 'c' không
                 if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
             }
         }
@@ -299,6 +355,45 @@
             event.stopPropagation();
             if (item.classList.contains('active')) item.classList.remove('active');
             else item.classList.add('active');
+        }
+
+        /* --- SCRIPT LIGHTBOX MỚI --- */
+        function openLightbox(element) {
+            var lightbox = document.getElementById("myLightbox");
+            var lightboxImg = document.getElementById("img01");
+            var lightboxVid = document.getElementById("vid01");
+
+            // Tìm xem bên trong grid-item là img hay video
+            var img = element.querySelector('img');
+            var vid = element.querySelector('video source');
+
+            lightbox.classList.add('active'); // Hiện lightbox
+
+            if (img) {
+                // Nếu là ảnh
+                lightboxImg.style.display = "block";
+                lightboxVid.style.display = "none";
+                lightboxImg.src = img.src;
+                lightboxVid.pause(); // Dừng video nếu đang chạy nền
+            } else if (vid) {
+                // Nếu là video
+                lightboxImg.style.display = "none";
+                lightboxVid.style.display = "block";
+                lightboxVid.src = vid.src;
+                lightboxVid.play(); // Tự động chạy video trong lightbox
+            }
+        }
+
+        function closeLightbox(e) {
+            // Chỉ đóng khi click vào nền đen hoặc nút X (tránh click vào ảnh mà bị đóng)
+            if (e.target.id === 'myLightbox' || e.target.classList.contains('close-lightbox')) {
+                var lightbox = document.getElementById("myLightbox");
+                var lightboxVid = document.getElementById("vid01");
+                
+                lightbox.classList.remove('active');
+                lightboxVid.pause(); // Dừng video khi đóng
+                lightboxVid.src = ""; // Xóa src để chắc chắn dừng
+            }
         }
     </script>
 </body>
