@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="vi">
+<head>
+    <title>Services | Taplus3D</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Áp dụng Typography chuẩn từ báo cáo [cite: 254, 256] */
+        :root { --font-heading: 'Montserrat', sans-serif; --font-body: 'Inter', sans-serif; --tech-accent: #ff5722; }
+        body { background-color: #050505; color: #ccc; font-family: var(--font-body); margin: 0; }
+        
+        /* Navigation đơn giản */
+        .sub-nav { padding: 30px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; }
+        .logo { font-family: var(--font-heading); font-weight: 800; color: #fff; text-decoration: none; font-size: 1.5rem; letter-spacing: -1px; }
+        .back-link { color: var(--tech-accent); text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; }
+
+        /* Filter Bar [cite: 148] */
+        .filter-bar { padding: 40px 50px 20px; text-align: center; }
+        .filter-btn { background: none; border: 1px solid #333; color: #888; padding: 10px 20px; margin: 5px; cursor: pointer; transition: all 0.3s; font-family: var(--font-heading); text-transform: uppercase; font-size: 0.8rem; }
+        .filter-btn.active, .filter-btn:hover { border-color: var(--tech-accent); color: #fff; }
+
+        /* Masonry Grid [cite: 46] */
+        .gallery-grid { display: column-count; column-count: 2; column-gap: 20px; padding: 20px 50px; }
+        .gallery-item { margin-bottom: 20px; break-inside: avoid; position: relative; overflow: hidden; }
+        .gallery-item img { width: 100%; display: block; border-radius: 4px; transition: transform 0.5s ease; }
+        
+        /* Hover Effect [cite: 50] */
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-info {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .gallery-item:hover .gallery-info { opacity: 1; }
+        .gallery-info h3 { margin: 0; color: #fff; font-size: 1.2rem; }
+        .gallery-info p { margin: 5px 0 0; color: var(--tech-accent); font-size: 0.9rem; }
+
+        @media (max-width: 768px) { .gallery-grid { column-count: 1; padding: 20px; } .sub-nav { padding: 20px; } }
+    </style>
+</head>
+<body>
+    <nav class="sub-nav">
+        <a href="index.html" class="logo">TAPLUS 3D / SERVICES</a>
+        <a href="index.html" class="back-link">← Trang chủ</a>
+    </nav>
+
+    <div class="filter-bar">
+        <button class="filter-btn active">All Projects</button>
+        <button class="filter-btn">Interior / Roomscene</button>
+        <button class="filter-btn">Exterior</button>
+        <button class="filter-btn">Animation</button>
+    </div>
+
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="images/slides/service-1.jpg" alt="Scandinavian Living">
+            <div class="gallery-info">
+                <h3>Scandinavian Living Room</h3>
+                <p>Interior Visualization</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="images/slides/service-2.jpg" alt="Commercial Building">
+            <div class="gallery-info">
+                <h3>Luxury Apartment</h3>
+                <p>Real Estate Marketing</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="images/slides/service-3.jpg" alt="Furniture Detail">
+            <div class="gallery-info">
+                <h3>Sofa Collection 2025</h3>
+                <p>Product Rendering</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
