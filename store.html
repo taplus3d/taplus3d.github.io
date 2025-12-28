@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html lang="vi">
+<head>
+    <title>Store | Taplus3D</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --font-heading: 'Montserrat', sans-serif; --font-body: 'Inter', sans-serif; --tech-accent: #ff5722; }
+        body { background-color: #0d0d0d; color: #ccc; font-family: var(--font-body); margin: 0; }
+        
+        .sub-nav { padding: 30px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; }
+        .logo { font-family: var(--font-heading); font-weight: 800; color: #fff; text-decoration: none; font-size: 1.5rem; }
+        .back-link { color: var(--tech-accent); text-decoration: none; font-weight: 600; text-transform: uppercase; }
+
+        /* Store Layout: Sidebar + Grid [cite: 147] */
+        .store-layout { display: flex; min-height: 100vh; }
+        
+        .sidebar { width: 250px; padding: 40px 30px; border-right: 1px solid #222; display: none; /* Ẩn trên mobile */ }
+        .sidebar h4 { color: #fff; font-family: var(--font-heading); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .sidebar ul { list-style: none; padding: 0; }
+        .sidebar li { margin-bottom: 12px; }
+        .sidebar a { color: #888; text-decoration: none; transition: 0.3s; }
+        .sidebar a:hover { color: var(--tech-accent); padding-left: 5px; }
+
+        .products-area { flex: 1; padding: 40px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; }
+        
+        /* Minimalist Product Card [cite: 138] */
+        .product-card { background: transparent; cursor: pointer; }
+        .product-thumb { width: 100%; aspect-ratio: 1/1; background: #1a1a1a; border-radius: 8px; overflow: hidden; position: relative; }
+        .product-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+        .product-card:hover .product-thumb img { transform: scale(1.1); }
+        
+        .product-title { margin-top: 15px; color: #fff; font-size: 1rem; font-weight: 600; }
+        .product-cat { color: #666; font-size: 0.85rem; margin-top: 5px; }
+        
+        /* Label Free/Premium */
+        .badge { position: absolute; top: 10px; right: 10px; background: var(--tech-accent); color: #fff; font-size: 0.7rem; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
+        .badge.free { background: #4caf50; }
+
+        @media (min-width: 900px) { .sidebar { display: block; } }
+    </style>
+</head>
+<body>
+    <nav class="sub-nav">
+        <a href="index.html" class="logo">TAPLUS 3D / STORE</a>
+        <a href="index.html" class="back-link">← Quay lại</a>
+    </nav>
+
+    <div class="store-layout">
+        <aside class="sidebar">
+            <h4>Categories</h4>
+            <ul>
+                <li><a href="#">Tất cả</a></li>
+                <li><a href="#">Mockup Khung Tranh</a></li>
+                <li><a href="#">Mockup Tường</a></li>
+                <li><a href="#">3D Models</a></li>
+            </ul>
+            
+            <h4 style="margin-top: 40px;">Format</h4>
+            <ul>
+                <li><a href="#">Hình ảnh (PSD)</a></li>
+                <li><a href="#">Video (MP4/AE)</a></li>
+            </ul>
+        </aside>
+
+        <main class="products-area">
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-thumb">
+                        <span class="badge free">FREE</span>
+                        <img src="images/slides/store-1.jpg" alt="Mockup">
+                    </div>
+                    <div class="product-title">Minimalist Frame V1</div>
+                    <div class="product-cat">Mockup / Frames</div>
+                </div>
+                 <div class="product-card">
+                    <div class="product-thumb">
+                        <span class="badge">$5</span>
+                        <img src="images/slides/store-2.jpg" alt="Mockup">
+                    </div>
+                    <div class="product-title">Living Room Wall</div>
+                    <div class="product-cat">Mockup / Interior</div>
+                </div>
+                 <div class="product-card">
+                    <div class="product-thumb">
+                        <span class="badge">$12</span>
+                        <img src="images/slides/store-3.jpg" alt="Mockup">
+                    </div>
+                    <div class="product-title">Animated Shadow Overlay</div>
+                    <div class="product-cat">Video Assets</div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
