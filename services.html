@@ -38,7 +38,7 @@
             display: flex;
             background-color: #1a1a1a;
             border-bottom: 1px solid #333;
-            z-index: 100; /* Đảm bảo header nằm trên */
+            z-index: 100;
             position: relative;
         }
 
@@ -141,7 +141,7 @@
         .content-area { grid-area: content; padding: 30px; overflow-y: auto; }
         .masonry-grid { column-count: 3; column-gap: 20px; }
         
-        .grid-item { break-inside: avoid; margin-bottom: 20px; display: none; cursor: pointer; } /* Thêm cursor pointer */
+        .grid-item { break-inside: avoid; margin-bottom: 20px; display: none; cursor: pointer; }
         .grid-item.show { display: block; animation: fadeIn 0.5s; }
 
         .grid-item img, .grid-item video { width: 100%; border-radius: 4px; display: block; transition: transform 0.3s; }
@@ -149,24 +149,24 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- LIGHTBOX (Phần mới thêm) --- */
+        /* --- LIGHTBOX --- */
         .lightbox {
-            display: none; /* Mặc định ẩn */
+            display: none;
             position: fixed;
-            z-index: 9999; /* Đảm bảo nằm trên cùng */
+            z-index: 9999;
             padding-top: 50px;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.95); /* Màu nền đen mờ */
+            background-color: rgba(0, 0, 0, 0.95);
             justify-content: center;
             align-items: center;
             flex-direction: column;
         }
 
-        .lightbox.active { display: flex; } /* Class để hiện lightbox */
+        .lightbox.active { display: flex; }
 
         .lightbox-content {
             margin: auto;
@@ -281,28 +281,10 @@
         <div class="masonry-grid">
             
             <div class="grid-item img-sofa img-furniture" onclick="openLightbox(this)">
-                <img src="services/sofa-01.jpg" alt="Sofa 1">
-            </div>
-
-            <div class="grid-item img-sofa img-furniture" onclick="openLightbox(this)">
                 <img src="services/sofa-1.jpg" alt="Sofa 1 Mới">
             </div>
 
-            <div class="grid-item img-chair img-furniture" onclick="openLightbox(this)">
-                <img src="services/chair-01.jpg" alt="Chair 1">
             </div>
-
-            <div class="grid-item img-living img-room" onclick="openLightbox(this)">
-                <img src="services/living-room-01.jpg" alt="Living Room">
-            </div>
-
-            <div class="grid-item anim-sofa anim-furniture" onclick="openLightbox(this)">
-                <video autoplay muted loop playsinline>
-                    <source src="services/sofa-video.mp4" type="video/mp4">
-                </video>
-            </div>
-
-        </div>
     </main>
 
     <div id="myLightbox" class="lightbox" onclick="closeLightbox(event)">
@@ -339,7 +321,7 @@
             arr2 = name.split(" ");
             for (i = 0; i < arr2.length; i++) {
                 while (arr1.indexOf(arr2[i]) > -1) {
-                    arr1.splice(arr1.indexOf(arr2[i]), 1);     
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);      
                 }
             }
             element.className = arr1.join(" ");
@@ -363,36 +345,32 @@
             var lightboxImg = document.getElementById("img01");
             var lightboxVid = document.getElementById("vid01");
 
-            // Tìm xem bên trong grid-item là img hay video
             var img = element.querySelector('img');
             var vid = element.querySelector('video source');
 
-            lightbox.classList.add('active'); // Hiện lightbox
+            lightbox.classList.add('active'); 
 
             if (img) {
-                // Nếu là ảnh
                 lightboxImg.style.display = "block";
                 lightboxVid.style.display = "none";
                 lightboxImg.src = img.src;
-                lightboxVid.pause(); // Dừng video nếu đang chạy nền
+                lightboxVid.pause(); 
             } else if (vid) {
-                // Nếu là video
                 lightboxImg.style.display = "none";
                 lightboxVid.style.display = "block";
                 lightboxVid.src = vid.src;
-                lightboxVid.play(); // Tự động chạy video trong lightbox
+                lightboxVid.play(); 
             }
         }
 
         function closeLightbox(e) {
-            // Chỉ đóng khi click vào nền đen hoặc nút X (tránh click vào ảnh mà bị đóng)
             if (e.target.id === 'myLightbox' || e.target.classList.contains('close-lightbox')) {
                 var lightbox = document.getElementById("myLightbox");
                 var lightboxVid = document.getElementById("vid01");
                 
                 lightbox.classList.remove('active');
-                lightboxVid.pause(); // Dừng video khi đóng
-                lightboxVid.src = ""; // Xóa src để chắc chắn dừng
+                lightboxVid.pause(); 
+                lightboxVid.src = ""; 
             }
         }
     </script>
