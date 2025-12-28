@@ -16,7 +16,7 @@
             --font-heading: 'Montserrat', sans-serif;
             --font-body: 'Inter', sans-serif;
             --header-height: 80px;
-            --sidebar-width: 280px; /* Chiều rộng cố định cho cột trái */
+            --sidebar-width: 280px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,30 +27,26 @@
             font-family: var(--font-body);
             height: 100vh;
             display: grid;
-            /* Header chiếm trọn chiều ngang, bên dưới chia cột */
-            grid-template-areas: 
-                "header header"
-                "sidebar content";
+            grid-template-areas: "header header" "sidebar content";
             grid-template-columns: var(--sidebar-width) 1fr;
             grid-template-rows: var(--header-height) 1fr;
         }
 
-        /* 1. KHU VỰC HEADER (HOME + ALL PROJECTS) */
+        /* --- HEADER --- */
         .top-bar {
             grid-area: header;
-            display: flex; /* Dùng Flex để chia đôi nút Home và All Projects */
+            display: flex;
             background-color: #1a1a1a;
             border-bottom: 1px solid #333;
         }
 
-        /* Nút Home (Góc trái) */
         .home-btn {
-            width: var(--sidebar-width); /* Khớp độ rộng với Sidebar bên dưới */
-            background-color: #000; /* Nền đen để nổi bật logo */
+            width: var(--sidebar-width);
+            background-color: #000;
             color: #fff;
             display: flex;
             align-items: center;
-            justify-content: center; /* Căn giữa logo */
+            justify-content: center;
             text-decoration: none;
             font-family: var(--font-heading);
             font-weight: 800;
@@ -58,17 +54,11 @@
             border-right: 1px solid #333;
             transition: all 0.3s;
         }
-
-        .home-btn:hover {
-            background-color: var(--accent-color); /* Hover màu cam */
-            padding-left: 10px; /* Hiệu ứng đẩy nhẹ */
-        }
-
+        .home-btn:hover { background-color: var(--accent-color); padding-left: 10px; }
         .home-icon { margin-right: 8px; font-size: 1rem; }
 
-        /* Nút All Projects (Phần còn lại) */
         .all-projects-btn {
-            flex-grow: 1; /* Chiếm hết phần còn lại */
+            flex-grow: 1;
             font-family: var(--font-heading);
             font-weight: 800;
             font-size: 1.5rem;
@@ -80,35 +70,31 @@
             align-items: center;
             justify-content: center;
             transition: background 0.3s;
-            position: relative;
         }
+        .all-projects-btn:hover { background-color: #222; color: var(--accent-color); }
 
-        .all-projects-btn:hover {
-            background-color: #222;
-            color: var(--accent-color);
-        }
-
-        /* 2. KHU VỰC SIDEBAR */
+        /* --- SIDEBAR --- */
         .sidebar {
             grid-area: sidebar;
             background-color: var(--sidebar-bg);
             border-right: 1px solid #222;
             display: flex;
             flex-direction: column;
+            overflow-y: auto; /* Cho phép cuộn sidebar nếu menu quá dài */
         }
 
-        .menu-item { list-style: none; }
-
-        .menu-btn {
+        /* Level 1: Main Menu (IMAGES, ANIMATION) */
+        .menu-group { border-bottom: 1px solid #222; }
+        
+        .level-1-btn {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center; /* Căn giữa cấp 1 */
             width: 100%;
             padding: 25px 0;
             background: transparent;
             color: var(--text-main);
             border: none;
-            border-bottom: 1px solid #222;
             font-family: var(--font-heading);
             font-weight: 700;
             font-size: 1.1rem;
@@ -116,42 +102,78 @@
             text-transform: uppercase;
             transition: all 0.3s;
         }
+        .level-1-btn:hover { color: var(--accent-color); background-color: #161616; }
 
-        .menu-btn:hover { color: var(--accent-color); background-color: #161616; }
-        .arrow { margin-left: 10px; font-size: 0.8em; transition: transform 0.3s; }
-
-        /* Submenu */
-        .submenu {
+        /* Level 2 Container */
+        .submenu-l2 {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.4s ease-out;
             background-color: #0a0a0a;
-            box-shadow: inset 0 5px 10px rgba(0,0,0,0.5);
         }
+        .menu-group.active > .submenu-l2 { max-height: 1000px; /* Tăng max-height để chứa cấp 3 */ }
+        .menu-group.active > .level-1-btn { background-color: #222; }
+        .arrow { margin-left: 10px; font-size: 0.8em; transition: transform 0.3s; }
+        .menu-group.active > .level-1-btn .arrow { transform: rotate(180deg); }
 
-        .submenu a {
-            display: block;
+        /* Level 2 Buttons (3D Furniture, Room Scene) */
+        .level-2-btn {
+            width: 100%;
             padding: 15px 30px;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            text-align: center;
+            background: transparent;
+            color: #ddd; /* Màu sáng hơn text thường */
+            border: none;
             border-bottom: 1px solid #1a1a1a;
+            font-family: var(--font-heading); /* Vẫn dùng font cứng cáp cho tiêu đề nhóm */
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: left; /* Căn trái cho cấp con */
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             transition: color 0.3s;
         }
+        .level-2-btn:hover { color: var(--accent-color); background-color: #111; }
 
-        .submenu a:hover { color: #fff; background-color: #1f1f1f; }
-        .menu-item.active .submenu { max-height: 200px; }
-        .menu-item.active .arrow { transform: rotate(180deg); }
-        .menu-item.active .menu-btn { background-color: #222; }
+        /* Level 3 Container */
+        .submenu-l3 {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: #000; /* Nền đen sâu nhất cho cấp cuối */
+            box-shadow: inset 0 3px 10px rgba(0,0,0,0.8);
+        }
+        
+        /* Hiển thị cấp 3 khi cấp 2 active */
+        .sub-group.active .submenu-l3 { max-height: 500px; }
+        .sub-group.active .level-2-btn .arrow { transform: rotate(180deg); }
+        .sub-group.active .level-2-btn { color: #fff; }
 
-        /* 3. CONTENT AREA */
-        .content-area {
-            grid-area: content;
-            padding: 30px;
-            overflow-y: auto;
+        /* Level 3 Links (Sofa, Chair...) */
+        .submenu-l3 a {
+            display: block;
+            padding: 12px 20px 12px 50px; /* Thụt lề sâu hơn: 50px */
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            border-bottom: 1px solid #111;
+            transition: all 0.2s;
+        }
+        .submenu-l3 a:hover {
+            color: #fff;
+            padding-left: 55px; /* Hiệu ứng đẩy nhẹ */
+            background-color: #1a1a1a;
+        }
+        .submenu-l3 a::before {
+            content: "•";
+            margin-right: 8px;
+            color: var(--accent-color);
+            opacity: 0.5;
         }
 
+        /* --- CONTENT --- */
+        .content-area { grid-area: content; padding: 30px; overflow-y: auto; }
         .masonry-grid { column-count: 3; column-gap: 20px; }
         .grid-item { break-inside: avoid; margin-bottom: 20px; }
         .grid-item img { width: 100%; border-radius: 4px; display: block; transition: transform 0.3s; }
@@ -165,7 +187,7 @@
                 grid-template-rows: 60px 1fr auto;
             }
             .sidebar { display: none; }
-            .home-btn { width: 80px; font-size: 0.8rem; } /* Thu nhỏ nút Home trên mobile */
+            .home-btn { width: 80px; font-size: 0.8rem; }
             .masonry-grid { column-count: 1; }
         }
     </style>
@@ -176,30 +198,83 @@
         <a href="index.html" class="home-btn">
             <span class="home-icon">🏠</span> TAPLUS 3D
         </a>
-        
         <a href="#" class="all-projects-btn">ALL PROJECTS</a>
     </header>
 
     <aside class="sidebar">
-        <div class="menu-item" id="images-menu">
-            <button class="menu-btn" onclick="toggleMenu('images-menu')">
+        
+        <div class="menu-group" id="group-images">
+            <button class="level-1-btn" onclick="toggleGroup('group-images')">
                 IMAGES <span class="arrow">▼</span>
             </button>
-            <div class="submenu">
-                <a href="#">3D Furniture Modeling</a>
-                <a href="#">Room Scene</a>
+            
+            <div class="submenu-l2">
+                
+                <div class="sub-group" id="img-furniture">
+                    <button class="level-2-btn" onclick="toggleSub('img-furniture')">
+                        3D Furniture Modeling <span class="arrow">▼</span>
+                    </button>
+                    <div class="submenu-l3">
+                        <a href="#">Sofa</a>
+                        <a href="#">Chair</a>
+                        <a href="#">Tables</a>
+                        <a href="#">Beds</a>
+                        <a href="#">Storage / Cabinets</a>
+                        <a href="#">Full Sets</a>
+                    </div>
+                </div>
+
+                <div class="sub-group" id="img-room">
+                    <button class="level-2-btn" onclick="toggleSub('img-room')">
+                        Room Scene <span class="arrow">▼</span>
+                    </button>
+                    <div class="submenu-l3">
+                        <a href="#">Living Room</a>
+                        <a href="#">Kitchen & Dining</a>
+                        <a href="#">Bedroom</a>
+                        <a href="#">Close-up / Vignette</a>
+                    </div>
+                </div>
+
             </div>
         </div>
 
-        <div class="menu-item" id="animation-menu">
-            <button class="menu-btn" onclick="toggleMenu('animation-menu')">
+        <div class="menu-group" id="group-anim">
+            <button class="level-1-btn" onclick="toggleGroup('group-anim')">
                 ANIMATION <span class="arrow">▼</span>
             </button>
-            <div class="submenu">
-                <a href="#">3D Furniture Modeling</a>
-                <a href="#">Room Scene</a>
+            
+            <div class="submenu-l2">
+                
+                <div class="sub-group" id="anim-furniture">
+                    <button class="level-2-btn" onclick="toggleSub('anim-furniture')">
+                        3D Furniture Modeling <span class="arrow">▼</span>
+                    </button>
+                    <div class="submenu-l3">
+                        <a href="#">Sofa</a>
+                        <a href="#">Chair</a>
+                        <a href="#">Tables</a>
+                        <a href="#">Beds</a>
+                        <a href="#">Storage / Cabinets</a>
+                        <a href="#">Full Sets</a>
+                    </div>
+                </div>
+
+                <div class="sub-group" id="anim-room">
+                    <button class="level-2-btn" onclick="toggleSub('anim-room')">
+                        Room Scene <span class="arrow">▼</span>
+                    </button>
+                    <div class="submenu-l3">
+                        <a href="#">Living Room</a>
+                        <a href="#">Kitchen & Dining</a>
+                        <a href="#">Bedroom</a>
+                        <a href="#">Close-up / Vignette</a>
+                    </div>
+                </div>
+
             </div>
         </div>
+
     </aside>
 
     <main class="content-area">
@@ -212,8 +287,22 @@
     </main>
 
     <script>
-        function toggleMenu(id) {
+        // Hàm mở menu cấp 1 (IMAGES, ANIMATION)
+        function toggleGroup(id) {
             const item = document.getElementById(id);
+            // Logic: Bấm vào toggle class active
+            if (item.classList.contains('active')) {
+                item.classList.remove('active');
+            } else {
+                item.classList.add('active');
+            }
+        }
+
+        // Hàm mở menu cấp 2 (Furniture, Room Scene)
+        function toggleSub(id) {
+            const item = document.getElementById(id);
+            // Cần stopPropagation để không kích hoạt hàm cha (nếu có lồng nhau phức tạp)
+            // Nhưng với cấu trúc HTML này thì không bị chồng, dùng logic đơn giản là đủ.
             if (item.classList.contains('active')) {
                 item.classList.remove('active');
             } else {
