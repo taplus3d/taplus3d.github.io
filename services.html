@@ -1,80 +1,262 @@
 <!DOCTYPE HTML>
 <html lang="vi">
 <head>
-    <title>Services | Taplus3D</title>
+    <title>Portfolio | Taplus3D</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        /* Áp dụng Typography chuẩn từ báo cáo [cite: 254, 256] */
-        :root { --font-heading: 'Montserrat', sans-serif; --font-body: 'Inter', sans-serif; --tech-accent: #ff5722; }
-        body { background-color: #050505; color: #ccc; font-family: var(--font-body); margin: 0; }
-        
-        /* Navigation đơn giản */
-        .sub-nav { padding: 30px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; }
-        .logo { font-family: var(--font-heading); font-weight: 800; color: #fff; text-decoration: none; font-size: 1.5rem; letter-spacing: -1px; }
-        .back-link { color: var(--tech-accent); text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; }
-
-        /* Filter Bar [cite: 148] */
-        .filter-bar { padding: 40px 50px 20px; text-align: center; }
-        .filter-btn { background: none; border: 1px solid #333; color: #888; padding: 10px 20px; margin: 5px; cursor: pointer; transition: all 0.3s; font-family: var(--font-heading); text-transform: uppercase; font-size: 0.8rem; }
-        .filter-btn.active, .filter-btn:hover { border-color: var(--tech-accent); color: #fff; }
-
-        /* Masonry Grid [cite: 46] */
-        .gallery-grid { display: column-count; column-count: 2; column-gap: 20px; padding: 20px 50px; }
-        .gallery-item { margin-bottom: 20px; break-inside: avoid; position: relative; overflow: hidden; }
-        .gallery-item img { width: 100%; display: block; border-radius: 4px; transition: transform 0.5s ease; }
-        
-        /* Hover Effect [cite: 50] */
-        .gallery-item:hover img { transform: scale(1.05); }
-        .gallery-info {
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            opacity: 0; transition: opacity 0.3s ease;
+        :root {
+            --bg-color: #050505;
+            --sidebar-bg: #111111;
+            --accent-color: #ff5722; /* Màu cam cháy tạo điểm nhấn [cite: 250] */
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --header-height: 80px;
+            --sidebar-width: 280px;
         }
-        .gallery-item:hover .gallery-info { opacity: 1; }
-        .gallery-info h3 { margin: 0; color: #fff; font-size: 1.2rem; }
-        .gallery-info p { margin: 5px 0 0; color: var(--tech-accent); font-size: 0.9rem; }
 
-        @media (max-width: 768px) { .gallery-grid { column-count: 1; padding: 20px; } .sub-nav { padding: 20px; } }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            height: 100vh;
+            display: grid;
+            /* Layout Grid: Header ở trên, Sidebar trái, Content phải */
+            grid-template-areas: 
+                "header header"
+                "sidebar content";
+            grid-template-columns: var(--sidebar-width) 1fr;
+            grid-template-rows: var(--header-height) 1fr;
+        }
+
+        /* 1. KHU VỰC HEADER (ALL PROJECTS) */
+        .top-bar {
+            grid-area: header;
+            background-color: #1a1a1a;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Căn giữa chiều ngang */
+            position: relative;
+        }
+
+        .all-projects-btn {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Căn giữa chiều dọc và ngang */
+            transition: background 0.3s;
+        }
+
+        .all-projects-btn:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+
+        /* Logo nhỏ góc trái (Optional) */
+        .brand-corner {
+            position: absolute;
+            left: 30px;
+            font-weight: bold;
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        /* 2. KHU VỰC SIDEBAR (IMAGES & ANIMATION) */
+        .sidebar {
+            grid-area: sidebar;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid #222;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Style chung cho nút menu chính */
+        .menu-item {
+            list-style: none;
+        }
+
+        .menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Căn giữa chữ */
+            width: 100%;
+            padding: 25px 0; /* Độ cao nút */
+            background: transparent;
+            color: var(--text-main);
+            border: none;
+            border-bottom: 1px solid #222;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .menu-btn:hover {
+            color: var(--accent-color);
+            background-color: #161616;
+        }
+
+        /* Icon mũi tên nhỏ */
+        .arrow {
+            margin-left: 10px;
+            font-size: 0.8em;
+            transition: transform 0.3s;
+        }
+
+        /* Xử lý phần Sub-menu (Cái hộp phân tầng bạn cần) */
+        .submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: #0a0a0a; /* Nền tối hơn để tạo cảm giác "hộp" */
+            box-shadow: inset 0 5px 10px rgba(0,0,0,0.5); /* Tạo bóng đổ vào trong */
+        }
+
+        .submenu a {
+            display: block;
+            padding: 15px 30px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-align: center;
+            border-bottom: 1px solid #1a1a1a;
+            transition: color 0.3s;
+        }
+
+        .submenu a:hover {
+            color: #fff;
+            background-color: #1f1f1f;
+            padding-left: 35px; /* Hiệu ứng đẩy chữ nhẹ */
+        }
+
+        /* Class để kích hoạt mở menu (Sẽ dùng JS toggle) */
+        .menu-item.active .submenu {
+            max-height: 200px; /* Chiều cao đủ để chứa nội dung */
+        }
+        
+        .menu-item.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .menu-item.active .menu-btn {
+            background-color: #222; /* Highlight nút cha khi đang mở */
+        }
+
+        /* 3. KHU VỰC CONTENT (GRID ẢNH) */
+        .content-area {
+            grid-area: content;
+            padding: 30px;
+            overflow-y: auto; /* Cho phép cuộn riêng phần nội dung */
+        }
+
+        .masonry-grid {
+            column-count: 3;
+            column-gap: 20px;
+        }
+
+        .grid-item {
+            break-inside: avoid;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .grid-item img {
+            width: 100%;
+            border-radius: 4px;
+            display: block;
+            transition: transform 0.3s;
+        }
+        
+        .grid-item:hover img {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                grid-template-areas: 
+                    "header"
+                    "content"
+                    "sidebar"; /* Đẩy sidebar xuống dưới hoặc làm menu hamburger */
+                grid-template-columns: 1fr;
+                grid-template-rows: 60px 1fr auto;
+            }
+            .sidebar { display: none; /* Tạm ẩn trên mobile, cần thêm nút toggle sau */ }
+            .masonry-grid { column-count: 1; }
+        }
     </style>
 </head>
 <body>
-    <nav class="sub-nav">
-        <a href="index.html" class="logo">TAPLUS 3D / SERVICES</a>
-        <a href="index.html" class="back-link">← Trang chủ</a>
-    </nav>
 
-    <div class="filter-bar">
-        <button class="filter-btn active">All Projects</button>
-        <button class="filter-btn">Interior / Roomscene</button>
-        <button class="filter-btn">Exterior</button>
-        <button class="filter-btn">Animation</button>
-    </div>
+    <header class="top-bar">
+        <span class="brand-corner">TAPLUS 3D</span> <a href="#" class="all-projects-btn">ALL PROJECTS</a>
+    </header>
 
-    <div class="gallery-grid">
-        <div class="gallery-item">
-            <img src="images/slides/service-1.jpg" alt="Scandinavian Living">
-            <div class="gallery-info">
-                <h3>Scandinavian Living Room</h3>
-                <p>Interior Visualization</p>
+    <aside class="sidebar">
+        <div class="menu-item" id="images-menu">
+            <button class="menu-btn" onclick="toggleMenu('images-menu')">
+                IMAGES <span class="arrow">▼</span>
+            </button>
+            <div class="submenu">
+                <a href="#">3D Furniture Modeling</a>
+                <a href="#">Room Scene</a>
             </div>
         </div>
-        <div class="gallery-item">
-            <img src="images/slides/service-2.jpg" alt="Commercial Building">
-            <div class="gallery-info">
-                <h3>Luxury Apartment</h3>
-                <p>Real Estate Marketing</p>
+
+        <div class="menu-item" id="animation-menu">
+            <button class="menu-btn" onclick="toggleMenu('animation-menu')">
+                ANIMATION <span class="arrow">▼</span>
+            </button>
+            <div class="submenu">
+                <a href="#">3D Furniture Modeling</a>
+                <a href="#">Room Scene</a>
             </div>
         </div>
-        <div class="gallery-item">
-            <img src="images/slides/service-3.jpg" alt="Furniture Detail">
-            <div class="gallery-info">
-                <h3>Sofa Collection 2025</h3>
-                <p>Product Rendering</p>
-            </div>
+    </aside>
+
+    <main class="content-area">
+        <div class="masonry-grid">
+            <div class="grid-item"><img src="https://via.placeholder.com/600x800/111/fff?text=Furniture+Render" alt="Work"></div>
+            <div class="grid-item"><img src="https://via.placeholder.com/600x400/222/fff?text=Room+Scene" alt="Work"></div>
+            <div class="grid-item"><img src="https://via.placeholder.com/600x600/333/fff?text=Animation+Still" alt="Work"></div>
+            <div class="grid-item"><img src="https://via.placeholder.com/600x900/111/fff?text=Detail+Shot" alt="Work"></div>
+            <div class="grid-item"><img src="https://via.placeholder.com/600x500/222/fff?text=Exterior" alt="Work"></div>
         </div>
-    </div>
+    </main>
+
+    <script>
+        function toggleMenu(id) {
+            const item = document.getElementById(id);
+            // Đóng các menu khác nếu muốn (optional)
+            // item.classList.toggle('active');
+            
+            // Logic đơn giản: click cái nào toggle cái đó
+            if (item.classList.contains('active')) {
+                item.classList.remove('active');
+            } else {
+                item.classList.add('active');
+            }
+        }
+    </script>
+
 </body>
 </html>
