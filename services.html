@@ -220,27 +220,28 @@
         <div class="masonry-grid">
             
             <div class="grid-item img-sofa">
-                <img src="images/sofa-01.jpg" alt="Sofa 1">
+                <img src="services/sofa-01.jpg" alt="Sofa 1">
             </div>
+            
             <div class="grid-item img-sofa">
-                <img src="images/sofa-02.jpg" alt="Sofa 2">
+                <img src="services/sofa-02.jpg" alt="Sofa 2">
             </div>
 
             <div class="grid-item img-chair">
-                <img src="images/chair-01.jpg" alt="Chair 1">
+                <img src="services/chair-01.jpg" alt="Chair 1">
             </div>
 
             <div class="grid-item img-living">
-                <img src="images/living-room-01.jpg" alt="Living Room">
+                <img src="services/living-room-01.jpg" alt="Living Room">
             </div>
 
             <div class="grid-item anim-sofa">
                 <video autoplay muted loop playsinline>
-                    <source src="images/sofa-video.mp4" type="video/mp4">
+                    <source src="services/sofa-video.mp4" type="video/mp4">
                 </video>
             </div>
 
-        </div>
+            </div>
     </main>
 
     <script>
@@ -250,7 +251,7 @@
         function filterSelection(c) {
             var x, i;
             x = document.getElementsByClassName("grid-item");
-            if (c == "all") c = ""; // Nếu chọn 'all' thì hiện hết
+            if (c == "all") c = ""; 
             for (i = 0; i < x.length; i++) {
                 removeClass(x[i], "show");
                 if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
@@ -286,7 +287,7 @@
         }
         function toggleSub(id) {
             const item = document.getElementById(id);
-            event.stopPropagation(); // Ngăn click lan ra ngoài
+            event.stopPropagation();
             if (item.classList.contains('active')) item.classList.remove('active');
             else item.classList.add('active');
         }
