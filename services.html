@@ -70,6 +70,7 @@
             align-items: center;
             justify-content: center;
             transition: background 0.3s;
+            cursor: pointer;
         }
         .all-projects-btn:hover { background-color: #222; color: var(--accent-color); }
 
@@ -80,112 +81,74 @@
             border-right: 1px solid #222;
             display: flex;
             flex-direction: column;
-            overflow-y: auto; /* Cho phép cuộn sidebar nếu menu quá dài */
+            overflow-y: auto;
         }
 
-        /* Level 1: Main Menu (IMAGES, ANIMATION) */
         .menu-group { border-bottom: 1px solid #222; }
         
         .level-1-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center; /* Căn giữa cấp 1 */
-            width: 100%;
-            padding: 25px 0;
-            background: transparent;
-            color: var(--text-main);
-            border: none;
-            font-family: var(--font-heading);
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: all 0.3s;
+            display: flex; align-items: center; justify-content: center;
+            width: 100%; padding: 25px 0;
+            background: transparent; color: var(--text-main);
+            border: none; font-family: var(--font-heading);
+            font-weight: 700; font-size: 1.1rem;
+            cursor: pointer; text-transform: uppercase; transition: all 0.3s;
         }
         .level-1-btn:hover { color: var(--accent-color); background-color: #161616; }
 
-        /* Level 2 Container */
         .submenu-l2 {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out;
-            background-color: #0a0a0a;
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease-out; background-color: #0a0a0a;
         }
-        .menu-group.active > .submenu-l2 { max-height: 1000px; /* Tăng max-height để chứa cấp 3 */ }
+        .menu-group.active > .submenu-l2 { max-height: 1500px; }
         .menu-group.active > .level-1-btn { background-color: #222; }
         .arrow { margin-left: 10px; font-size: 0.8em; transition: transform 0.3s; }
         .menu-group.active > .level-1-btn .arrow { transform: rotate(180deg); }
 
-        /* Level 2 Buttons (3D Furniture, Room Scene) */
         .level-2-btn {
-            width: 100%;
-            padding: 15px 30px;
-            background: transparent;
-            color: #ddd; /* Màu sáng hơn text thường */
-            border: none;
-            border-bottom: 1px solid #1a1a1a;
-            font-family: var(--font-heading); /* Vẫn dùng font cứng cáp cho tiêu đề nhóm */
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-align: left; /* Căn trái cho cấp con */
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            width: 100%; padding: 15px 30px;
+            background: transparent; color: #ddd;
+            border: none; border-bottom: 1px solid #1a1a1a;
+            font-family: var(--font-heading); font-weight: 600;
+            font-size: 0.9rem; text-align: left;
+            cursor: pointer; display: flex;
+            justify-content: space-between; align-items: center;
             transition: color 0.3s;
         }
         .level-2-btn:hover { color: var(--accent-color); background-color: #111; }
 
-        /* Level 3 Container */
         .submenu-l3 {
-            max-height: 0;
-            overflow: hidden;
+            max-height: 0; overflow: hidden;
             transition: max-height 0.4s ease-out;
-            background-color: #000; /* Nền đen sâu nhất cho cấp cuối */
-            box-shadow: inset 0 3px 10px rgba(0,0,0,0.8);
+            background-color: #000; box-shadow: inset 0 3px 10px rgba(0,0,0,0.8);
         }
-        
-        /* Hiển thị cấp 3 khi cấp 2 active */
-        .sub-group.active .submenu-l3 { max-height: 500px; }
+        .sub-group.active .submenu-l3 { max-height: 800px; }
         .sub-group.active .level-2-btn .arrow { transform: rotate(180deg); }
         .sub-group.active .level-2-btn { color: #fff; }
 
-        /* Level 3 Links (Sofa, Chair...) */
         .submenu-l3 a {
-            display: block;
-            padding: 12px 20px 12px 50px; /* Thụt lề sâu hơn: 50px */
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            border-bottom: 1px solid #111;
-            transition: all 0.2s;
+            display: block; padding: 12px 20px 12px 50px;
+            color: var(--text-muted); text-decoration: none;
+            font-size: 0.85rem; border-bottom: 1px solid #111;
+            transition: all 0.2s; cursor: pointer;
         }
-        .submenu-l3 a:hover {
-            color: #fff;
-            padding-left: 55px; /* Hiệu ứng đẩy nhẹ */
-            background-color: #1a1a1a;
-        }
-        .submenu-l3 a::before {
-            content: "•";
-            margin-right: 8px;
-            color: var(--accent-color);
-            opacity: 0.5;
-        }
+        .submenu-l3 a:hover { color: #fff; padding-left: 55px; background-color: #1a1a1a; }
+        .submenu-l3 a::before { content: "•"; margin-right: 8px; color: var(--accent-color); opacity: 0.5; }
 
-        /* --- CONTENT --- */
+        /* --- CONTENT & FILTER --- */
         .content-area { grid-area: content; padding: 30px; overflow-y: auto; }
         .masonry-grid { column-count: 3; column-gap: 20px; }
-        .grid-item { break-inside: avoid; margin-bottom: 20px; }
-        .grid-item img { width: 100%; border-radius: 4px; display: block; transition: transform 0.3s; }
-        .grid-item:hover img { transform: scale(1.02); filter: brightness(1.1); }
+        
+        .grid-item { break-inside: avoid; margin-bottom: 20px; display: none; /* Mặc định ẩn hết */ }
+        .grid-item.show { display: block; animation: fadeIn 0.5s; }
 
-        /* Mobile */
+        .grid-item img, .grid-item video { width: 100%; border-radius: 4px; display: block; transition: transform 0.3s; }
+        .grid-item:hover img, .grid-item:hover video { transform: scale(1.02); filter: brightness(1.1); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
         @media (max-width: 768px) {
-            body {
-                grid-template-areas: "header" "content" "sidebar";
-                grid-template-columns: 1fr;
-                grid-template-rows: 60px 1fr auto;
-            }
+            body { grid-template-areas: "header" "content" "sidebar"; grid-template-columns: 1fr; grid-template-rows: 60px 1fr auto; }
             .sidebar { display: none; }
             .home-btn { width: 80px; font-size: 0.8rem; }
             .masonry-grid { column-count: 1; }
@@ -195,119 +158,137 @@
 <body>
 
     <header class="top-bar">
-        <a href="index.html" class="home-btn">
-            <span class="home-icon">🏠</span> TAPLUS 3D
-        </a>
-        <a href="#" class="all-projects-btn">ALL PROJECTS</a>
+        <a href="index.html" class="home-btn"><span class="home-icon">🏠</span> TAPLUS 3D</a>
+        <div onclick="filterSelection('all')" class="all-projects-btn">ALL PROJECTS</div>
     </header>
 
     <aside class="sidebar">
-        
         <div class="menu-group" id="group-images">
-            <button class="level-1-btn" onclick="toggleGroup('group-images')">
-                IMAGES <span class="arrow">▼</span>
-            </button>
-            
+            <button class="level-1-btn" onclick="toggleGroup('group-images')">IMAGES <span class="arrow">▼</span></button>
             <div class="submenu-l2">
-                
                 <div class="sub-group" id="img-furniture">
-                    <button class="level-2-btn" onclick="toggleSub('img-furniture')">
-                        3D Furniture Modeling <span class="arrow">▼</span>
-                    </button>
+                    <button class="level-2-btn" onclick="toggleSub('img-furniture')">3D Furniture Modeling <span class="arrow">▼</span></button>
                     <div class="submenu-l3">
-                        <a href="#">Sofa</a>
-                        <a href="#">Chair</a>
-                        <a href="#">Tables</a>
-                        <a href="#">Beds</a>
-                        <a href="#">Storage / Cabinets</a>
-                        <a href="#">Full Sets</a>
+                        <a onclick="filterSelection('img-sofa')">Sofa</a>
+                        <a onclick="filterSelection('img-chair')">Chair</a>
+                        <a onclick="filterSelection('img-table')">Tables</a>
+                        <a onclick="filterSelection('img-bed')">Beds</a>
+                        <a onclick="filterSelection('img-cabinet')">Storage / Cabinets</a>
+                        <a onclick="filterSelection('img-set')">Full Sets</a>
                     </div>
                 </div>
-
                 <div class="sub-group" id="img-room">
-                    <button class="level-2-btn" onclick="toggleSub('img-room')">
-                        Room Scene <span class="arrow">▼</span>
-                    </button>
+                    <button class="level-2-btn" onclick="toggleSub('img-room')">Room Scene <span class="arrow">▼</span></button>
                     <div class="submenu-l3">
-                        <a href="#">Living Room</a>
-                        <a href="#">Kitchen & Dining</a>
-                        <a href="#">Bedroom</a>
-                        <a href="#">Close-up / Vignette</a>
+                        <a onclick="filterSelection('img-living')">Living Room</a>
+                        <a onclick="filterSelection('img-kitchen')">Kitchen & Dining</a>
+                        <a onclick="filterSelection('img-bedroom')">Bedroom</a>
+                        <a onclick="filterSelection('img-closeup')">Close-up / Vignette</a>
                     </div>
                 </div>
-
             </div>
         </div>
 
         <div class="menu-group" id="group-anim">
-            <button class="level-1-btn" onclick="toggleGroup('group-anim')">
-                ANIMATION <span class="arrow">▼</span>
-            </button>
-            
+            <button class="level-1-btn" onclick="toggleGroup('group-anim')">ANIMATION <span class="arrow">▼</span></button>
             <div class="submenu-l2">
-                
                 <div class="sub-group" id="anim-furniture">
-                    <button class="level-2-btn" onclick="toggleSub('anim-furniture')">
-                        3D Furniture Modeling <span class="arrow">▼</span>
-                    </button>
+                    <button class="level-2-btn" onclick="toggleSub('anim-furniture')">3D Furniture Modeling <span class="arrow">▼</span></button>
                     <div class="submenu-l3">
-                        <a href="#">Sofa</a>
-                        <a href="#">Chair</a>
-                        <a href="#">Tables</a>
-                        <a href="#">Beds</a>
-                        <a href="#">Storage / Cabinets</a>
-                        <a href="#">Full Sets</a>
+                        <a onclick="filterSelection('anim-sofa')">Sofa</a>
+                        <a onclick="filterSelection('anim-chair')">Chair</a>
+                        <a onclick="filterSelection('anim-table')">Tables</a>
+                        <a onclick="filterSelection('anim-bed')">Beds</a>
+                        <a onclick="filterSelection('anim-cabinet')">Storage / Cabinets</a>
+                        <a onclick="filterSelection('anim-set')">Full Sets</a>
                     </div>
                 </div>
-
                 <div class="sub-group" id="anim-room">
-                    <button class="level-2-btn" onclick="toggleSub('anim-room')">
-                        Room Scene <span class="arrow">▼</span>
-                    </button>
+                    <button class="level-2-btn" onclick="toggleSub('anim-room')">Room Scene <span class="arrow">▼</span></button>
                     <div class="submenu-l3">
-                        <a href="#">Living Room</a>
-                        <a href="#">Kitchen & Dining</a>
-                        <a href="#">Bedroom</a>
-                        <a href="#">Close-up / Vignette</a>
+                        <a onclick="filterSelection('anim-living')">Living Room</a>
+                        <a onclick="filterSelection('anim-kitchen')">Kitchen & Dining</a>
+                        <a onclick="filterSelection('anim-bedroom')">Bedroom</a>
+                        <a onclick="filterSelection('anim-closeup')">Close-up / Vignette</a>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </aside>
 
     <main class="content-area">
         <div class="masonry-grid">
-            <div class="grid-item"><img src="https://via.placeholder.com/600x800/111/fff?text=Project+1" alt="Work"></div>
-            <div class="grid-item"><img src="https://via.placeholder.com/600x500/222/fff?text=Project+2" alt="Work"></div>
-            <div class="grid-item"><img src="https://via.placeholder.com/600x900/111/fff?text=Project+3" alt="Work"></div>
-            <div class="grid-item"><img src="https://via.placeholder.com/600x600/333/fff?text=Project+4" alt="Work"></div>
+            
+            <div class="grid-item img-sofa">
+                <img src="images/sofa-01.jpg" alt="Sofa 1">
+            </div>
+            <div class="grid-item img-sofa">
+                <img src="images/sofa-02.jpg" alt="Sofa 2">
+            </div>
+
+            <div class="grid-item img-chair">
+                <img src="images/chair-01.jpg" alt="Chair 1">
+            </div>
+
+            <div class="grid-item img-living">
+                <img src="images/living-room-01.jpg" alt="Living Room">
+            </div>
+
+            <div class="grid-item anim-sofa">
+                <video autoplay muted loop playsinline>
+                    <source src="images/sofa-video.mp4" type="video/mp4">
+                </video>
+            </div>
+
         </div>
     </main>
 
     <script>
-        // Hàm mở menu cấp 1 (IMAGES, ANIMATION)
-        function toggleGroup(id) {
-            const item = document.getElementById(id);
-            // Logic: Bấm vào toggle class active
-            if (item.classList.contains('active')) {
-                item.classList.remove('active');
-            } else {
-                item.classList.add('active');
+        // Mặc định hiện tất cả
+        filterSelection("all");
+
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("grid-item");
+            if (c == "all") c = ""; // Nếu chọn 'all' thì hiện hết
+            for (i = 0; i < x.length; i++) {
+                removeClass(x[i], "show");
+                if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
             }
         }
 
-        // Hàm mở menu cấp 2 (Furniture, Room Scene)
+        function w3AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+            }
+        }
+
+        function removeClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);     
+                }
+            }
+            element.className = arr1.join(" ");
+        }
+
+        // Logic mở menu
+        function toggleGroup(id) {
+            const item = document.getElementById(id);
+            if (item.classList.contains('active')) item.classList.remove('active');
+            else item.classList.add('active');
+        }
         function toggleSub(id) {
             const item = document.getElementById(id);
-            // Cần stopPropagation để không kích hoạt hàm cha (nếu có lồng nhau phức tạp)
-            // Nhưng với cấu trúc HTML này thì không bị chồng, dùng logic đơn giản là đủ.
-            if (item.classList.contains('active')) {
-                item.classList.remove('active');
-            } else {
-                item.classList.add('active');
-            }
+            event.stopPropagation(); // Ngăn click lan ra ngoài
+            if (item.classList.contains('active')) item.classList.remove('active');
+            else item.classList.add('active');
         }
     </script>
 </body>
