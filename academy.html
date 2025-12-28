@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="vi">
+<head>
+    <title>Academy | Taplus3D</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --font-heading: 'Montserrat', sans-serif; --font-body: 'Inter', sans-serif; --tech-accent: #ff5722; --card-bg: #111; }
+        body { background-color: #050505; color: #ccc; font-family: var(--font-body); margin: 0; }
+        
+        /* Header giữ nguyên style Services */
+        .sub-nav { padding: 30px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; }
+        .logo { font-family: var(--font-heading); font-weight: 800; color: #fff; text-decoration: none; font-size: 1.5rem; }
+        .back-link { color: var(--tech-accent); text-decoration: none; font-weight: 600; text-transform: uppercase; }
+
+        /* Course Grid Layout  */
+        .course-container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
+        .section-title { color: #fff; font-family: var(--font-heading); font-size: 2rem; margin-bottom: 30px; border-left: 4px solid var(--tech-accent); padding-left: 20px; }
+        
+        .grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .course-card { background: var(--card-bg); border: 1px solid #222; border-radius: 8px; overflow: hidden; transition: transform 0.3s, border-color 0.3s; }
+        .course-card:hover { transform: translateY(-5px); border-color: var(--tech-accent); }
+        
+        .card-thumb { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 25px; }
+        .card-tag { background: #222; color: #888; padding: 4px 10px; font-size: 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px; }
+        .card-title { color: #fff; margin: 15px 0 10px; font-family: var(--font-heading); font-size: 1.2rem; }
+        .card-price { color: var(--tech-accent); font-weight: 700; font-size: 1.1rem; display: block; margin-bottom: 20px; }
+        .btn-enroll { display: block; width: 100%; text-align: center; background: #222; color: #fff; padding: 12px; text-decoration: none; border-radius: 4px; font-weight: 600; transition: background 0.3s; }
+        .btn-enroll:hover { background: var(--tech-accent); }
+
+    </style>
+</head>
+<body>
+    <nav class="sub-nav">
+        <a href="index.html" class="logo">TAPLUS 3D / ACADEMY</a>
+        <a href="index.html" class="back-link">← Quay lại</a>
+    </nav>
+
+    <div class="course-container">
+        <h2 class="section-title">Combo Lộ Trình</h2>
+        <div class="grid-cards">
+            <div class="course-card">
+                <img src="images/slides/academy-1.jpg" class="card-thumb" alt="Course 1">
+                <div class="card-body">
+                    <span class="card-tag">Full-Stack ArchViz</span>
+                    <h3 class="card-title">Làm chủ Roomscene từ A-Z</h3>
+                    <span class="card-price">5.990.000 VNĐ</span>
+                    <a href="#" class="btn-enroll">Xem chi tiết</a>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="images/slides/academy-2.jpg" class="card-thumb" alt="Course 2">
+                <div class="card-body">
+                    <span class="card-tag">Lighting Master</span>
+                    <h3 class="card-title">Kỹ thuật Ánh sáng Studio</h3>
+                    <span class="card-price">2.490.000 VNĐ</span>
+                    <a href="#" class="btn-enroll">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" style="margin-top: 60px;">Khóa Học Lẻ</h2>
+        <div class="grid-cards">
+            <div class="course-card">
+                <img src="images/slides/academy-3.jpg" class="card-thumb" alt="Course 3">
+                <div class="card-body">
+                    <span class="card-tag">Model & Mockup</span>
+                    <h3 class="card-title">Dựng hình Furniture cao cấp</h3>
+                    <span class="card-price">1.200.000 VNĐ</span>
+                    <a href="#" class="btn-enroll">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
